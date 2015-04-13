@@ -18,4 +18,6 @@
 
 - (void) off;
 
+- (void) on;
+
 @end
