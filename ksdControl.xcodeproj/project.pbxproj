@@ -1,0 +1,446 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9E92212E1ADBB91700B942CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92212D1ADBB91700B942CC /* main.m */; };
+		9E9221311ADBB91700B942CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221301ADBB91700B942CC /* AppDelegate.m */; };
+		9E9221341ADBB91700B942CC /* ksdControl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221321ADBB91700B942CC /* ksdControl.xcdatamodeld */; };
+		9E9221371ADBB91700B942CC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221361ADBB91700B942CC /* ViewController.m */; };
+		9E92213A1ADBB91700B942CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E9221381ADBB91700B942CC /* Main.storyboard */; };
+		9E92213C1ADBB91700B942CC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E92213B1ADBB91700B942CC /* Images.xcassets */; };
+		9E92213F1ADBB91700B942CC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E92213D1ADBB91700B942CC /* LaunchScreen.xib */; };
+		9E92214B1ADBB91700B942CC /* ksdControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92214A1ADBB91700B942CC /* ksdControlTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9E9221451ADBB91700B942CC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9E9221201ADBB91700B942CC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9E9221271ADBB91700B942CC;
+			remoteInfo = ksdControl;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9E9221281ADBB91700B942CC /* ksdControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ksdControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E92212C1ADBB91700B942CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E92212D1ADBB91700B942CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9E92212F1ADBB91700B942CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9E9221301ADBB91700B942CC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9E9221331ADBB91700B942CC /* ksdControl.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ksdControl.xcdatamodel; sourceTree = "<group>"; };
+		9E9221351ADBB91700B942CC /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9E9221361ADBB91700B942CC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9E9221391ADBB91700B942CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9E92213B1ADBB91700B942CC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9E92213E1ADBB91700B942CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9E9221441ADBB91700B942CC /* ksdControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ksdControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9221491ADBB91700B942CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E92214A1ADBB91700B942CC /* ksdControlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ksdControlTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9E9221251ADBB91700B942CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9221411ADBB91700B942CC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9E92211F1ADBB91700B942CC = {
+			isa = PBXGroup;
+			children = (
+				9E92212A1ADBB91700B942CC /* ksdControl */,
+				9E9221471ADBB91700B942CC /* ksdControlTests */,
+				9E9221291ADBB91700B942CC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9E9221291ADBB91700B942CC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9E9221281ADBB91700B942CC /* ksdControl.app */,
+				9E9221441ADBB91700B942CC /* ksdControlTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9E92212A1ADBB91700B942CC /* ksdControl */ = {
+			isa = PBXGroup;
+			children = (
+				9E92212F1ADBB91700B942CC /* AppDelegate.h */,
+				9E9221301ADBB91700B942CC /* AppDelegate.m */,
+				9E9221351ADBB91700B942CC /* ViewController.h */,
+				9E9221361ADBB91700B942CC /* ViewController.m */,
+				9E9221381ADBB91700B942CC /* Main.storyboard */,
+				9E92213B1ADBB91700B942CC /* Images.xcassets */,
+				9E92213D1ADBB91700B942CC /* LaunchScreen.xib */,
+				9E9221321ADBB91700B942CC /* ksdControl.xcdatamodeld */,
+				9E92212B1ADBB91700B942CC /* Supporting Files */,
+			);
+			path = ksdControl;
+			sourceTree = "<group>";
+		};
+		9E92212B1ADBB91700B942CC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9E92212C1ADBB91700B942CC /* Info.plist */,
+				9E92212D1ADBB91700B942CC /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9E9221471ADBB91700B942CC /* ksdControlTests */ = {
+			isa = PBXGroup;
+			children = (
+				9E92214A1ADBB91700B942CC /* ksdControlTests.m */,
+				9E9221481ADBB91700B942CC /* Supporting Files */,
+			);
+			path = ksdControlTests;
+			sourceTree = "<group>";
+		};
+		9E9221481ADBB91700B942CC /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9E9221491ADBB91700B942CC /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9E9221271ADBB91700B942CC /* ksdControl */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E92214E1ADBB91700B942CC /* Build configuration list for PBXNativeTarget "ksdControl" */;
+			buildPhases = (
+				9E9221241ADBB91700B942CC /* Sources */,
+				9E9221251ADBB91700B942CC /* Frameworks */,
+				9E9221261ADBB91700B942CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ksdControl;
+			productName = ksdControl;
+			productReference = 9E9221281ADBB91700B942CC /* ksdControl.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9E9221431ADBB91700B942CC /* ksdControlTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9E9221511ADBB91700B942CC /* Build configuration list for PBXNativeTarget "ksdControlTests" */;
+			buildPhases = (
+				9E9221401ADBB91700B942CC /* Sources */,
+				9E9221411ADBB91700B942CC /* Frameworks */,
+				9E9221421ADBB91700B942CC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9E9221461ADBB91700B942CC /* PBXTargetDependency */,
+			);
+			name = ksdControlTests;
+			productName = ksdControlTests;
+			productReference = 9E9221441ADBB91700B942CC /* ksdControlTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9E9221201ADBB91700B942CC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = HANQING;
+				TargetAttributes = {
+					9E9221271ADBB91700B942CC = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					9E9221431ADBB91700B942CC = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = 9E9221271ADBB91700B942CC;
+					};
+				};
+			};
+			buildConfigurationList = 9E9221231ADBB91700B942CC /* Build configuration list for PBXProject "ksdControl" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9E92211F1ADBB91700B942CC;
+			productRefGroup = 9E9221291ADBB91700B942CC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9E9221271ADBB91700B942CC /* ksdControl */,
+				9E9221431ADBB91700B942CC /* ksdControlTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9E9221261ADBB91700B942CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E92213A1ADBB91700B942CC /* Main.storyboard in Resources */,
+				9E92213F1ADBB91700B942CC /* LaunchScreen.xib in Resources */,
+				9E92213C1ADBB91700B942CC /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9221421ADBB91700B942CC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9E9221241ADBB91700B942CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E9221311ADBB91700B942CC /* AppDelegate.m in Sources */,
+				9E92212E1ADBB91700B942CC /* main.m in Sources */,
+				9E9221371ADBB91700B942CC /* ViewController.m in Sources */,
+				9E9221341ADBB91700B942CC /* ksdControl.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9E9221401ADBB91700B942CC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9E92214B1ADBB91700B942CC /* ksdControlTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9E9221461ADBB91700B942CC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9E9221271ADBB91700B942CC /* ksdControl */;
+			targetProxy = 9E9221451ADBB91700B942CC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9E9221381ADBB91700B942CC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E9221391ADBB91700B942CC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9E92213D1ADBB91700B942CC /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E92213E1ADBB91700B942CC /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9E92214C1ADBB91700B942CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9E92214D1ADBB91700B942CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9E92214F1ADBB91700B942CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ksdControl/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9E9221501ADBB91700B942CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ksdControl/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9E9221521ADBB91700B942CC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ksdControlTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ksdControl.app/ksdControl";
+			};
+			name = Debug;
+		};
+		9E9221531ADBB91700B942CC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ksdControlTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ksdControl.app/ksdControl";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9E9221231ADBB91700B942CC /* Build configuration list for PBXProject "ksdControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E92214C1ADBB91700B942CC /* Debug */,
+				9E92214D1ADBB91700B942CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9E92214E1ADBB91700B942CC /* Build configuration list for PBXNativeTarget "ksdControl" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E92214F1ADBB91700B942CC /* Debug */,
+				9E9221501ADBB91700B942CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9E9221511ADBB91700B942CC /* Build configuration list for PBXNativeTarget "ksdControlTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9E9221521ADBB91700B942CC /* Debug */,
+				9E9221531ADBB91700B942CC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9E9221321ADBB91700B942CC /* ksdControl.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9E9221331ADBB91700B942CC /* ksdControl.xcdatamodel */,
+			);
+			currentVersion = 9E9221331ADBB91700B942CC /* ksdControl.xcdatamodel */;
+			path = ksdControl.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 9E9221201ADBB91700B942CC /* Project object */;
+}
