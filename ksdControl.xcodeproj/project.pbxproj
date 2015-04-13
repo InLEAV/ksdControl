@@ -15,6 +15,12 @@
 		9E92213C1ADBB91700B942CC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E92213B1ADBB91700B942CC /* Images.xcassets */; };
 		9E92213F1ADBB91700B942CC /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E92213D1ADBB91700B942CC /* LaunchScreen.xib */; };
 		9E92214B1ADBB91700B942CC /* ksdControlTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92214A1ADBB91700B942CC /* ksdControlTests.m */; };
+		9E92215C1ADBBD9C00B942CC /* ProjectControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92215B1ADBBD9C00B942CC /* ProjectControl.m */; };
+		9E92215F1ADBBDF300B942CC /* ComputerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92215E1ADBBDF300B942CC /* ComputerControl.m */; };
+		9E9221621ADBBE1200B942CC /* RelayControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221611ADBBE1200B942CC /* RelayControl.m */; };
+		9E9221651ADBBF2200B942CC /* ComputerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221641ADBBF2200B942CC /* ComputerVO.m */; };
+		9E9221681ADBBF4100B942CC /* RelayVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221671ADBBF4100B942CC /* RelayVO.m */; };
+		9E92216B1ADBBF5F00B942CC /* ProjectVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92216A1ADBBF5F00B942CC /* ProjectVO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,18 @@
 		9E9221441ADBB91700B942CC /* ksdControlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ksdControlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9221491ADBB91700B942CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E92214A1ADBB91700B942CC /* ksdControlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ksdControlTests.m; sourceTree = "<group>"; };
+		9E92215A1ADBBD9C00B942CC /* ProjectControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectControl.h; sourceTree = "<group>"; };
+		9E92215B1ADBBD9C00B942CC /* ProjectControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectControl.m; sourceTree = "<group>"; };
+		9E92215D1ADBBDF300B942CC /* ComputerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputerControl.h; sourceTree = "<group>"; };
+		9E92215E1ADBBDF300B942CC /* ComputerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputerControl.m; sourceTree = "<group>"; };
+		9E9221601ADBBE1200B942CC /* RelayControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelayControl.h; sourceTree = "<group>"; };
+		9E9221611ADBBE1200B942CC /* RelayControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelayControl.m; sourceTree = "<group>"; };
+		9E9221631ADBBF2200B942CC /* ComputerVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComputerVO.h; sourceTree = "<group>"; };
+		9E9221641ADBBF2200B942CC /* ComputerVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComputerVO.m; sourceTree = "<group>"; };
+		9E9221661ADBBF4100B942CC /* RelayVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelayVO.h; sourceTree = "<group>"; };
+		9E9221671ADBBF4100B942CC /* RelayVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelayVO.m; sourceTree = "<group>"; };
+		9E9221691ADBBF5F00B942CC /* ProjectVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectVO.h; sourceTree = "<group>"; };
+		9E92216A1ADBBF5F00B942CC /* ProjectVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectVO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +110,18 @@
 				9E92213D1ADBB91700B942CC /* LaunchScreen.xib */,
 				9E9221321ADBB91700B942CC /* ksdControl.xcdatamodeld */,
 				9E92212B1ADBB91700B942CC /* Supporting Files */,
+				9E92215A1ADBBD9C00B942CC /* ProjectControl.h */,
+				9E92215B1ADBBD9C00B942CC /* ProjectControl.m */,
+				9E92215D1ADBBDF300B942CC /* ComputerControl.h */,
+				9E92215E1ADBBDF300B942CC /* ComputerControl.m */,
+				9E9221601ADBBE1200B942CC /* RelayControl.h */,
+				9E9221611ADBBE1200B942CC /* RelayControl.m */,
+				9E9221631ADBBF2200B942CC /* ComputerVO.h */,
+				9E9221641ADBBF2200B942CC /* ComputerVO.m */,
+				9E9221661ADBBF4100B942CC /* RelayVO.h */,
+				9E9221671ADBBF4100B942CC /* RelayVO.m */,
+				9E9221691ADBBF5F00B942CC /* ProjectVO.h */,
+				9E92216A1ADBBF5F00B942CC /* ProjectVO.m */,
 			);
 			path = ksdControl;
 			sourceTree = "<group>";
@@ -222,10 +252,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E92215C1ADBBD9C00B942CC /* ProjectControl.m in Sources */,
 				9E9221311ADBB91700B942CC /* AppDelegate.m in Sources */,
 				9E92212E1ADBB91700B942CC /* main.m in Sources */,
+				9E9221651ADBBF2200B942CC /* ComputerVO.m in Sources */,
 				9E9221371ADBB91700B942CC /* ViewController.m in Sources */,
+				9E92215F1ADBBDF300B942CC /* ComputerControl.m in Sources */,
+				9E92216B1ADBBF5F00B942CC /* ProjectVO.m in Sources */,
 				9E9221341ADBB91700B942CC /* ksdControl.xcdatamodeld in Sources */,
+				9E9221621ADBBE1200B942CC /* RelayControl.m in Sources */,
+				9E9221681ADBBF4100B942CC /* RelayVO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +454,7 @@
 				9E9221501ADBB91700B942CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9E9221511ADBB91700B942CC /* Build configuration list for PBXNativeTarget "ksdControlTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +463,7 @@
 				9E9221531ADBB91700B942CC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
