@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DB132811ADCFE0500A199C9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB132801ADCFE0500A199C9 /* LoginViewController.m */; };
 		9E92212E1ADBB91700B942CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92212D1ADBB91700B942CC /* main.m */; };
 		9E9221311ADBB91700B942CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221301ADBB91700B942CC /* AppDelegate.m */; };
 		9E9221341ADBB91700B942CC /* ksdControl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221321ADBB91700B942CC /* ksdControl.xcdatamodeld */; };
@@ -34,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2DB1327F1ADCFE0500A199C9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		2DB132801ADCFE0500A199C9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		9E9221281ADBB91700B942CC /* ksdControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ksdControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E92212C1ADBB91700B942CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E92212D1ADBB91700B942CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -102,6 +105,8 @@
 			isa = PBXGroup;
 			children = (
 				9E92212F1ADBB91700B942CC /* AppDelegate.h */,
+				2DB1327F1ADCFE0500A199C9 /* LoginViewController.h */,
+				2DB132801ADCFE0500A199C9 /* LoginViewController.m */,
 				9E9221301ADBB91700B942CC /* AppDelegate.m */,
 				9E9221351ADBB91700B942CC /* ViewController.h */,
 				9E9221361ADBB91700B942CC /* ViewController.m */,
@@ -261,6 +266,7 @@
 				9E92216B1ADBBF5F00B942CC /* ProjectVO.m in Sources */,
 				9E9221341ADBB91700B942CC /* ksdControl.xcdatamodeld in Sources */,
 				9E9221621ADBBE1200B942CC /* RelayControl.m in Sources */,
+				2DB132811ADCFE0500A199C9 /* LoginViewController.m in Sources */,
 				9E9221681ADBBF4100B942CC /* RelayVO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
