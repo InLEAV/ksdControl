@@ -10,4 +10,6 @@
 
 @implementation ComputerVO
 
+@synthesize addressMac;
+
 @end

@@ -6,8 +6,13 @@
 //  Copyright (c) 2015年 HANQING. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ElementVO.h"
 
-@interface ProjectVO : NSObject
+@interface ProjectVO : ElementVO
+{
+    
+}
+
+@property NSString * linkType;
 
 @end

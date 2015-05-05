@@ -10,4 +10,6 @@
 
 @implementation RelayVO
 
+@synthesize circuit;
+
 @end

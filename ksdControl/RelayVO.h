@@ -6,8 +6,13 @@
 //  Copyright (c) 2015年 HANQING. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ElementVO.h"
 
-@interface RelayVO : NSObject
+@interface RelayVO : ElementVO
+{
+    
+}
+
+@property int circuit;
 
 @end

@@ -6,18 +6,12 @@
 //  Copyright (c) 2015年 HANQING. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "ElementVO.h"
 
-@interface ComputerVO : NSObject
+@interface ComputerVO : ElementVO
 {
-    int kid,port;
-    NSString *ip,*kname;
+    
 }
 
-- (void) initSever:(int) port;
-
-- (void) off;
-
-- (void) on;
-
+@property NSString * addressMac;
 @end

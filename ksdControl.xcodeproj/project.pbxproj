@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2DB132811ADCFE0500A199C9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB132801ADCFE0500A199C9 /* LoginViewController.m */; };
+		9E33E1841AF0D258002B90FB /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E33E1831AF0D258002B90FB /* Model.m */; };
 		9E92212E1ADBB91700B942CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92212D1ADBB91700B942CC /* main.m */; };
 		9E9221311ADBB91700B942CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221301ADBB91700B942CC /* AppDelegate.m */; };
 		9E9221341ADBB91700B942CC /* ksdControl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221321ADBB91700B942CC /* ksdControl.xcdatamodeld */; };
@@ -22,6 +23,13 @@
 		9E9221651ADBBF2200B942CC /* ComputerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221641ADBBF2200B942CC /* ComputerVO.m */; };
 		9E9221681ADBBF4100B942CC /* RelayVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221671ADBBF4100B942CC /* RelayVO.m */; };
 		9E92216B1ADBBF5F00B942CC /* ProjectVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92216A1ADBBF5F00B942CC /* ProjectVO.m */; };
+		9EDB01831AEF259500FD74FE /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB01821AEF259500FD74FE /* SetViewController.m */; };
+		9EDB01861AEF261000FD74FE /* ControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB01851AEF261000FD74FE /* ControlViewController.m */; };
+		9EDB01891AEF271900FD74FE /* VO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB01881AEF271900FD74FE /* VO.m */; };
+		9EDB018C1AEF2B5800FD74FE /* ElementVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB018B1AEF2B5800FD74FE /* ElementVO.m */; };
+		9EDB018F1AEF2BA200FD74FE /* GroupVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB018E1AEF2BA200FD74FE /* GroupVO.m */; };
+		9EDB01921AEF2BF500FD74FE /* AreaVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB01911AEF2BF500FD74FE /* AreaVO.m */; };
+		9EDB01971AEF3B4300FD74FE /* PlayerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB01961AEF3B4300FD74FE /* PlayerVO.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +45,8 @@
 /* Begin PBXFileReference section */
 		2DB1327F1ADCFE0500A199C9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		2DB132801ADCFE0500A199C9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		9E33E1821AF0D258002B90FB /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
+		9E33E1831AF0D258002B90FB /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		9E9221281ADBB91700B942CC /* ksdControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ksdControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E92212C1ADBB91700B942CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E92212D1ADBB91700B942CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -63,6 +73,20 @@
 		9E9221671ADBBF4100B942CC /* RelayVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelayVO.m; sourceTree = "<group>"; };
 		9E9221691ADBBF5F00B942CC /* ProjectVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectVO.h; sourceTree = "<group>"; };
 		9E92216A1ADBBF5F00B942CC /* ProjectVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectVO.m; sourceTree = "<group>"; };
+		9EDB01811AEF259500FD74FE /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
+		9EDB01821AEF259500FD74FE /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
+		9EDB01841AEF261000FD74FE /* ControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlViewController.h; sourceTree = "<group>"; };
+		9EDB01851AEF261000FD74FE /* ControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlViewController.m; sourceTree = "<group>"; };
+		9EDB01871AEF271900FD74FE /* VO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VO.h; sourceTree = "<group>"; };
+		9EDB01881AEF271900FD74FE /* VO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VO.m; sourceTree = "<group>"; };
+		9EDB018A1AEF2B5800FD74FE /* ElementVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementVO.h; sourceTree = "<group>"; };
+		9EDB018B1AEF2B5800FD74FE /* ElementVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementVO.m; sourceTree = "<group>"; };
+		9EDB018D1AEF2BA200FD74FE /* GroupVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupVO.h; sourceTree = "<group>"; };
+		9EDB018E1AEF2BA200FD74FE /* GroupVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupVO.m; sourceTree = "<group>"; };
+		9EDB01901AEF2BF500FD74FE /* AreaVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaVO.h; sourceTree = "<group>"; };
+		9EDB01911AEF2BF500FD74FE /* AreaVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaVO.m; sourceTree = "<group>"; };
+		9EDB01951AEF3B4300FD74FE /* PlayerVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerVO.h; sourceTree = "<group>"; };
+		9EDB01961AEF3B4300FD74FE /* PlayerVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerVO.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,12 +145,11 @@
 				9E92215E1ADBBDF300B942CC /* ComputerControl.m */,
 				9E9221601ADBBE1200B942CC /* RelayControl.h */,
 				9E9221611ADBBE1200B942CC /* RelayControl.m */,
-				9E9221631ADBBF2200B942CC /* ComputerVO.h */,
-				9E9221641ADBBF2200B942CC /* ComputerVO.m */,
-				9E9221661ADBBF4100B942CC /* RelayVO.h */,
-				9E9221671ADBBF4100B942CC /* RelayVO.m */,
-				9E9221691ADBBF5F00B942CC /* ProjectVO.h */,
-				9E92216A1ADBBF5F00B942CC /* ProjectVO.m */,
+				9EDB01811AEF259500FD74FE /* SetViewController.h */,
+				9EDB01821AEF259500FD74FE /* SetViewController.m */,
+				9EDB01841AEF261000FD74FE /* ControlViewController.h */,
+				9EDB01851AEF261000FD74FE /* ControlViewController.m */,
+				9EDB01931AEF2C1600FD74FE /* VO */,
 			);
 			path = ksdControl;
 			sourceTree = "<group>";
@@ -155,6 +178,39 @@
 				9E9221491ADBB91700B942CC /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9EDB01931AEF2C1600FD74FE /* VO */ = {
+			isa = PBXGroup;
+			children = (
+				9EDB01941AEF2C3400FD74FE /* ElementVO */,
+				9EDB01871AEF271900FD74FE /* VO.h */,
+				9EDB01881AEF271900FD74FE /* VO.m */,
+				9EDB018A1AEF2B5800FD74FE /* ElementVO.h */,
+				9EDB018B1AEF2B5800FD74FE /* ElementVO.m */,
+				9EDB018D1AEF2BA200FD74FE /* GroupVO.h */,
+				9EDB018E1AEF2BA200FD74FE /* GroupVO.m */,
+				9EDB01901AEF2BF500FD74FE /* AreaVO.h */,
+				9EDB01911AEF2BF500FD74FE /* AreaVO.m */,
+				9E33E1821AF0D258002B90FB /* Model.h */,
+				9E33E1831AF0D258002B90FB /* Model.m */,
+			);
+			name = VO;
+			sourceTree = "<group>";
+		};
+		9EDB01941AEF2C3400FD74FE /* ElementVO */ = {
+			isa = PBXGroup;
+			children = (
+				9E9221631ADBBF2200B942CC /* ComputerVO.h */,
+				9E9221641ADBBF2200B942CC /* ComputerVO.m */,
+				9E9221661ADBBF4100B942CC /* RelayVO.h */,
+				9E9221671ADBBF4100B942CC /* RelayVO.m */,
+				9E9221691ADBBF5F00B942CC /* ProjectVO.h */,
+				9E92216A1ADBBF5F00B942CC /* ProjectVO.m */,
+				9EDB01951AEF3B4300FD74FE /* PlayerVO.h */,
+				9EDB01961AEF3B4300FD74FE /* PlayerVO.m */,
+			);
+			name = ElementVO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,10 +318,18 @@
 				9E92212E1ADBB91700B942CC /* main.m in Sources */,
 				9E9221651ADBBF2200B942CC /* ComputerVO.m in Sources */,
 				9E9221371ADBB91700B942CC /* ViewController.m in Sources */,
+				9EDB01831AEF259500FD74FE /* SetViewController.m in Sources */,
+				9EDB018F1AEF2BA200FD74FE /* GroupVO.m in Sources */,
+				9EDB01861AEF261000FD74FE /* ControlViewController.m in Sources */,
+				9EDB01921AEF2BF500FD74FE /* AreaVO.m in Sources */,
 				9E92215F1ADBBDF300B942CC /* ComputerControl.m in Sources */,
 				9E92216B1ADBBF5F00B942CC /* ProjectVO.m in Sources */,
+				9EDB01971AEF3B4300FD74FE /* PlayerVO.m in Sources */,
+				9E33E1841AF0D258002B90FB /* Model.m in Sources */,
 				9E9221341ADBB91700B942CC /* ksdControl.xcdatamodeld in Sources */,
+				9EDB01891AEF271900FD74FE /* VO.m in Sources */,
 				9E9221621ADBBE1200B942CC /* RelayControl.m in Sources */,
+				9EDB018C1AEF2B5800FD74FE /* ElementVO.m in Sources */,
 				2DB132811ADCFE0500A199C9 /* LoginViewController.m in Sources */,
 				9E9221681ADBBF4100B942CC /* RelayVO.m in Sources */,
 			);
