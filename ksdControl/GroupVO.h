@@ -12,6 +12,6 @@
 {
 }
 
-@property NSMutableArray * groups;
+@property(nonatomic, retain) NSMutableArray * elements;
 
 @end

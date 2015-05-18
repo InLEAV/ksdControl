@@ -13,6 +13,6 @@
 
 }
 
-@property NSMutableArray * areas;
+@property NSMutableArray * groups;
 
 @end

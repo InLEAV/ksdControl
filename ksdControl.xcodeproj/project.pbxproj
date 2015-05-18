@@ -7,7 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D6022CB1AFC91BD00AAF543 /* relay.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6022CA1AFC91BD00AAF543 /* relay.png */; };
+		2D6022CE1AFC920E00AAF543 /* laptop.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6022CD1AFC920E00AAF543 /* laptop.png */; };
+		2D6022D01AFC922A00AAF543 /* digital-projector-copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6022CF1AFC922A00AAF543 /* digital-projector-copy.png */; };
+		2D6022D21AFC924700AAF543 /* wmp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6022D11AFC924700AAF543 /* wmp.png */; };
+		2D6BEF151AF9F46D005E08F9 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6BEF141AF9F46D005E08F9 /* SetViewController.m */; };
+		2D88D5371B01A8540091BDB0 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D88D5341B01A8540091BDB0 /* 1.jpg */; };
+		2D88D5381B01A8540091BDB0 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D88D5351B01A8540091BDB0 /* 2.jpg */; };
+		2D88D5391B01A8540091BDB0 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D88D5361B01A8540091BDB0 /* 3.png */; };
+		2D88D53D1B01C07C0091BDB0 /* ElementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D88D53C1B01C07C0091BDB0 /* ElementViewController.m */; };
+		2D88D53F1B01E0D50091BDB0 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D88D53E1B01E0D50091BDB0 /* 4.jpg */; };
+		2D99CA611B05DB2300E6A409 /* AreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D99CA601B05DB2300E6A409 /* AreaViewController.m */; };
 		2DB132811ADCFE0500A199C9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB132801ADCFE0500A199C9 /* LoginViewController.m */; };
+		2DF43B491B03577000FBA7C7 /* GroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF43B481B03577000FBA7C7 /* GroupViewController.m */; };
 		9E33E1841AF0D258002B90FB /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E33E1831AF0D258002B90FB /* Model.m */; };
 		9E92212E1ADBB91700B942CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92212D1ADBB91700B942CC /* main.m */; };
 		9E9221311ADBB91700B942CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221301ADBB91700B942CC /* AppDelegate.m */; };
@@ -23,7 +35,6 @@
 		9E9221651ADBBF2200B942CC /* ComputerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221641ADBBF2200B942CC /* ComputerVO.m */; };
 		9E9221681ADBBF4100B942CC /* RelayVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221671ADBBF4100B942CC /* RelayVO.m */; };
 		9E92216B1ADBBF5F00B942CC /* ProjectVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92216A1ADBBF5F00B942CC /* ProjectVO.m */; };
-		9EDB01831AEF259500FD74FE /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB01821AEF259500FD74FE /* SetViewController.m */; };
 		9EDB01861AEF261000FD74FE /* ControlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB01851AEF261000FD74FE /* ControlViewController.m */; };
 		9EDB01891AEF271900FD74FE /* VO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB01881AEF271900FD74FE /* VO.m */; };
 		9EDB018C1AEF2B5800FD74FE /* ElementVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB018B1AEF2B5800FD74FE /* ElementVO.m */; };
@@ -43,8 +54,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D6022CA1AFC91BD00AAF543 /* relay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = relay.png; path = ../../../Downloads/relay.png; sourceTree = "<group>"; };
+		2D6022CD1AFC920E00AAF543 /* laptop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = laptop.png; path = ../../../Downloads/laptop.png; sourceTree = "<group>"; };
+		2D6022CF1AFC922A00AAF543 /* digital-projector-copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digital-projector-copy.png"; path = "../../../Downloads/digital-projector-copy.png"; sourceTree = "<group>"; };
+		2D6022D11AFC924700AAF543 /* wmp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wmp.png; path = ../../../Downloads/wmp.png; sourceTree = "<group>"; };
+		2D6BEF141AF9F46D005E08F9 /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
+		2D88D5341B01A8540091BDB0 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		2D88D5351B01A8540091BDB0 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		2D88D5361B01A8540091BDB0 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		2D88D53B1B01C07C0091BDB0 /* ElementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ElementViewController.h; sourceTree = "<group>"; };
+		2D88D53C1B01C07C0091BDB0 /* ElementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ElementViewController.m; sourceTree = "<group>"; };
+		2D88D53E1B01E0D50091BDB0 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		2D99CA5F1B05DB2300E6A409 /* AreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AreaViewController.h; sourceTree = "<group>"; };
+		2D99CA601B05DB2300E6A409 /* AreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaViewController.m; sourceTree = "<group>"; };
 		2DB1327F1ADCFE0500A199C9 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		2DB132801ADCFE0500A199C9 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		2DF43B471B03577000FBA7C7 /* GroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupViewController.h; sourceTree = "<group>"; };
+		2DF43B481B03577000FBA7C7 /* GroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupViewController.m; sourceTree = "<group>"; };
 		9E33E1821AF0D258002B90FB /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		9E33E1831AF0D258002B90FB /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		9E9221281ADBB91700B942CC /* ksdControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ksdControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,7 +100,6 @@
 		9E9221691ADBBF5F00B942CC /* ProjectVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProjectVO.h; sourceTree = "<group>"; };
 		9E92216A1ADBBF5F00B942CC /* ProjectVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProjectVO.m; sourceTree = "<group>"; };
 		9EDB01811AEF259500FD74FE /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
-		9EDB01821AEF259500FD74FE /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
 		9EDB01841AEF261000FD74FE /* ControlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlViewController.h; sourceTree = "<group>"; };
 		9EDB01851AEF261000FD74FE /* ControlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlViewController.m; sourceTree = "<group>"; };
 		9EDB01871AEF271900FD74FE /* VO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VO.h; sourceTree = "<group>"; };
@@ -107,6 +132,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D6022CC1AFC91CA00AAF543 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				2D6022CF1AFC922A00AAF543 /* digital-projector-copy.png */,
+				2D6022D11AFC924700AAF543 /* wmp.png */,
+				2D6022CA1AFC91BD00AAF543 /* relay.png */,
+				2D6022CD1AFC920E00AAF543 /* laptop.png */,
+			);
+			name = icons;
+			sourceTree = "<group>";
+		};
+		2D88D5331B01A8540091BDB0 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				2D88D5341B01A8540091BDB0 /* 1.jpg */,
+				2D88D5351B01A8540091BDB0 /* 2.jpg */,
+				2D88D53E1B01E0D50091BDB0 /* 4.jpg */,
+				2D88D5361B01A8540091BDB0 /* 3.png */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		9E92211F1ADBB91700B942CC = {
 			isa = PBXGroup;
 			children = (
@@ -146,10 +193,16 @@
 				9E9221601ADBBE1200B942CC /* RelayControl.h */,
 				9E9221611ADBBE1200B942CC /* RelayControl.m */,
 				9EDB01811AEF259500FD74FE /* SetViewController.h */,
-				9EDB01821AEF259500FD74FE /* SetViewController.m */,
+				2D6BEF141AF9F46D005E08F9 /* SetViewController.m */,
 				9EDB01841AEF261000FD74FE /* ControlViewController.h */,
 				9EDB01851AEF261000FD74FE /* ControlViewController.m */,
 				9EDB01931AEF2C1600FD74FE /* VO */,
+				2D88D53B1B01C07C0091BDB0 /* ElementViewController.h */,
+				2D88D53C1B01C07C0091BDB0 /* ElementViewController.m */,
+				2DF43B471B03577000FBA7C7 /* GroupViewController.h */,
+				2DF43B481B03577000FBA7C7 /* GroupViewController.m */,
+				2D99CA5F1B05DB2300E6A409 /* AreaViewController.h */,
+				2D99CA601B05DB2300E6A409 /* AreaViewController.m */,
 			);
 			path = ksdControl;
 			sourceTree = "<group>";
@@ -157,6 +210,8 @@
 		9E92212B1ADBB91700B942CC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2D88D5331B01A8540091BDB0 /* Images */,
+				2D6022CC1AFC91CA00AAF543 /* icons */,
 				9E92212C1ADBB91700B942CC /* Info.plist */,
 				9E92212D1ADBB91700B942CC /* main.m */,
 			);
@@ -293,7 +348,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2D88D53F1B01E0D50091BDB0 /* 4.jpg in Resources */,
 				9E92213A1ADBB91700B942CC /* Main.storyboard in Resources */,
+				2D6022CE1AFC920E00AAF543 /* laptop.png in Resources */,
+				2D6022D21AFC924700AAF543 /* wmp.png in Resources */,
+				2D88D5381B01A8540091BDB0 /* 2.jpg in Resources */,
+				2D6022D01AFC922A00AAF543 /* digital-projector-copy.png in Resources */,
+				2D88D5391B01A8540091BDB0 /* 3.png in Resources */,
+				2D6022CB1AFC91BD00AAF543 /* relay.png in Resources */,
+				2D88D5371B01A8540091BDB0 /* 1.jpg in Resources */,
 				9E92213F1ADBB91700B942CC /* LaunchScreen.xib in Resources */,
 				9E92213C1ADBB91700B942CC /* Images.xcassets in Resources */,
 			);
@@ -318,17 +381,20 @@
 				9E92212E1ADBB91700B942CC /* main.m in Sources */,
 				9E9221651ADBBF2200B942CC /* ComputerVO.m in Sources */,
 				9E9221371ADBB91700B942CC /* ViewController.m in Sources */,
-				9EDB01831AEF259500FD74FE /* SetViewController.m in Sources */,
 				9EDB018F1AEF2BA200FD74FE /* GroupVO.m in Sources */,
 				9EDB01861AEF261000FD74FE /* ControlViewController.m in Sources */,
 				9EDB01921AEF2BF500FD74FE /* AreaVO.m in Sources */,
 				9E92215F1ADBBDF300B942CC /* ComputerControl.m in Sources */,
 				9E92216B1ADBBF5F00B942CC /* ProjectVO.m in Sources */,
+				2D99CA611B05DB2300E6A409 /* AreaViewController.m in Sources */,
 				9EDB01971AEF3B4300FD74FE /* PlayerVO.m in Sources */,
 				9E33E1841AF0D258002B90FB /* Model.m in Sources */,
+				2D88D53D1B01C07C0091BDB0 /* ElementViewController.m in Sources */,
 				9E9221341ADBB91700B942CC /* ksdControl.xcdatamodeld in Sources */,
 				9EDB01891AEF271900FD74FE /* VO.m in Sources */,
+				2D6BEF151AF9F46D005E08F9 /* SetViewController.m in Sources */,
 				9E9221621ADBBE1200B942CC /* RelayControl.m in Sources */,
+				2DF43B491B03577000FBA7C7 /* GroupViewController.m in Sources */,
 				9EDB018C1AEF2B5800FD74FE /* ElementVO.m in Sources */,
 				2DB132811ADCFE0500A199C9 /* LoginViewController.m in Sources */,
 				9E9221681ADBBF4100B942CC /* RelayVO.m in Sources */,

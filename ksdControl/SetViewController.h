@@ -8,18 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SetViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-@property (nonatomic, retain) IBOutlet UITableView *elementTableView;
-
-@property (nonatomic, retain) NSMutableArray *elementDataList;
-
-@property (nonatomic, retain) IBOutlet UIButton *addElementBtn;
-
-- (IBAction)addELementHandel:(id)sender;
-
-- (void)initTable;
+@interface SetViewController : UITabBarController<UITabBarDelegate,UITableViewDelegate>
 
 
++(void)showUIAlertView:(NSString*)title content:(NSString*)msg buttonTitle:(NSString*)btTitle;
 
 @end

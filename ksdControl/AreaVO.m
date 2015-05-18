@@ -10,14 +10,15 @@
 
 @implementation AreaVO
 
-@synthesize areas;
+@synthesize groups;
 
 -(void)initVO
 {
     [super initVO];
-    for (int i = 0; i < areas.count; i++) {
+    groups = [[NSMutableArray alloc] initWithObjects:nil];
+    for (int i = 0; i < groups.count; i++) {
         VO * aa;
-        aa=(VO *) areas[i];
+        aa=(VO *) groups[i];
         NSLog(@"groupSon:%d",i);
         [aa initVO];
     }

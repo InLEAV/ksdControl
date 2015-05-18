@@ -10,14 +10,16 @@
 
 @implementation GroupVO
 
-@synthesize groups;
+@synthesize elements;
 
 -(void)initVO
 {
     [super initVO];
-    for (int i = 0; i < groups.count; i++) {
+    elements = [[NSMutableArray alloc] initWithObjects:nil];
+    
+    for (int i = 0; i < elements.count; i++) {
         VO * aa;
-        aa=(VO *) groups[i];
+        aa=(VO *) elements[i];
         NSLog(@"groupSon:%d",i);
         [aa initVO];
     }
