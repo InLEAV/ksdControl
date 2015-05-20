@@ -17,28 +17,14 @@
 
 @implementation SetViewController
 
-//GroupViewController* groupViewController;
-//AreaViewController* areaViewController;
-//ElementViewController* elementViewController;
+ElementViewController* elementViewController;
+GroupViewController* groupViewController;
+AreaViewController* areaViewController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    
-    // elementViewController = [[ElementViewController alloc]init];
-    
-    //groupViewController = [[GroupViewController alloc]init];
-    //groupViewController = [self.tabBarController.viewControllers objectAtIndex:1];
-
-    
-   // areaViewController = [[AreaViewController alloc]init];
-//    areaViewController = [self.tabBarController.view.subviews objectAtIndex:2];
-//
-    
-//    self.tabBarController.viewControllers=[[NSArray alloc]initWithObjects:elementViewController,groupViewController,areaViewController,nil];
-    
-
+  
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,19 +35,8 @@
 
 - (void)tabBar:(UITabBar *)tabbar didSelectItem:(UITabBarItem *)item
 {
-    
-   if( tabbar.selectedItem.tag == 1)
-   {
-        //[groupViewController UpdateElementTableView];
-        NSLog(@"TabBar tag 1!");
-   }
-   if (tabbar.selectedItem.tag == 2)
-    {
-        //[areaViewController UpdateGroupTableView];
-        NSLog(@"TabBar tag 2!");
-    }
+  
 }
-
 
 +(void)showUIAlertView:(NSString*)title content:(NSString*)msg buttonTitle:(NSString*)btTitle;
 {

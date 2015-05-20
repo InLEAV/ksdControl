@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface SetViewController : UITabBarController<UITabBarDelegate,UITableViewDelegate>
-
+@interface SetViewController : UITabBarController<UITabBarDelegate,UITabBarControllerDelegate>
 
 +(void)showUIAlertView:(NSString*)title content:(NSString*)msg buttonTitle:(NSString*)btTitle;
 

@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 HANQING. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface RelayControl : NSObject
+@interface RelayControl : UICollectionViewCell
 
 @end

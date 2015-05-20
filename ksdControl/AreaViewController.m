@@ -20,7 +20,7 @@
 @implementation AreaViewController
 
 @synthesize groupTableView,containerTableView,AreaTableView;
-@synthesize containerDataList,areaDataList;
+@synthesize containerDataList,areaDataList,areaNameFieldText;
 
 GroupViewController* groupViewController;
 NSIndexPath* grouptDidSelectRowAtIndexPath;
@@ -37,6 +37,8 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     containerDataList = [[NSMutableArray alloc] initWithObjects:nil];
     areaDataList = [[NSMutableArray alloc] initWithObjects:nil];
     
+    NSLog(@"initArea");
+    
     //设置tableView的数据源
     groupTableView.dataSource = self;
     containerTableView.dataSource = self;
@@ -47,6 +49,18 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     containerTableView.delegate = self;
     AreaTableView.delegate = self;
     
+    grouptDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:4];
+    areaDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:0];
+
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(groupTableView!=nil)
+    {
+        [groupTableView reloadData];
+    }
+    NSLog(@"AreaViewDidAppear");
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,7 +71,28 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
 
 - (IBAction)AddGroupToContatiner:(id)sender
 {
-    
+    if(grouptDidSelectRowAtIndexPath.row!=-1&&areaDidSelectRowAtIndexPath.row != -1)
+    {
+
+        AreaVO* area = (AreaVO*)[areaDataList objectAtIndex:(areaDidSelectRowAtIndexPath.row)];
+        
+        if(grouptDidSelectRowAtIndexPath.section == 0)
+        {
+            [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+            [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+        }
+        
+        [containerTableView reloadData];
+    }
+    else if(grouptDidSelectRowAtIndexPath.row==-1)
+    {
+         [SetViewController showUIAlertView:@"提示"content:@"请选择需要添加组合！" buttonTitle:@"确定"];
+    }
+    else if (areaDidSelectRowAtIndexPath.row == -1)
+    {
+        [SetViewController showUIAlertView:@"提示"content:@"请选择需要添加组合的展区！" buttonTitle:@"确定"];
+
+    }
 }
 
 - (IBAction)areaNameFiledText:(id)sender
@@ -65,11 +100,31 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     
 }
 
-
-
 - (IBAction)addArea:(id)sender
 {
-    
+    if (areaNameFieldText.text!=nil&& areaNameFieldText.text.length==0)
+    {
+        [SetViewController showUIAlertView:@"提示"content:@"请输入添加展区的名称！" buttonTitle:@"确定"];
+    }
+    else
+    {
+        AreaVO* area = [AreaVO new];
+        [area initVO];
+        
+        [area setAName:areaNameFieldText.text];
+        //[groupDataList insertObject:group atIndex:[groupDataList count]];
+        [areaDataList addObject:area];
+        NSInteger row = [areaDataList count]-1;
+        
+        [AreaTableView beginUpdates];
+        NSArray *_tempIndexPathArr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]];
+        [AreaTableView insertRowsAtIndexPaths:_tempIndexPathArr withRowAnimation:UITableViewRowAnimationFade];
+        [AreaTableView endUpdates];
+
+        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的展区!",area.aName]];
+        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+
+    }
 }
 
 
@@ -252,7 +307,6 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:
 (NSIndexPath *)indexPath
 {
-    
     NSLog(@"curSelecetIndexPath.section:%d  curSelecetIndexPath.row%d",indexPath.section,indexPath.row);
     
     if(tableView == groupTableView)
@@ -278,13 +332,6 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     
 }
 
-- (void)UpdateGroupTableView
-{
-    NSLog(@"Update GroupTable:%d",groupViewController.groupDataList.count);
-    if (groupTableView!=nil) {
-        [groupTableView reloadData];
-    }
-}
 
 
 @end

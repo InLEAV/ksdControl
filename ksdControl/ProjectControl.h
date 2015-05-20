@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 HANQING. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface ProjectControl : NSObject
+//#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+@interface ProjectControl : UICollectionViewCell
 
 @end

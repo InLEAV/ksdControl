@@ -63,4 +63,5 @@
 //创建新元素，编辑修改元素，移动窗口
 - (void)createElement:(NSString*)className insert:(BOOL)isInsert replaceIndex:(int)index;
 - (void)moveWindow:(UIView*)uiView desPoint:(CGPoint)point isCloseWin:(BOOL)isClose;
+
 @end

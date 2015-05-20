@@ -20,13 +20,12 @@
 @property (nonatomic, retain) NSMutableArray *areaDataList;
 @property (nonatomic, retain) NSMutableArray *containerDataList;
 
+@property (strong, nonatomic) IBOutlet UITextField *areaNameFieldText;
 @property (strong, nonatomic) IBOutlet UITextField *PavilionName;
-
 - (IBAction)AddGroupToContatiner:(id)sender;
 
 - (IBAction)areaNameFiledText:(id)sender;
 
 - (IBAction)addArea:(id)sender;
 
-- (void)UpdateGroupTableView;
 @end

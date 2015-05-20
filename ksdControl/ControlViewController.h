@@ -10,4 +10,8 @@
 
 @interface ControlViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UICollectionView *grid;
+
+@property (strong, nonatomic) IBOutlet UICollectionView *horizontalList;
+
 @end

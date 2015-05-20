@@ -22,6 +22,9 @@
                                 <state key="normal" title="进入">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="PHR-aa-uxw" kind="modal" id="kbs-fF-oK0"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifx-Yf-4jp">
                                 <rect key="frame" x="530" y="28" width="30" height="30"/>
@@ -35,7 +38,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="6th-aw-zns" kind="modal" id="zSV-vh-j1Q"/>
+                                    <segue destination="6th-aw-zns" kind="modal" id="dkh-y9-wAu"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -46,10 +49,10 @@
             </objects>
             <point key="canvasLocation" x="267" y="194"/>
         </scene>
-        <!--View Controller-->
+        <!--Control View Controller-->
         <scene sceneID="k5q-4p-NrD">
             <objects>
-                <viewController id="PHR-aa-uxw" sceneMemberID="viewController">
+                <viewController id="PHR-aa-uxw" customClass="ControlViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OG2-go-9a9"/>
                         <viewControllerLayoutGuide type="bottom" id="77l-Tz-JHH"/>
@@ -59,14 +62,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="xx展厅" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLo-x5-PBO">
-                                <rect key="frame" x="266" y="63" width="52" height="21"/>
+                                <rect key="frame" x="263" y="28" width="52" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uxt-xi-Yl5">
+                                <rect key="frame" x="16" y="529" width="568" height="51"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ucj-5C-tno">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5ID-eM-0Mv">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a51-XZ-1Kz">
+                                <rect key="frame" x="16" y="57" width="568" height="469"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MwF-rU-8Jm">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Fjl-Q7-k35">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="grid" destination="a51-XZ-1Kz" id="nCK-yk-W63"/>
+                        <outlet property="horizontalList" destination="uxt-xi-Yl5" id="ofM-mW-s0z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSU-Ii-5fI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -101,15 +149,6 @@
                                                 <connections>
                                                     <segue destination="BYZ-38-t0r" kind="modal" id="uot-x2-Eku"/>
                                                 </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="fHQ-YQ-JSg">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rdV-7d-Vu9">
-                                                <rect key="frame" x="451" y="7" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="保存">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -213,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDj-6j-HQk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1361" y="-771"/>
+            <point key="canvasLocation" x="1244" y="-709"/>
         </scene>
         <!--元素-->
         <scene sceneID="bxI-lc-Ioa">
@@ -247,15 +286,6 @@
                                                 <connections>
                                                     <segue destination="BYZ-38-t0r" kind="modal" identifier="" id="5Ht-Vr-WKu"/>
                                                 </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" id="1M7-EC-LVi">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gng-zr-qvV">
-                                                <rect key="frame" x="451" y="7" width="46" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="保存">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
                                             </button>
                                         </barButtonItem>
                                     </navigationItem>
@@ -503,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vFo-zm-Mee" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1278" y="-1476"/>
+            <point key="canvasLocation" x="1244" y="-1372"/>
         </scene>
         <!--Set View Controller-->
         <scene sceneID="UDQ-Yz-zeX">
@@ -516,9 +546,9 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="B15-ob-9aX" kind="relationship" relationship="viewControllers" id="aQ5-mo-HtS"/>
-                        <segue destination="NJ2-zP-YXC" kind="relationship" relationship="viewControllers" id="461-bf-6EY"/>
-                        <segue destination="vQn-LM-n8i" kind="relationship" relationship="viewControllers" id="3Qx-Ra-C7q"/>
+                        <segue destination="B15-ob-9aX" kind="relationship" relationship="viewControllers" id="9s3-fm-cw4"/>
+                        <segue destination="NJ2-zP-YXC" kind="relationship" relationship="viewControllers" id="4pH-U6-xtd"/>
+                        <segue destination="vQn-LM-n8i" kind="relationship" relationship="viewControllers" id="gLS-fY-IM5"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RUx-Ua-pOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -560,7 +590,7 @@
         <!--展区-->
         <scene sceneID="jSw-dv-lZa">
             <objects>
-                <viewController id="vQn-LM-n8i" customClass="AreaViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="area" id="vQn-LM-n8i" customClass="AreaViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="36C-S5-E2y"/>
                         <viewControllerLayoutGuide type="bottom" id="9l1-hi-feB"/>
@@ -678,13 +708,14 @@
                     <connections>
                         <outlet property="AreaTableView" destination="ig8-tK-bZ9" id="xp7-UG-Ax8"/>
                         <outlet property="PavilionName" destination="coM-zS-Uig" id="qez-u6-pLH"/>
+                        <outlet property="areaNameFieldText" destination="TpP-Jc-5q8" id="V8D-Hz-boN"/>
                         <outlet property="containerTableView" destination="ZQk-SO-mSV" id="9oe-5s-ze9"/>
                         <outlet property="groupTableView" destination="y15-1f-1nu" id="qQi-IU-gs0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7j8-yB-Pyj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1431" y="92"/>
+            <point key="canvasLocation" x="1883" y="-1055"/>
         </scene>
     </scenes>
     <resources>
@@ -693,6 +724,6 @@
         <image name="4.jpg" width="480" height="850"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5Ht-Vr-WKu"/>
+        <segue reference="uot-x2-Eku"/>
     </inferredMetricsTieBreakers>
 </document>

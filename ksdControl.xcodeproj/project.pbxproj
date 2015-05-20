@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D6022CB1AFC91BD00AAF543 /* relay.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6022CA1AFC91BD00AAF543 /* relay.png */; };
-		2D6022CE1AFC920E00AAF543 /* laptop.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6022CD1AFC920E00AAF543 /* laptop.png */; };
-		2D6022D01AFC922A00AAF543 /* digital-projector-copy.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6022CF1AFC922A00AAF543 /* digital-projector-copy.png */; };
-		2D6022D21AFC924700AAF543 /* wmp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D6022D11AFC924700AAF543 /* wmp.png */; };
 		2D6BEF151AF9F46D005E08F9 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D6BEF141AF9F46D005E08F9 /* SetViewController.m */; };
+		2D81BDE81B0C7304007F0220 /* PlayerControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D81BDE71B0C7304007F0220 /* PlayerControl.m */; };
 		2D88D5371B01A8540091BDB0 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D88D5341B01A8540091BDB0 /* 1.jpg */; };
 		2D88D5381B01A8540091BDB0 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D88D5351B01A8540091BDB0 /* 2.jpg */; };
 		2D88D5391B01A8540091BDB0 /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D88D5361B01A8540091BDB0 /* 3.png */; };
@@ -54,11 +51,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2D6022CA1AFC91BD00AAF543 /* relay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = relay.png; path = ../../../Downloads/relay.png; sourceTree = "<group>"; };
-		2D6022CD1AFC920E00AAF543 /* laptop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = laptop.png; path = ../../../Downloads/laptop.png; sourceTree = "<group>"; };
-		2D6022CF1AFC922A00AAF543 /* digital-projector-copy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "digital-projector-copy.png"; path = "../../../Downloads/digital-projector-copy.png"; sourceTree = "<group>"; };
-		2D6022D11AFC924700AAF543 /* wmp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = wmp.png; path = ../../../Downloads/wmp.png; sourceTree = "<group>"; };
 		2D6BEF141AF9F46D005E08F9 /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
+		2D81BDE61B0C7304007F0220 /* PlayerControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerControl.h; sourceTree = "<group>"; };
+		2D81BDE71B0C7304007F0220 /* PlayerControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerControl.m; sourceTree = "<group>"; };
 		2D88D5341B01A8540091BDB0 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		2D88D5351B01A8540091BDB0 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		2D88D5361B01A8540091BDB0 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
@@ -132,15 +127,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2D6022CC1AFC91CA00AAF543 /* icons */ = {
+		2D81BDE41B0C71BB007F0220 /* SetViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2D6022CF1AFC922A00AAF543 /* digital-projector-copy.png */,
-				2D6022D11AFC924700AAF543 /* wmp.png */,
-				2D6022CA1AFC91BD00AAF543 /* relay.png */,
-				2D6022CD1AFC920E00AAF543 /* laptop.png */,
+				9EDB01811AEF259500FD74FE /* SetViewController.h */,
+				2D6BEF141AF9F46D005E08F9 /* SetViewController.m */,
+				2D88D53B1B01C07C0091BDB0 /* ElementViewController.h */,
+				2D88D53C1B01C07C0091BDB0 /* ElementViewController.m */,
+				2DF43B471B03577000FBA7C7 /* GroupViewController.h */,
+				2DF43B481B03577000FBA7C7 /* GroupViewController.m */,
+				2D99CA5F1B05DB2300E6A409 /* AreaViewController.h */,
+				2D99CA601B05DB2300E6A409 /* AreaViewController.m */,
 			);
-			name = icons;
+			name = SetViewControllers;
+			sourceTree = "<group>";
+		};
+		2D81BDE51B0C71E3007F0220 /* ComponentCell */ = {
+			isa = PBXGroup;
+			children = (
+				9E92215A1ADBBD9C00B942CC /* ProjectControl.h */,
+				9E92215B1ADBBD9C00B942CC /* ProjectControl.m */,
+				9E92215D1ADBBDF300B942CC /* ComputerControl.h */,
+				9E92215E1ADBBDF300B942CC /* ComputerControl.m */,
+				9E9221601ADBBE1200B942CC /* RelayControl.h */,
+				9E9221611ADBBE1200B942CC /* RelayControl.m */,
+				2D81BDE61B0C7304007F0220 /* PlayerControl.h */,
+				2D81BDE71B0C7304007F0220 /* PlayerControl.m */,
+			);
+			name = ComponentCell;
 			sourceTree = "<group>";
 		};
 		2D88D5331B01A8540091BDB0 /* Images */ = {
@@ -175,6 +189,8 @@
 		9E92212A1ADBB91700B942CC /* ksdControl */ = {
 			isa = PBXGroup;
 			children = (
+				2D81BDE51B0C71E3007F0220 /* ComponentCell */,
+				2D81BDE41B0C71BB007F0220 /* SetViewControllers */,
 				9E92212F1ADBB91700B942CC /* AppDelegate.h */,
 				2DB1327F1ADCFE0500A199C9 /* LoginViewController.h */,
 				2DB132801ADCFE0500A199C9 /* LoginViewController.m */,
@@ -186,23 +202,9 @@
 				9E92213D1ADBB91700B942CC /* LaunchScreen.xib */,
 				9E9221321ADBB91700B942CC /* ksdControl.xcdatamodeld */,
 				9E92212B1ADBB91700B942CC /* Supporting Files */,
-				9E92215A1ADBBD9C00B942CC /* ProjectControl.h */,
-				9E92215B1ADBBD9C00B942CC /* ProjectControl.m */,
-				9E92215D1ADBBDF300B942CC /* ComputerControl.h */,
-				9E92215E1ADBBDF300B942CC /* ComputerControl.m */,
-				9E9221601ADBBE1200B942CC /* RelayControl.h */,
-				9E9221611ADBBE1200B942CC /* RelayControl.m */,
-				9EDB01811AEF259500FD74FE /* SetViewController.h */,
-				2D6BEF141AF9F46D005E08F9 /* SetViewController.m */,
 				9EDB01841AEF261000FD74FE /* ControlViewController.h */,
 				9EDB01851AEF261000FD74FE /* ControlViewController.m */,
 				9EDB01931AEF2C1600FD74FE /* VO */,
-				2D88D53B1B01C07C0091BDB0 /* ElementViewController.h */,
-				2D88D53C1B01C07C0091BDB0 /* ElementViewController.m */,
-				2DF43B471B03577000FBA7C7 /* GroupViewController.h */,
-				2DF43B481B03577000FBA7C7 /* GroupViewController.m */,
-				2D99CA5F1B05DB2300E6A409 /* AreaViewController.h */,
-				2D99CA601B05DB2300E6A409 /* AreaViewController.m */,
 			);
 			path = ksdControl;
 			sourceTree = "<group>";
@@ -211,7 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				2D88D5331B01A8540091BDB0 /* Images */,
-				2D6022CC1AFC91CA00AAF543 /* icons */,
 				9E92212C1ADBB91700B942CC /* Info.plist */,
 				9E92212D1ADBB91700B942CC /* main.m */,
 			);
@@ -350,12 +351,8 @@
 			files = (
 				2D88D53F1B01E0D50091BDB0 /* 4.jpg in Resources */,
 				9E92213A1ADBB91700B942CC /* Main.storyboard in Resources */,
-				2D6022CE1AFC920E00AAF543 /* laptop.png in Resources */,
-				2D6022D21AFC924700AAF543 /* wmp.png in Resources */,
 				2D88D5381B01A8540091BDB0 /* 2.jpg in Resources */,
-				2D6022D01AFC922A00AAF543 /* digital-projector-copy.png in Resources */,
 				2D88D5391B01A8540091BDB0 /* 3.png in Resources */,
-				2D6022CB1AFC91BD00AAF543 /* relay.png in Resources */,
 				2D88D5371B01A8540091BDB0 /* 1.jpg in Resources */,
 				9E92213F1ADBB91700B942CC /* LaunchScreen.xib in Resources */,
 				9E92213C1ADBB91700B942CC /* Images.xcassets in Resources */,
@@ -385,6 +382,7 @@
 				9EDB01861AEF261000FD74FE /* ControlViewController.m in Sources */,
 				9EDB01921AEF2BF500FD74FE /* AreaVO.m in Sources */,
 				9E92215F1ADBBDF300B942CC /* ComputerControl.m in Sources */,
+				2D81BDE81B0C7304007F0220 /* PlayerControl.m in Sources */,
 				9E92216B1ADBBF5F00B942CC /* ProjectVO.m in Sources */,
 				2D99CA611B05DB2300E6A409 /* AreaViewController.m in Sources */,
 				9EDB01971AEF3B4300FD74FE /* PlayerVO.m in Sources */,

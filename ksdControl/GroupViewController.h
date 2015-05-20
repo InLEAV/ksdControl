@@ -28,6 +28,5 @@
 
 - (IBAction)addGroup:(id)sender;
 
-- (void)UpdateElementTableView;
 
 @end

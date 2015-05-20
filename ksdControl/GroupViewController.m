@@ -32,9 +32,9 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //elementViewController = [[ElementViewController alloc]init];
-    elementViewController = [self.tabBarController.viewControllers objectAtIndex:0];
+        elementViewController = [self.tabBarController.viewControllers objectAtIndex:0];
         NSLog(@"Com %d",[elementViewController.computerDataList count]);
+    
     
     containerDataList = [[NSMutableArray alloc] initWithObjects:nil];
     groupDataList = [[NSMutableArray alloc] initWithObjects:nil];
@@ -53,6 +53,15 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     groupDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:4];
     elementDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:0];
 
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (elementTableView!=nil)
+    {
+        [elementTableView reloadData];
+    }
+    NSLog(@"GroupViewDidAppear");
 }
 
 - (void)didReceiveMemoryWarning
@@ -369,32 +378,26 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     {
         [SetViewController showUIAlertView:@"提示"content:@"请输入添加组合的名称！" buttonTitle:@"确定"];
     }
-    
-    GroupVO* group = [GroupVO new];
-    [group initVO];
-    //group.aName = groupNameFieldText.text;
-    
-    [group setAName:groupNameFieldText.text];
-    //[groupDataList insertObject:group atIndex:[groupDataList count]];
-    [groupDataList addObject:group];
-    NSInteger row = [groupDataList count]-1;
-    
-    [groupTableView beginUpdates];
-    NSArray *_tempIndexPathArr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]];
-    [groupTableView insertRowsAtIndexPaths:_tempIndexPathArr withRowAnimation:UITableViewRowAnimationFade];
-    [groupTableView endUpdates];
-    NSLog(@"Com %d",[elementViewController.computerDataList count]);
-   
-//    NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为％@的组合!",group.aName]];
-//    [SetViewController showUIAlertView:@"提示",content:name,buttonTitle:@"确定"];
-}
-
-- (void)UpdateElementTableView
-{
-    NSLog(@"Update ElementTeble!");
-    if (elementTableView!=nil) {
-    [elementTableView reloadData];
+    else
+    {
+        GroupVO* group = [GroupVO new];
+        [group initVO];
+        
+        [group setAName:groupNameFieldText.text];
+        //[groupDataList insertObject:group atIndex:[groupDataList count]];
+        [groupDataList addObject:group];
+        NSInteger row = [groupDataList count]-1;
+        
+        [groupTableView beginUpdates];
+        NSArray *_tempIndexPathArr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]];
+        [groupTableView insertRowsAtIndexPaths:_tempIndexPathArr withRowAnimation:UITableViewRowAnimationFade];
+        [groupTableView endUpdates];
+        NSLog(@"Com %d",[elementViewController.computerDataList count]);
+        
+        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合!",group.aName]];
+        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
     }
+    
+    
 }
-
 @end

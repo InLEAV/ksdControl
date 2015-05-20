@@ -32,6 +32,7 @@ GroupViewController * groupViewController;
 
 //保存窗口原始位置
 CGPoint elementViewOrignalPoint;
+
 //修改元素
 BOOL isModify;
 BOOL isViewOn;
@@ -61,7 +62,6 @@ BOOL isViewOn;
     relayDataList = [[NSMutableArray alloc] initWithObjects:nil];
     
     
-    groupViewController = [[GroupViewController alloc]init];
     groupViewController = [self.tabBarController.viewControllers objectAtIndex:1];
 
     
@@ -84,9 +84,6 @@ BOOL isViewOn;
     //    // 为UITableView控件设置页脚控件
     //    self.elementTableView.tableFooterView = [[UIImageView alloc] initWithImage:
     //                                  [UIImage imageNamed:@"tableheader.png"]];
-    
-    
-    
 }
 
 // UITableViewDataSource协议中的方法，该方法的返回值决定表格包含多少个分区
