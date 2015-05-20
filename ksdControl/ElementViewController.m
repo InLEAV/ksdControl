@@ -53,7 +53,6 @@ BOOL isViewOn;
 
 -(void)initTable
 {
-    
     elementSections = [[NSArray alloc]initWithObjects:@"电脑",@"投影机",@"播放器",@"电路", nil];
     
     computerDataList = [[NSMutableArray alloc] initWithObjects:nil];

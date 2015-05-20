@@ -331,7 +331,4 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     }
     
 }
-
-
-
 @end
