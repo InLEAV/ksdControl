@@ -21,21 +21,29 @@
 @end
 
 @implementation GroupViewController
+
 @synthesize groupDataList,containerDataList;
+
 @synthesize elementTableView,groupTableView,containerTablleView,groupNameFieldText;
 
+//TabBarController子视图元素视图
 ElementViewController *elementViewController;
+
+//当前选中的组合选项
 NSIndexPath *groupDidSelectRowAtIndexPath;
+
+//当前选中的元素选项
 NSIndexPath *elementDidSelectRowAtIndexPath;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-        elementViewController = [self.tabBarController.viewControllers objectAtIndex:0];
-        NSLog(@"Com %d",[elementViewController.computerDataList count]);
     
+    //获取元素的视图控制器
+    elementViewController = [self.tabBarController.viewControllers objectAtIndex:0];
     
+    //初始化数组
     containerDataList = [[NSMutableArray alloc] initWithObjects:nil];
     groupDataList = [[NSMutableArray alloc] initWithObjects:nil];
     
@@ -49,12 +57,13 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     containerTablleView.delegate = self;
     groupTableView.delegate = self;
     
-    
+    //初始化当前选中的IndexPath
     groupDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:4];
     elementDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:0];
-
+    
 }
 
+//当切换到当前视图是更新元素列表
 - (void)viewDidAppear:(BOOL)animated
 {
     if (elementTableView!=nil)
@@ -83,16 +92,19 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     }
 }
 
+// UITableViewDataSource协议中的方法，该方法的返回值决定表格分区页尾高
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 20;
 }
 
+// UITableViewDataSource协议中的方法，该方法的返回值决定表格行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
 }
 
+// UITableViewDataSource协议中的方法，该方法的返回值决定表格每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = 0;
@@ -118,25 +130,25 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     }
     else if (tableView == containerTablleView)
     {
-       count = [containerDataList count];
+        count = [containerDataList count];
     }
     else
     {
-       count = [groupDataList count];
+        count = [groupDataList count];
     }
     
     return count;
 }
 
+// UITableViewDataSource协议中的方法，该方法的返回值决定表格的单元格内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     static NSString *myId = @"moveCell";
     
     // 获取可重用的单元格
     UITableViewCell *cell = [tableView
                              dequeueReusableCellWithIdentifier:myId];
+    
     // 如果单元格为nil
     if(cell == nil)
     {
@@ -147,6 +159,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     
     // 获取分区号
     NSUInteger sectionNo = indexPath.section;
+    
     // 获取表格行的行号
     NSInteger rowNo = [indexPath row];
     
@@ -155,12 +168,6 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     cell.layer.cornerRadius = 12;
     cell.layer.masksToBounds = YES;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    
-    //    // 为UITableViewCell的左端设置图片
-    //    cell.imageView.image = [UIImage imageNamed:@"ic_gray.png"];
-    //    // 为UITableViewCell的左端设置高亮状态视时的图片
-    //    cell.imageView.highlightedImage = [UIImage imageNamed:
-    //                                       @"ic_highlight.png"];
     
     // 设置textLabel显示的文本
     if(tableView == elementTableView)
@@ -190,6 +197,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     {
         cell.textLabel.text = [[groupDataList objectAtIndex:rowNo] aName];
     }
+    
     return cell;
 }
 
@@ -198,23 +206,22 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                       :(NSInteger)section
 {
     if(tableView == elementTableView)
-    return [elementViewController.elementSections objectAtIndex:section];
+        return [elementViewController.elementSections objectAtIndex:section];
     else if (tableView == containerTablleView)
         return @"元素";
     else
         return @"组合";
 }
 
-// UITableViewDelegate协议中定义的方法。
-// 该方法的返回值作为删除指定表格行时确定按钮的文本
+// UITableViewDelegate协议中定义的方法，该方法的返回值作为删除指定表格行时确定按钮的文本
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:
 (NSIndexPath *)indexPath
 {
     return @"确认删除";
-
+    
 }
 
-//返回是否可编辑状态
+//返回当前列表是否可编辑状态
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == elementTableView)
@@ -225,8 +232,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     return YES;
 }
 
-// UITableViewDataSource协议中定义的方法。
-// 编辑（包括删除或插入）完成时激发该方法
+// UITableViewDataSource协议中定义的方法， 编辑（包括删除或插入）完成时激发该方法
 - (void) tableView:(UITableView *)tableView commitEditingStyle:
 (UITableViewCellEditingStyle)editingStyle
  forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -235,7 +241,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         NSInteger rowNo = [indexPath row];
         
-         if (tableView == containerTablleView)
+        if (tableView == containerTablleView)
         {
             [containerDataList removeObjectAtIndex: rowNo];
             
@@ -264,13 +270,13 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
         if (tableView == containerTablleView)
         {
             [containerDataList insertObject:[containerDataList objectAtIndex:indexPath.row]
-                                                      atIndex:indexPath.row + 1];
+                                    atIndex:indexPath.row + 1];
             
         }
         else
         {
             [groupDataList insertObject:[groupDataList objectAtIndex:indexPath.row]
-                                                      atIndex:indexPath.row + 1];
+                                atIndex:indexPath.row + 1];
         }
         
         // 为UITableView控件的界面上插入一行
@@ -280,22 +286,18 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     }
 }
 
-//选择列表选项
+//选择列表选项,返回当前所选择的列表行信息
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:
 (NSIndexPath *)indexPath
 {
-   
+    
     NSLog(@"curSelecetIndexPath.section:%d  curSelecetIndexPath.row%d",indexPath.section,indexPath.row);
     
     if(tableView == elementTableView)
     {
         elementDidSelectRowAtIndexPath = indexPath;
     }
-    else if (tableView == containerTablleView)
-    {
-        
-    }
-    else
+    else if (tableView == groupTableView)
     {
         if(groupDidSelectRowAtIndexPath != indexPath)
         {
@@ -307,7 +309,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
             }
             [containerTablleView reloadData];
         }
-       
+        
         groupDidSelectRowAtIndexPath = indexPath;
     }
     
@@ -349,29 +351,29 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
             }
                 break;
         }
-      
+        
         [containerTablleView reloadData];
-
+        
     }
     else if(elementDidSelectRowAtIndexPath.row==-1)
     {
         [SetViewController showUIAlertView:@"提示"content:@"请选择需要添加元素！" buttonTitle:@"确定"];
-      
-      
+        
+        
     }
     else if(groupDidSelectRowAtIndexPath.row==-1)
     {
-          [SetViewController showUIAlertView:@"提示"content:@"请选择需要添加元素的组合！" buttonTitle:@"确定"];
+        [SetViewController showUIAlertView:@"提示"content:@"请选择需要添加元素的组合！" buttonTitle:@"确定"];
     }
 }
 
-//判断输入
+//判断输入的组合名称
 - (IBAction)nameFiledText:(id)sender
 {
     
 }
 
-//添加组合
+//添加组合到组合列表
 - (IBAction)addGroup:(id)sender
 {
     if (groupNameFieldText.text!=nil&& groupNameFieldText.text.length==0)
@@ -380,19 +382,18 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     }
     else
     {
+        //创建展区对象并添加到展区数组
         GroupVO* group = [GroupVO new];
         [group initVO];
-        
         [group setAName:groupNameFieldText.text];
-        //[groupDataList insertObject:group atIndex:[groupDataList count]];
         [groupDataList addObject:group];
         NSInteger row = [groupDataList count]-1;
         
+        //插入列表并更新
         [groupTableView beginUpdates];
         NSArray *_tempIndexPathArr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]];
         [groupTableView insertRowsAtIndexPaths:_tempIndexPathArr withRowAnimation:UITableViewRowAnimationFade];
         [groupTableView endUpdates];
-        NSLog(@"Com %d",[elementViewController.computerDataList count]);
         
         NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合!",group.aName]];
         [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];

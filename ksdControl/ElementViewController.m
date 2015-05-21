@@ -26,43 +26,48 @@
 @synthesize elementTableView,computerDataList,projectorDataList,playerDataList,relayDataList;
 
 @synthesize setTypeLabel,nameTextField,ipTextField,macUITextField,pictureUISwitch,relayUITextField,macLabel,pictureLabel,relayLabel,typeSegmented,portTextField;
+
 @synthesize elementSections,curSelecetIndexPath;
 
+//TabBarController的组合视图控制器
 GroupViewController * groupViewController;
 
-//保存窗口原始位置
+//保存左边列表原始位置
 CGPoint elementViewOrignalPoint;
 
-//修改元素
+//是否修改元素
 BOOL isModify;
+
+//是否已经显示左边列表
 BOOL isViewOn;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
     [self initTable];
     
-    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
+//初始化列表
 -(void)initTable
 {
+    //初始化元素列表4个分区名称
     elementSections = [[NSArray alloc]initWithObjects:@"电脑",@"投影机",@"播放器",@"电路", nil];
     
+    //初始化4种类型的数组
     computerDataList = [[NSMutableArray alloc] initWithObjects:nil];
     projectorDataList = [[NSMutableArray alloc] initWithObjects:nil];
     playerDataList = [[NSMutableArray alloc] initWithObjects:nil];
     relayDataList = [[NSMutableArray alloc] initWithObjects:nil];
     
-    
+    //获取组合视图控制器
     groupViewController = [self.tabBarController.viewControllers objectAtIndex:1];
-
+    
     
     //设置tableView的数据源
     elementTableView.dataSource = self;
@@ -70,19 +75,12 @@ BOOL isViewOn;
     //设置tableView的委托
     elementTableView.delegate = self;
     
+    
     isModify = FALSE;
     isViewOn = FALSE;
     
     elementViewOrignalPoint = elementTableView.center;
-
-    //设置tableView的背景图
-    //elementTableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.jpg"]];
-    //
-    //    self.elementTableView.tableHeaderView = [[UIImageView alloc] initWithImage:
-    //                                  [UIImage imageNamed:@"tableheader.png"]];
-    //    // 为UITableView控件设置页脚控件
-    //    self.elementTableView.tableFooterView = [[UIImageView alloc] initWithImage:
-    //                                  [UIImage imageNamed:@"tableheader.png"]];
+    
 }
 
 // UITableViewDataSource协议中的方法，该方法的返回值决定表格包含多少个分区
@@ -98,16 +96,19 @@ BOOL isViewOn;
     }
 }
 
+// UITableViewDataSource协议中的方法，返回列表页尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 20;
 }
 
+// UITableViewDataSource协议中的方法，返回列表行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 50;
 }
 
+// UITableViewDataSource协议中的方法，返回列表每个分区的行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSInteger count = 0;
@@ -132,10 +133,9 @@ BOOL isViewOn;
     return count;
 }
 
+// UITableViewDataSource协议中的方法，创建每行的单元格
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     static NSString *myId = @"moveCell";
     
     // 获取可重用的单元格
@@ -160,14 +160,7 @@ BOOL isViewOn;
     cell.layer.masksToBounds = YES;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
-    //    // 为UITableViewCell的左端设置图片
-    //    cell.imageView.image = [UIImage imageNamed:@"ic_gray.png"];
-    //    // 为UITableViewCell的左端设置高亮状态视时的图片
-    //    cell.imageView.highlightedImage = [UIImage imageNamed:
-    //                                       @"ic_highlight.png"];
-    
     // 设置textLabel显示的文本
-    
     switch (sectionNo) {
         case 0:
             cell.textLabel.text = [[computerDataList objectAtIndex:rowNo] aName];
@@ -195,23 +188,21 @@ BOOL isViewOn;
 }
 
 
-// UITableViewDelegate协议中定义的方法。
-// 该方法的返回值作为删除指定表格行时确定按钮的文本
+// UITableViewDelegate协议中定义的方法，该方法的返回值作为删除指定表格行时确定按钮的文本
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:
 (NSIndexPath *)indexPath
 {
     return @"确认删除";
 }
 
-// UITableViewDataSource协议中定义的方法。该方法的返回值决定某行是否可编辑
+// UITableViewDataSource协议中定义的方法，该方法的返回值决定某行是否可编辑
 - (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:
 (NSIndexPath *)indexPath
 {
     return YES;
 }
 
-// UITableViewDataSource协议中定义的方法。
-// 编辑（包括删除或插入）完成时激发该方法
+// UITableViewDataSource协议中定义的方法,编辑（包括删除或插入）完成时激发该方法
 - (void) tableView:(UITableView *)tableView commitEditingStyle:
 (UITableViewCellEditingStyle)editingStyle
  forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -239,16 +230,10 @@ BOOL isViewOn;
                 break;
         }
         
-        
-        
         // 从UITable程序界面上删除指定表格行。
-        [tableView deleteRowsAtIndexPaths:[NSArray
-                                           arrayWithObject:indexPath]
-                         withRowAnimation:UITableViewRowAnimationAutomatic];
-        [groupViewController.elementTableView deleteRowsAtIndexPaths:[NSArray
-                                           arrayWithObject:indexPath]
-                         withRowAnimation:UITableViewRowAnimationAutomatic];
-
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [groupViewController.elementTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
     }
     
     
@@ -256,7 +241,6 @@ BOOL isViewOn;
     if(editingStyle == UITableViewCellEditingStyleInsert)
     {
         // 将当前行的数据插入到底层NSArray集合中
-        
         switch (indexPath.section) {
             case 0:
                 [computerDataList insertObject:[computerDataList objectAtIndex:indexPath.row]
@@ -278,20 +262,14 @@ BOOL isViewOn;
                 break;
         }
         
-        
-        
-        
         // 为UITableView控件的界面上插入一行
-        [tableView insertRowsAtIndexPaths:[NSArray
-                                           arrayWithObject:indexPath]
-                         withRowAnimation:UITableViewRowAnimationFade];
+        [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
-        [groupViewController.elementTableView insertRowsAtIndexPaths:[NSArray
-                                           arrayWithObject:indexPath]
-                         withRowAnimation:UITableViewRowAnimationFade];
+        //[groupViewController.elementTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 
+// UITableViewDataSource协议中定义的方法,选中返回列表行
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:
 (NSIndexPath *)indexPath
 {
@@ -350,7 +328,7 @@ BOOL isViewOn;
     
 }
 
-//添加元素
+//添加元素并显示在左边列表上
 - (IBAction)addElement:(id)sender
 {
     isModify = FALSE;
@@ -380,14 +358,11 @@ BOOL isViewOn;
             
         }
             break;
-            
     }
-    
-    
 }
 
 
-//切换元素类型
+//切换元素类型,显示编辑选项
 - (IBAction)segmentedChanged:(id)sender
 {
     switch([sender selectedSegmentIndex])
@@ -417,7 +392,8 @@ BOOL isViewOn;
             [relayUITextField setHidden:true];
             [macLabel setHidden:TRUE];
             [pictureLabel setHidden:FALSE];
-            [relayLabel setHidden:TRUE];            break;
+            [relayLabel setHidden:TRUE];
+            break;
         case 3:
             [setTypeLabel setText:@"电路类型"];
             [macUITextField setHidden:true];
@@ -425,7 +401,8 @@ BOOL isViewOn;
             [relayUITextField setHidden:false];
             [macLabel setHidden:TRUE];
             [pictureLabel setHidden:TRUE];
-            [relayLabel setHidden:FALSE];            break;
+            [relayLabel setHidden:FALSE];
+            break;
     }
 }
 
@@ -454,9 +431,10 @@ BOOL isViewOn;
     [sender resignFirstResponder];
 }
 
+
+//textfield放弃作为第一响应者
 - (IBAction)backTap:(id)sender
 {
-    //textfield放弃作为第一响应者
     [self.nameTextField resignFirstResponder];
     [self.ipTextField resignFirstResponder];
     [self.macUITextField resignFirstResponder];
@@ -480,11 +458,13 @@ BOOL isViewOn;
     
     if(class == ComputerVO.class)
     {
+        //创建电脑对象
         [obj setAddressMac:ipTextField.text];
         [(ComputerVO*)obj setPort:[portTextField.text intValue]];
         [obj setAType:typeComputer];
         if(isInsert)
         {
+            //把对象插入到指定行里
             [computerDataList insertObject:obj atIndex:[computerDataList count]];
             section = 0;
             row = [computerDataList count]-1;
@@ -492,6 +472,7 @@ BOOL isViewOn;
         }
         else
         {
+            //在computerDataList末尾添加对象
             [computerDataList replaceObjectAtIndex:index withObject:obj];
             NSArray *arr = [elementTableView visibleCells];
             UITableViewCell *cell = [arr objectAtIndex:index];
@@ -501,7 +482,7 @@ BOOL isViewOn;
     }
     else if(class == ProjectVO.class)
     {
-        
+         //创建投影机对象
         [obj setAType:typeProject];
         [(ProjectVO*)obj setPort:[portTextField.text intValue]];
         if(isInsert)
@@ -522,6 +503,7 @@ BOOL isViewOn;
     }
     else if(class == PlayerVO.class)
     {
+        //创建播放器对象
         [obj setIsPic:pictureUISwitch.isOn];
         [obj setAType:typePlayer];
         [(PlayerVO*)obj setPort:[portTextField.text intValue]];
@@ -543,6 +525,7 @@ BOOL isViewOn;
     }
     else if(class == RelayVO.class)
     {
+        //创建电路对象
         [obj setAType:typeRelay];
         [obj setCircuit:[relayUITextField.text intValue]];
         [(RelayVO*)obj setPort:[portTextField.text intValue]];
@@ -567,7 +550,7 @@ BOOL isViewOn;
     
     if(isInsert)
     {
-        
+        //插入元素对象并更新
         [elementTableView beginUpdates];
         NSArray *_tempIndexPathArr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:section]];
         [elementTableView insertRowsAtIndexPaths:_tempIndexPathArr withRowAnimation:UITableViewRowAnimationFade];
@@ -576,7 +559,7 @@ BOOL isViewOn;
     
 }
 
-
+//移动窗口，完成动画是否隐藏窗口
 - (void)moveWindow:(UIView*) uiView desPoint:(CGPoint)point isCloseWin:(BOOL)isClose
 {
     [UIView transitionWithView:uiView duration:0.3
@@ -592,10 +575,13 @@ BOOL isViewOn;
     
 }
 
+//开关显示左侧列表
 - (IBAction)SwitchMoveView:(id)sender
 {
+    
     if(isViewOn)
     {
+        //关闭左侧列表
         CGPoint point = CGPointMake(elementViewOrignalPoint.x, elementTableView.center.y);
         [self moveWindow:elementTableView desPoint:point isCloseWin:FALSE];
         CGPoint bntPoint = CGPointMake((((UIButton*)sender).frame.size.width/2), elementTableView.center.y);
@@ -604,7 +590,7 @@ BOOL isViewOn;
     }
     else
     {
-        NSLog(@"%f:%f",elementViewOrignalPoint.x,elementTableView.frame.size.width);
+        //打开左侧列表
         CGPoint point = CGPointMake(elementViewOrignalPoint.x+elementTableView.frame.size.width, elementTableView.center.y);
         [self moveWindow:elementTableView desPoint:point isCloseWin:FALSE];
         CGPoint bntPoint = CGPointMake(elementViewOrignalPoint.x + elementTableView.frame.size.width*1.5+(((UIButton*)sender).frame.size.width/2), elementTableView.center.y);
