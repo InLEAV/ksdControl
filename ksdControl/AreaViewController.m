@@ -374,7 +374,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                 {
                     //保存播放类型设置
                     PlayerVO *player = (PlayerVO*)(group.elements[k]);
-                    sub3Dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"播放类型",@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",player.isPic,@"是否播放图片",nil];
+                    sub3Dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"播放类型",@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.isPic],@"是否播放图片",nil];
                 }
                 else if([group.elements[k] isMemberOfClass:RelayVO.class])
                 {
@@ -408,7 +408,8 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     //Json文件路径
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path=[paths objectAtIndex:0];
-    NSString *Json_path=[path stringByAppendingPathComponent:@"JsonFile.json"];
+    NSString *Json_path=[path stringByAppendingPathComponent:  [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@.json!",pavilionName.text]]];
+    NSLog(@"%@",Json_path);
     
     //写入文件
     NSLog(@"%@",[JsonData writeToFile:Json_path atomically:YES] ? @"Save Json Succeed":@"Save Json Failed");

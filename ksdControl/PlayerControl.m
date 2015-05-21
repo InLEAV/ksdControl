@@ -17,10 +17,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        // 创建一个UIImageView控件
-//        UIImageView *imageView = [[UIImageView alloc] initWithImage:
-//                                  [UIImage imageNamed:@"java.png"]];
-//        imageView.frame = CGRectMake(0, 0, 154, 200);
+        // 创建一个UIImageView控件
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"java.png"]];
+        imageView.frame = CGRectMake(0, 0, 154, 200);
 //        // 将UIImageView控件添加到该单元格中
 //        [self.contentView addSubview:imageView];
 //        // 创建一个UILabel控件
