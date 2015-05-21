@@ -33,11 +33,13 @@ AreaViewController* areaViewController;
     // Dispose of any resources that can be recreated.
 }
 
+//TabBar协议，选中TabBarItem
 - (void)tabBar:(UITabBar *)tabbar didSelectItem:(UITabBarItem *)item
 {
   
 }
 
+//提示窗口，提示标题，内容，按钮名称
 +(void)showUIAlertView:(NSString*)title content:(NSString*)msg buttonTitle:(NSString*)btTitle;
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:btTitle otherButtonTitles:nil];
