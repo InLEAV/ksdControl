@@ -29,7 +29,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *areaNameFieldText;
 
 //编辑返回展厅的名称
-@property (strong, nonatomic) IBOutlet UITextField *PavilionName;
+@property (strong, nonatomic) IBOutlet UITextField *pavilionName;
 
 //添加已选定的组合到包含数组中
 - (IBAction)AddGroupToContatiner:(id)sender;
@@ -39,5 +39,8 @@
 
 //添加展区行到展区列表
 - (IBAction)addArea:(id)sender;
+
+//保存设置，创建json保存到本地
+- (IBAction)save:(id)sender;
 
 @end

@@ -9,6 +9,10 @@
 #import "AreaViewController.h"
 #import "SetViewController.h"
 #import "GroupViewController.h"
+#import "ComputerVO.h"
+#import "PlayerVO.h"
+#import "ProjectVO.h"
+#import "RelayVO.h"
 #import "GroupVO.h"
 #import "AreaVO.h"
 #import "Model.h"
@@ -20,7 +24,7 @@
 @implementation AreaViewController
 
 @synthesize groupTableView,containerTableView,AreaTableView;
-@synthesize containerDataList,areaDataList,areaNameFieldText;
+@synthesize containerDataList,areaDataList,areaNameFieldText,pavilionName;
 
 //TabBarController子视图组合视图
 GroupViewController* groupViewController;
@@ -330,6 +334,84 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
         
     }
+}
+
+//保存设置，创建json保存到本地
+- (IBAction)save:(id)sender
+{
+    NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *sub1Dict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *sub2Dict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *sub3Dict = [NSMutableDictionary dictionary];
+    
+    //保存展厅名称
+    [mutableDict setValue:pavilionName.text forKey:@"展厅名"];
+    
+    for (int i = 0; i < areaDataList.count; i++)
+    {
+        AreaVO* area = (AreaVO*)[areaDataList objectAtIndex:i];
+        for (int j = 0; j < area.groups.count; j++)
+        {
+            GroupVO* group = (GroupVO*)[area.groups objectAtIndex:j];
+            
+            for (int k = 0; k < group.elements.count ; k++)
+            {
+                sub3Dict = [NSMutableDictionary dictionary];
+                if([group.elements[k] isMemberOfClass:ComputerVO.class])
+                {
+                    //保存电脑类型设置
+                    ComputerVO *computer = (ComputerVO*)(group.elements[k]);
+                    NSLog(@"type:%@ name:%@ ip:%@ port:%d address:%@",@"电脑类型",computer.aName,computer.ip,computer.port,computer.addressMac);
+                    sub3Dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"电脑类型",@"type",computer.aName,@"name",computer.ip ,@"ip",[NSNumber numberWithInteger:computer.port],@"port",computer.addressMac,@"mac",nil];
+                }
+                else if([group.elements[k] isMemberOfClass:ProjectVO.class])
+                {
+                    //保存投影类型设置
+                    ProjectVO *project = (ProjectVO*)(group.elements[k]);
+                    sub3Dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"投影机类型",@"type",project.aName,@"name",project.ip ,@"ip",[NSNumber numberWithInteger:project.port],@"port",nil];
+                }
+                else if([group.elements[k] isMemberOfClass:PlayerVO.class])
+                {
+                    //保存播放类型设置
+                    PlayerVO *player = (PlayerVO*)(group.elements[k]);
+                    sub3Dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"播放类型",@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",player.isPic,@"是否播放图片",nil];
+                }
+                else if([group.elements[k] isMemberOfClass:RelayVO.class])
+                {
+                    //保存电路类型设置
+                    RelayVO *relay = (RelayVO*)(group.elements[k]);
+                    sub3Dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"电路类型",@"type",relay.aName,@"name",relay.ip ,@"ip",[NSNumber numberWithInteger:relay.port],@"port",[NSNumber numberWithInteger:relay.circuit],@"电路数",nil];
+                }
+                
+                NSString* elementName = [NSString stringWithFormat:@"元素%d",k];
+                [sub2Dict setValue:sub3Dict forKey:elementName];
+            }
+            
+            //设置组合名键值
+            [sub1Dict setValue:sub2Dict forKey:group.aName];
+        }
+        
+         //保存展区
+        [mutableDict setValue:sub1Dict forKey:area.aName];
+    }
+    
+    //将Json保存到本地
+    NSError *error = nil;
+    
+    NSData *JsonData = [NSJSONSerialization dataWithJSONObject:mutableDict options:NSJSONWritingPrettyPrinted error:&error];
+    
+    if(error)
+    {
+        NSLog(@"Error %@",[error localizedDescription]);
+    }
+    
+    //Json文件路径
+    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path=[paths objectAtIndex:0];
+    NSString *Json_path=[path stringByAppendingPathComponent:@"JsonFile.json"];
+    
+    //写入文件
+    NSLog(@"%@",[JsonData writeToFile:Json_path atomically:YES] ? @"Save Json Succeed":@"Save Json Failed");
 }
 
 @end
