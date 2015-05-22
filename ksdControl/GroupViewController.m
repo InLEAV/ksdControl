@@ -245,10 +245,9 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
         {
             [containerDataList removeObjectAtIndex: rowNo];
             
-            
             GroupVO* group = (GroupVO*)[groupDataList objectAtIndex:(groupDidSelectRowAtIndexPath.row)];
             [group.elements removeObjectAtIndex:rowNo];
-            NSLog(@"%@:%d",group.aName,group.elements.count);
+            NSLog(@"%@:%lu",group.aName,(unsigned long)group.elements.count);
         }
         else
         {
@@ -291,7 +290,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
 (NSIndexPath *)indexPath
 {
     
-    NSLog(@"curSelecetIndexPath.section:%d  curSelecetIndexPath.row%d",indexPath.section,indexPath.row);
+    NSLog(@"curSelecetIndexPath.section:%ld  curSelecetIndexPath.row%ld",(long)indexPath.section,(long)indexPath.row);
     
     if(tableView == elementTableView)
     {

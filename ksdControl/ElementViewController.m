@@ -274,7 +274,7 @@ BOOL isViewOn;
 (NSIndexPath *)indexPath
 {
     curSelecetIndexPath = indexPath;
-    NSLog(@"curSelecetIndexPath.section:%d  curSelecetIndexPath.row%d",curSelecetIndexPath.section,curSelecetIndexPath.row);
+    NSLog(@"curSelecetIndexPath.section:%ld  curSelecetIndexPath.row%ld",(long)curSelecetIndexPath.section,(long)curSelecetIndexPath.row);
     
     isModify = TRUE;
     

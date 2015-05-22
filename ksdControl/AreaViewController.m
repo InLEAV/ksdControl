@@ -250,7 +250,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:
 (NSIndexPath *)indexPath
 {
-    NSLog(@"curSelecetIndexPath.section:%d  curSelecetIndexPath.row%d",indexPath.section,indexPath.row);
+    NSLog(@"curSelecetIndexPath.section:%ld  curSelecetIndexPath.row%ld",(long)indexPath.section,(long)indexPath.row);
     
     if(tableView == groupTableView)
     {
