@@ -344,6 +344,9 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     NSMutableDictionary *sub2Dict = [NSMutableDictionary dictionary];
     NSMutableDictionary *sub3Dict = [NSMutableDictionary dictionary];
     
+    //保存程序版本号
+    [mutableDict setValue:@"V1.0.0" forKey:@"程序版本"];
+    
     //保存展厅名称
     [mutableDict setValue:pavilionName.text forKey:@"展厅名"];
     
@@ -397,9 +400,8 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     
     //将Json保存到本地
     NSError *error = nil;
-    
+
     NSData *JsonData = [NSJSONSerialization dataWithJSONObject:mutableDict options:NSJSONWritingPrettyPrinted error:&error];
-    
     if(error)
     {
         NSLog(@"Error %@",[error localizedDescription]);
@@ -408,7 +410,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     //Json文件路径
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *path=[paths objectAtIndex:0];
-    NSString *Json_path=[path stringByAppendingPathComponent:  [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@.json!",pavilionName.text]]];
+    NSString *Json_path=[path stringByAppendingPathComponent:  [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@.json",pavilionName.text]]];
     NSLog(@"%@",Json_path);
     
     //写入文件

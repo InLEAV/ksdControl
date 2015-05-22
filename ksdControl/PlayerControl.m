@@ -20,6 +20,7 @@
         // 创建一个UIImageView控件
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"java.png"]];
         imageView.frame = CGRectMake(0, 0, 154, 200);
+        
 //        // 将UIImageView控件添加到该单元格中
 //        [self.contentView addSubview:imageView];
 //        // 创建一个UILabel控件
@@ -41,6 +42,7 @@
 //        // 设置圆角
 //        self.layer.cornerRadius = 8.0;
 //        self.layer.masksToBounds = YES;
+        
     }
     return self;
 }
