@@ -57,7 +57,7 @@ BOOL isViewOn;
 -(void)initTable
 {
     //初始化元素列表4个分区名称
-    elementSections = [[NSArray alloc]initWithObjects:@"电脑",@"投影机",@"播放器",@"电路", nil];
+    elementSections = [[NSArray alloc]initWithObjects:@"电脑",@"投影机",@"电路",@"播放器", nil];
     
     //初始化4种类型的数组
     computerDataList = [[NSMutableArray alloc] initWithObjects:nil];
@@ -121,10 +121,10 @@ BOOL isViewOn;
             return [projectorDataList count];
             break;
         case 2:
-            return [playerDataList count];
+            return [relayDataList count];
             break;
         case 3:
-            return [relayDataList count];
+            return [playerDataList count];
             break;
         default:
             break;
@@ -169,10 +169,10 @@ BOOL isViewOn;
             cell.textLabel.text = [[projectorDataList objectAtIndex:rowNo] aName];
             break;
         case 2:
-            cell.textLabel.text = [[playerDataList objectAtIndex:rowNo] aName];
+            cell.textLabel.text = [[relayDataList objectAtIndex:rowNo] aName];
             break;
         case 3:
-            cell.textLabel.text = [[relayDataList objectAtIndex:rowNo] aName];
+            cell.textLabel.text = [[playerDataList objectAtIndex:rowNo] aName];
             break;
         default:
             break;
@@ -221,10 +221,10 @@ BOOL isViewOn;
                 [projectorDataList removeObjectAtIndex: rowNo];
                 break;
             case 2:
-                [playerDataList removeObjectAtIndex: rowNo];
+                [relayDataList removeObjectAtIndex: rowNo];
                 break;
             case 3:
-                [relayDataList removeObjectAtIndex: rowNo];
+                [playerDataList removeObjectAtIndex: rowNo];
                 break;
             default:
                 break;
@@ -232,7 +232,7 @@ BOOL isViewOn;
         
         // 从UITable程序界面上删除指定表格行。
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        [groupViewController.elementTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+       // [groupViewController.elementTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         
     }
     
@@ -251,12 +251,12 @@ BOOL isViewOn;
                                         atIndex:indexPath.row + 1];
                 break;
             case 2:
-                [playerDataList insertObject:[playerDataList objectAtIndex:indexPath.row]
-                                     atIndex:indexPath.row + 1];
-                break;
-            case 3:
                 [relayDataList insertObject:[relayDataList objectAtIndex:indexPath.row]
                                     atIndex:indexPath.row + 1];
+                break;
+            case 3:
+                [playerDataList insertObject:[playerDataList objectAtIndex:indexPath.row]
+                                     atIndex:indexPath.row + 1];
                 break;
             default:
                 break;
@@ -304,21 +304,24 @@ BOOL isViewOn;
         {
             
             [typeSegmented setSelectedSegmentIndex:2];
-            PlayerVO *player =  [playerDataList objectAtIndex:indexPath.row];
-            nameTextField.text = player.aName;
-            ipTextField.text = player.ip;
-            [pictureUISwitch setOn:player.isPic animated:TRUE];
-            portTextField.text = [NSString stringWithFormat:@"%d",player.port];
-        }
-            break;
-        case 3:
-        {
-            [typeSegmented setSelectedSegmentIndex:3];
             RelayVO *relay =  [relayDataList objectAtIndex:indexPath.row];
             nameTextField.text = relay.aName;
             ipTextField.text = relay.ip;
             relayUITextField.text = [NSString stringWithFormat:@"%d",relay.circuit];
             portTextField.text = [NSString stringWithFormat:@"%d",relay.port];
+        }
+            break;
+        case 3:
+        {
+            [typeSegmented setSelectedSegmentIndex:3];
+            PlayerVO *player =  [playerDataList objectAtIndex:indexPath.row];
+            nameTextField.text = player.aName;
+            ipTextField.text = player.ip;
+            [pictureUISwitch setOn:player.isPic animated:TRUE];
+            portTextField.text = [NSString stringWithFormat:@"%d",player.port];
+
+            
+            
         }
             break;
         default:
@@ -348,13 +351,14 @@ BOOL isViewOn;
             break;
         case 2:
         {
-            [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
+            [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
             
         }
             break;
         case 3:
         {
-            [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
+            [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
+
             
         }
             break;
@@ -386,15 +390,6 @@ BOOL isViewOn;
             [relayLabel setHidden:TRUE];
             break;
         case 2:
-            [setTypeLabel setText:@"播放类型"];
-            [macUITextField setHidden:true];
-            [pictureUISwitch setHidden:false];
-            [relayUITextField setHidden:true];
-            [macLabel setHidden:TRUE];
-            [pictureLabel setHidden:FALSE];
-            [relayLabel setHidden:TRUE];
-            break;
-        case 3:
             [setTypeLabel setText:@"电路类型"];
             [macUITextField setHidden:true];
             [pictureUISwitch setHidden:true];
@@ -402,6 +397,16 @@ BOOL isViewOn;
             [macLabel setHidden:TRUE];
             [pictureLabel setHidden:TRUE];
             [relayLabel setHidden:FALSE];
+            break;
+        case 3:
+            [setTypeLabel setText:@"播放类型"];
+            [macUITextField setHidden:true];
+            [pictureUISwitch setHidden:false];
+            [relayUITextField setHidden:true];
+            [macLabel setHidden:TRUE];
+            [pictureLabel setHidden:FALSE];
+            [relayLabel setHidden:TRUE];
+
             break;
     }
 }
@@ -437,6 +442,7 @@ BOOL isViewOn;
 {
     [self.nameTextField resignFirstResponder];
     [self.ipTextField resignFirstResponder];
+    [self.portTextField resignFirstResponder];
     [self.macUITextField resignFirstResponder];
     [self.relayUITextField resignFirstResponder];
     [sender resignFirstResponder];
@@ -500,30 +506,7 @@ BOOL isViewOn;
             cell.textLabel.text =nameTextField.text;
             [elementTableView reloadData];
         }
-    }
-    else if(class == PlayerVO.class)
-    {
-        //创建播放器对象
-        [obj setIsPic:pictureUISwitch.isOn];
-        [obj setAType:typePlayer];
-        [(PlayerVO*)obj setPort:[portTextField.text intValue]];
-        if(isInsert)
-        {
-            [playerDataList insertObject:obj atIndex:[playerDataList count]];
-            section = 2;
-            row = [playerDataList count]-1;
-        }
-        else
-        {
-            [playerDataList replaceObjectAtIndex:index withObject:obj];
-            NSArray *arr = [elementTableView visibleCells];
-            UITableViewCell *cell = [arr objectAtIndex:index];
-            cell.textLabel.text =nameTextField.text;
-            [elementTableView reloadData];
-        }
-        
-    }
-    else if(class == RelayVO.class)
+    } else if(class == RelayVO.class)
     {
         //创建电路对象
         [obj setAType:typeRelay];
@@ -532,7 +515,7 @@ BOOL isViewOn;
         if(isInsert)
         {
             [relayDataList insertObject:obj atIndex:[relayDataList count]];
-            section = 3;
+            section = 2;
             row = [relayDataList count]-1;
         }
         else
@@ -545,8 +528,31 @@ BOOL isViewOn;
             cell.textLabel.text = nameTextField.text;
             [elementTableView reloadData];
         }
+    }
+    else if(class == PlayerVO.class)
+    {
+        //创建播放器对象
+        [obj setIsPic:pictureUISwitch.isOn];
+        [obj setAType:typePlayer];
+        [(PlayerVO*)obj setPort:[portTextField.text intValue]];
+        if(isInsert)
+        {
+            [playerDataList insertObject:obj atIndex:[playerDataList count]];
+            section = 3;
+            row = [playerDataList count]-1;
+        }
+        else
+        {
+            [playerDataList replaceObjectAtIndex:index withObject:obj];
+            NSArray *arr = [elementTableView visibleCells];
+            UITableViewCell *cell = [arr objectAtIndex:index];
+            cell.textLabel.text =nameTextField.text;
+            [elementTableView reloadData];
+        }
         
     }
+    
+    
     
     if(isInsert)
     {

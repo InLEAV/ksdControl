@@ -40,7 +40,15 @@
 //添加展区行到展区列表
 - (IBAction)addArea:(id)sender;
 
+//完成编辑sender放弃作为第一响应者
+- (IBAction)finishEdit:(id)sender;
+
+- (IBAction)backTap:(id)sender;
+
 //保存设置，创建json保存到本地
 - (IBAction)save:(id)sender;
+
+//添加对象到字典中并返回字典
+- (NSMutableDictionary*)addSubDic:(id)obj;
 
 @end

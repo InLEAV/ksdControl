@@ -8,6 +8,7 @@
 
 #import "AreaViewController.h"
 #import "SetViewController.h"
+#import "ElementViewController.h"
 #import "GroupViewController.h"
 #import "ComputerVO.h"
 #import "PlayerVO.h"
@@ -16,7 +17,7 @@
 #import "GroupVO.h"
 #import "AreaVO.h"
 #import "Model.h"
-
+#import "JsonControl.h"
 @interface AreaViewController()
 
 @end
@@ -27,6 +28,7 @@
 @synthesize containerDataList,areaDataList,areaNameFieldText,pavilionName;
 
 //TabBarController子视图组合视图
+ElementViewController* elementViewController;
 GroupViewController* groupViewController;
 
 //当前选中的组合选项
@@ -42,6 +44,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     // Do any additional setup after loading the view.
     
     //获取TabBarController子视图组合视图
+    elementViewController = [self.tabBarController.viewControllers objectAtIndex:0];
     groupViewController = [self.tabBarController.viewControllers objectAtIndex:1];
     
     //初始化数组
@@ -82,7 +85,16 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
 // UITableViewDataSource协议中的方法，该方法的返回值决定表格包含多少个分区
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    int sectionCount = 0;
+    if(tableView == groupTableView)
+    {
+        sectionCount =  elementViewController.elementSections.count + 1;
+    }
+    else
+    {
+        sectionCount =  1;
+    }
+    return sectionCount;
 }
 
 // UITableViewDataSource协议中的方法，该方法的返回值决定表格分区页尾高
@@ -104,7 +116,25 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     
     if(tableView == groupTableView)
     {
-        count = [groupViewController.groupDataList count];
+        switch (section) {
+            case 0:
+                count = [groupViewController.groupDataList count];
+                break;
+            case 1:
+                count = [elementViewController.computerDataList count];
+                break;
+            case 2:
+                count = [elementViewController.projectorDataList count];
+                break;
+            case 3:
+                count = [elementViewController.relayDataList count];
+                break;
+            case 4:
+                count = [elementViewController.playerDataList count];
+                break;
+            default:
+                break;
+        }
     }
     else if (tableView == containerTableView)
     {
@@ -148,7 +178,26 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     // 设置textLabel显示的文本
     if(tableView == groupTableView)
     {
-        cell.textLabel.text = [[groupViewController.groupDataList objectAtIndex:rowNo] aName];
+        switch (indexPath.section) {
+            case 0:
+                cell.textLabel.text = [[groupViewController.groupDataList objectAtIndex:rowNo] aName];
+                break;
+            case 1:
+                cell.textLabel.text = [[elementViewController.computerDataList objectAtIndex:rowNo] aName];
+                break;
+            case 2:
+                cell.textLabel.text = [[elementViewController.projectorDataList objectAtIndex:rowNo] aName];
+                break;
+            case 3:
+                cell.textLabel.text = [[elementViewController.relayDataList objectAtIndex:rowNo] aName];
+                break;
+            case 4:
+                cell.textLabel.text = [[elementViewController.playerDataList objectAtIndex:rowNo] aName];
+                break;
+            default:
+                break;
+        }
+
         
     }
     else if (tableView == containerTableView)
@@ -166,12 +215,39 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection
                       :(NSInteger)section
 {
+    NSString *sectionName;
     if(tableView == groupTableView)
-        return @"组合";
+    {
+        switch (section) {
+            case 0:
+                sectionName = @"元素组合";
+                break;
+            case 1:
+                sectionName = @"电脑";
+                break;
+            case 2:
+                sectionName = @"投影机";
+                break;
+            case 3:
+                sectionName = @"电路";
+                break;
+            case 4:
+                sectionName = @"播放器";
+                break;
+            default:
+                break;
+        }
+    }
     else if (tableView == containerTableView)
-        return @"已添加含组合";
+    {
+        sectionName = @"已添加含";
+    }
     else
-        return @"展区";
+    {
+        sectionName = @"展区";
+    }
+    
+    return sectionName;
 }
 
 // UITableViewDelegate协议中定义的方法，该方法的返回值作为删除指定表格行时确定按钮的文本
@@ -209,6 +285,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
             
             
             AreaVO* area = (AreaVO*)[areaDataList objectAtIndex:(areaDidSelectRowAtIndexPath.row)];
+            
             [area.groups removeObjectAtIndex:rowNo];
         }
         else
@@ -256,7 +333,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     {
         grouptDidSelectRowAtIndexPath = indexPath;
     }
-    else
+    else if(tableView == AreaTableView)
     {
         if(areaDidSelectRowAtIndexPath != indexPath)
         {
@@ -278,16 +355,36 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
 //添加组合到选中的展区数组并显示到中间列表
 - (IBAction)AddGroupToContatiner:(id)sender
 {
-    if(grouptDidSelectRowAtIndexPath.row!=-1&&areaDidSelectRowAtIndexPath.row != -1)
+    if(grouptDidSelectRowAtIndexPath.row!=-1 && areaDidSelectRowAtIndexPath.row != -1)
     {
         
         AreaVO* area = (AreaVO*)[areaDataList objectAtIndex:(areaDidSelectRowAtIndexPath.row)];
         
-        if(grouptDidSelectRowAtIndexPath.section == 0)
-        {
-            [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-            [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+        switch (grouptDidSelectRowAtIndexPath.section) {
+            case 0:
+                [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                break;
+            case 1:
+                [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                break;
+            case 2:
+                [area.groups addObject:[elementViewController.projectorDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                break;
+            case 3:
+                [area.groups addObject:[elementViewController.relayDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                break;
+            case 4:
+                [area.groups addObject:[elementViewController.playerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                break;
+            default:
+                break;
         }
+
         
         [containerTableView reloadData];
     }
@@ -336,13 +433,25 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     }
 }
 
+//textfield放弃作为第一响应者
+- (IBAction)finishEdit:(id)sender
+{
+    [sender resignFirstResponder];
+}
+
+//textfield放弃作为第一响应者
+- (IBAction)backTap:(id)sender
+{
+    [self.areaNameFieldText resignFirstResponder];
+    [self.pavilionName resignFirstResponder];
+    [sender resignFirstResponder];
+}
+
 //保存设置，创建json保存到本地
 - (IBAction)save:(id)sender
 {
+    //json多级字典，展厅全部数据（组合，元素）
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
-    NSMutableDictionary *sub1Dict = [NSMutableDictionary dictionary];
-    NSMutableDictionary *sub2Dict = [NSMutableDictionary dictionary];
-    NSMutableDictionary *sub3Dict = [NSMutableDictionary dictionary];
     
     //保存程序版本号
     [mutableDict setValue:@"V1.0.0" forKey:@"程序版本"];
@@ -353,68 +462,78 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     for (int i = 0; i < areaDataList.count; i++)
     {
         AreaVO* area = (AreaVO*)[areaDataList objectAtIndex:i];
+        NSMutableDictionary *sub1Dict = [NSMutableDictionary dictionary];
         for (int j = 0; j < area.groups.count; j++)
         {
-            GroupVO* group = (GroupVO*)[area.groups objectAtIndex:j];
-            
-            for (int k = 0; k < group.elements.count ; k++)
+            //保存组合
+            if([area.groups[j] isMemberOfClass:GroupVO.class])
             {
-                sub3Dict = [NSMutableDictionary dictionary];
-                if([group.elements[k] isMemberOfClass:ComputerVO.class])
+                GroupVO* group = (GroupVO*)[area.groups objectAtIndex:j];
+                
+                NSMutableDictionary *sub2Dict = [NSMutableDictionary dictionary];
+                for (int k = 0; k < group.elements.count ; k++)
                 {
-                    //保存电脑类型设置
-                    ComputerVO *computer = (ComputerVO*)(group.elements[k]);
-                    NSLog(@"type:%@ name:%@ ip:%@ port:%d address:%@",@"电脑类型",computer.aName,computer.ip,computer.port,computer.addressMac);
-                    sub3Dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"电脑类型",@"type",computer.aName,@"name",computer.ip ,@"ip",[NSNumber numberWithInteger:computer.port],@"port",computer.addressMac,@"mac",nil];
-                }
-                else if([group.elements[k] isMemberOfClass:ProjectVO.class])
-                {
-                    //保存投影类型设置
-                    ProjectVO *project = (ProjectVO*)(group.elements[k]);
-                    sub3Dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"投影机类型",@"type",project.aName,@"name",project.ip ,@"ip",[NSNumber numberWithInteger:project.port],@"port",nil];
-                }
-                else if([group.elements[k] isMemberOfClass:PlayerVO.class])
-                {
-                    //保存播放类型设置
-                    PlayerVO *player = (PlayerVO*)(group.elements[k]);
-                    sub3Dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"播放类型",@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.isPic],@"是否播放图片",nil];
-                }
-                else if([group.elements[k] isMemberOfClass:RelayVO.class])
-                {
-                    //保存电路类型设置
-                    RelayVO *relay = (RelayVO*)(group.elements[k]);
-                    sub3Dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"电路类型",@"type",relay.aName,@"name",relay.ip ,@"ip",[NSNumber numberWithInteger:relay.port],@"port",[NSNumber numberWithInteger:relay.circuit],@"电路数",nil];
+                    //保存元素，命名“元素”，与“元素”名称区别，便于解析提取数据
+                    NSMutableDictionary *sub3Dict = [NSMutableDictionary dictionary];
+                    sub3Dict = [self addSubDic:group.elements[k]];
+                    
+                    NSString* elementName = [NSString stringWithFormat:@"元素%d",k];
+                    [sub2Dict setValue:sub3Dict forKey:elementName];
                 }
                 
-                NSString* elementName = [NSString stringWithFormat:@"元素%d",k];
-                [sub2Dict setValue:sub3Dict forKey:elementName];
+                //设置组合名键值
+                NSString* groupName = [NSString stringWithFormat:@"组合%d",j];
+                [sub1Dict setValue:sub2Dict forKey:groupName];
             }
-            
-            //设置组合名键值
-            [sub1Dict setValue:sub2Dict forKey:group.aName];
+            else
+            {
+                //保存元素，命名“组元”，便于解析提取数据
+                NSMutableDictionary *sub3Dict = [NSMutableDictionary dictionary];
+                sub3Dict = [self addSubDic:area.groups[j]];
+              
+                NSString* elementName = [NSString stringWithFormat:@"组元%d",j];
+                [sub1Dict setValue:sub3Dict forKey:elementName];
+            }
         }
-        
          //保存展区
         [mutableDict setValue:sub1Dict forKey:area.aName];
     }
     
-    //将Json保存到本地
-    NSError *error = nil;
-
-    NSData *JsonData = [NSJSONSerialization dataWithJSONObject:mutableDict options:NSJSONWritingPrettyPrinted error:&error];
-    if(error)
-    {
-        NSLog(@"Error %@",[error localizedDescription]);
-    }
-    
-    //Json文件路径
-    NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path=[paths objectAtIndex:0];
-    NSString *Json_path=[path stringByAppendingPathComponent:  [[NSString alloc] initWithString:[NSString stringWithFormat:@"%@.json",pavilionName.text]]];
-    NSLog(@"%@",Json_path);
-    
-    //写入文件
-    NSLog(@"%@",[JsonData writeToFile:Json_path atomically:YES] ? @"Save Json Succeed":@"Save Json Failed");
+    [JsonControl jsonWrite:mutableDict FileName:@"PavilionData"];
 }
 
+//添加对象到字典中并返回字典
+- (NSMutableDictionary*)addSubDic:(id)obj
+{
+    NSMutableDictionary* sub = [NSMutableDictionary dictionary];
+    
+    if([obj isMemberOfClass:ComputerVO.class])
+    {
+        //保存电脑类型设置
+        ComputerVO *computer = (ComputerVO*)(obj);
+        NSLog(@"type:%@ name:%@ ip:%@ port:%d address:%@",@"电脑类型",computer.aName,computer.ip,computer.port,computer.addressMac);
+        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"电脑类型",@"type",computer.aName,@"name",computer.ip ,@"ip",[NSNumber numberWithInteger:computer.port],@"port",computer.addressMac,@"mac",nil];
+    }
+    else if([obj isMemberOfClass:ProjectVO.class])
+    {
+        //保存投影类型设置
+        ProjectVO *project = (ProjectVO*)(obj);
+        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"投影机类型",@"type",project.aName,@"name",project.ip ,@"ip",[NSNumber numberWithInteger:project.port],@"port",nil];
+    }
+    else if([obj isMemberOfClass:PlayerVO.class])
+    {
+        //保存播放类型设置
+        PlayerVO *player = (PlayerVO*)(obj);
+        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"播放类型",@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.isPic],@"是否播放图片",nil];
+    }
+    else if([obj isMemberOfClass:RelayVO.class])
+    {
+        //保存电路类型设置
+        RelayVO *relay = (RelayVO*)(obj);
+        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"电路类型",@"type",relay.aName,@"name",relay.ip ,@"ip",[NSNumber numberWithInteger:relay.port],@"port",[NSNumber numberWithInteger:relay.circuit],@"电路数",nil];
+    }
+    
+    return sub;
+
+}
 @end

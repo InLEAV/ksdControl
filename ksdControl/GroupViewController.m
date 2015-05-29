@@ -84,7 +84,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
 {
     if(tableView == elementTableView)
     {
-        return elementViewController.elementSections.count;
+        return elementViewController.elementSections.count -1 ;
     }
     else
     {
@@ -119,10 +119,11 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                 count = [elementViewController.projectorDataList count];
                 break;
             case 2:
-                count= [elementViewController.playerDataList count];
+                count= [elementViewController.relayDataList count];
                 break;
             case 3:
-                count= [elementViewController.relayDataList count];
+                count = 0;
+                //count= [elementViewController.playerDataList count];
                 break;
             default:
                 break;
@@ -180,10 +181,10 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                 cell.textLabel.text = [[elementViewController.projectorDataList objectAtIndex:rowNo] aName];
                 break;
             case 2:
-                cell.textLabel.text = [[elementViewController.playerDataList objectAtIndex:rowNo] aName];
+                cell.textLabel.text = [[elementViewController.relayDataList objectAtIndex:rowNo] aName];
                 break;
             case 3:
-                cell.textLabel.text = [[elementViewController.relayDataList objectAtIndex:rowNo] aName];
+                cell.textLabel.text = [[elementViewController.playerDataList objectAtIndex:rowNo] aName];
                 break;
             default:
                 break;
@@ -339,13 +340,13 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                 break;
             case 2:
             {
-                [group.elements addObject:[elementViewController.playerDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
+                [group.elements addObject:[elementViewController.relayDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                 [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
             }
                 break;
             case 3:
             {
-                [group.elements addObject:[elementViewController.relayDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
+                [group.elements addObject:[elementViewController.playerDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                 [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
             }
                 break;
@@ -357,7 +358,6 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     else if(elementDidSelectRowAtIndexPath.row==-1)
     {
         [SetViewController showUIAlertView:@"提示"content:@"请选择需要添加元素！" buttonTitle:@"确定"];
-        
         
     }
     else if(groupDidSelectRowAtIndexPath.row==-1)
@@ -399,5 +399,18 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     }
     
     
+}
+
+//textfield放弃作为第一响应者
+- (IBAction)finishEdit:(id)sender
+{
+    [sender resignFirstResponder];
+}
+
+//textfield放弃作为第一响应者
+- (IBAction)backTap:(id)sender
+{
+    [self.groupNameFieldText resignFirstResponder];
+    [sender resignFirstResponder];
 }
 @end

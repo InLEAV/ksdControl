@@ -10,4 +10,18 @@
 
 @interface RelayControl : UICollectionViewCell
 
+// 动态改变标题
+@property (strong, nonatomic) UILabel* label;
+
+// 打开电路
+@property (strong, nonatomic) UIButton* openBtn;
+
+// 关闭电路
+@property (strong, nonatomic) UIButton* closeBtn;
+
+//打开电路
+-(void)openRelay :(id)sender;
+
+//关闭电路
+-(void)closeRelay :(id)sende;
 @end
