@@ -16,7 +16,7 @@
 #import "GroupVO.h"
 #import "AreaVO.h"
 #import "Model.h"
-
+#import "JsonControl.h"
 @interface ElementViewController()
 
 @end
@@ -65,6 +65,8 @@ BOOL isViewOn;
     playerDataList = [[NSMutableArray alloc] initWithObjects:nil];
     relayDataList = [[NSMutableArray alloc] initWithObjects:nil];
     
+    [self LoadElementJson];
+    
     //获取组合视图控制器
     groupViewController = [self.tabBarController.viewControllers objectAtIndex:1];
     
@@ -82,6 +84,77 @@ BOOL isViewOn;
     elementViewOrignalPoint = elementTableView.center;
     
 }
+
+- (void)LoadElementJson
+{
+    //加载Json数据
+    NSDictionary *dict = [NSDictionary dictionary];
+    dict = [JsonControl jsonRead:@"ElementData"];
+    if([dict count] != 0)
+    {
+        NSDictionary *computerDict = [dict objectForKey:@"电脑"];
+        for(int i = 0;i < [computerDict count];i++)
+        {
+            NSString* eName = [NSString stringWithFormat:@"元素%d",i];
+            NSDictionary *eDect = [computerDict objectForKey:eName];
+            ComputerVO* computer = [ComputerVO new];
+            [computer initVO];
+            [computer setAType:@"电脑类型"];
+            [computer setIp:[eDect objectForKey:@"ip"]];
+            [computer setAName:[eDect objectForKey:@"name"]];
+            [computer setPort:[[eDect objectForKey:@"port"] intValue]] ;
+            [computer setAddressMac:[eDect objectForKey:@"mac"]];
+            [computerDataList addObject:computer];
+        }
+        
+        NSDictionary *projectDict = [dict objectForKey:@"投影机"];
+        for(int i = 0;i < [projectDict count];i++)
+        {
+            NSString* pName = [NSString stringWithFormat:@"元素%d",i];
+            NSDictionary *pDect = [projectDict objectForKey:pName];
+            ProjectVO* project = [ProjectVO new];
+            [project initVO];
+            [project setAType:@"投影类型"];
+            [project setIp:[pDect objectForKey:@"ip"]];
+            [project setAName:[pDect objectForKey:@"name"]];
+            [project setPort:[[pDect objectForKey:@"port"] intValue]] ;
+            [projectorDataList addObject:project];
+        }
+
+        NSDictionary *relayDict = [dict objectForKey:@"电路"];
+        for(int i = 0;i < [relayDict count];i++)
+        {
+            NSString* rName = [NSString stringWithFormat:@"元素%d",i];
+            NSDictionary *rDect = [relayDict objectForKey:rName];
+            RelayVO* relay = [RelayVO new];
+            [relay initVO];
+            [relay setAType:@"电路类型"];
+            [relay setIp:[rDect objectForKey:@"ip"]];
+            [relay setAName:[rDect objectForKey:@"name"]];
+            [relay setPort:[[rDect objectForKey:@"port"] intValue]] ;
+            [relay setCircuit:[[rDect objectForKey:@"电路数"] intValue]];
+            [relayDataList addObject:relay];
+        }
+        
+        NSDictionary *playerDict = [dict objectForKey:@"播放器"];
+        for(int i = 0;i < [playerDict count];i++)
+        {
+            NSString* pName = [NSString stringWithFormat:@"元素%d",i];
+            NSDictionary *pDect = [playerDict objectForKey:pName];
+            PlayerVO* player = [PlayerVO new];
+            [player initVO];
+            [player setAType:@"播放器类型"];
+            [player setIp:[pDect objectForKey:@"ip"]];
+            [player setAName:[pDect objectForKey:@"name"]];
+            [player setPort:[[pDect objectForKey:@"port"] intValue]] ;
+            [player setIsPic:[[pDect objectForKey:@"是否播放图片"] boolValue]];
+            [playerDataList addObject:player];
+        }
+
+    }
+
+}
+
 
 // UITableViewDataSource协议中的方法，该方法的返回值决定表格包含多少个分区
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -340,26 +413,101 @@ BOOL isViewOn;
     {
         case 0:
         {
-            [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0];
+            if([computerDataList count]!=0)
+            {
+                for (int i=0;i<[computerDataList count];i++)
+                {
+                    ComputerVO *computer =  [computerDataList objectAtIndex:i];
+                    if ([computer.aName isEqualToString:nameTextField.text])
+                    {
+                        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的电脑元素!",computer.aName]];
+                        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                    }else
+                    {
+                        [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0];
+                        
+                    }
+                }
+            }
+            else
+            {
+                 [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0];
+            }
         }
             break;
         case 1:
         {
-            [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0];
+            if([projectorDataList count]!=0)
+            {
+                for (int i=0;i<[projectorDataList count];i++)
+                {
+                    ProjectVO *project =  [projectorDataList objectAtIndex:i];
+                    if ([project.aName isEqualToString:nameTextField.text])
+                    {
+                        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的投影机元素!",project.aName]];
+                        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                    }else
+                    {
+                        [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0];
+                        
+                    }
+                }
+            }
+            else
+            {
+                [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0];
+
+            }
             
         }
             break;
         case 2:
         {
-            [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
+            if([relayDataList count]!=0)
+            {
+                for (int i=0;i<[relayDataList count];i++)
+                {
+                    RelayVO *relay =  [relayDataList objectAtIndex:i];
+                    if ([relay.aName isEqualToString:nameTextField.text])
+                    {
+                        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的电路元素!",relay.aName]];
+                        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                    }
+                    else
+                    {
+                        [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
+                    }
+                }
+            }
+            else
+            {
+                [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
+            }
+            
             
         }
             break;
         case 3:
         {
-            [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
-
-            
+            if([playerDataList count]!=0)
+            {
+                for (int i=0;i<[playerDataList count];i++)
+                {
+                    PlayerVO *player =  [playerDataList objectAtIndex:i];
+                    if ([player.aName isEqualToString:nameTextField.text])
+                    {
+                        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的播放器元素,请重新输入名称!",player.aName]];
+                        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                    }else
+                    {
+                        [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
+                    }
+                }
+            }
+            else
+            {
+                [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
+            }
         }
             break;
     }
@@ -418,14 +566,35 @@ BOOL isViewOn;
 {
     if([sender isEqual:ipTextField])
     {
-        NSLog(@"IP EditDidEnd");
+        if(![SetViewController validateInput:ipTextField.text RegexString:@"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b"])
+        {
+            [SetViewController showUIAlertView:@"提示" content:@"请正确输入IP格式" buttonTitle:@"确定"];
+        }
+        NSLog(@"Ip EditDidEnd");
     }
     else if([sender isEqual:macUITextField])
     {
+        if(![SetViewController validateInput:macUITextField.text RegexString:@"^([0-9a-fA-F]{2})(([/\\s:-][0-9a-fA-F]{2}){5})$"])
+        {
+            [SetViewController showUIAlertView:@"提示" content:@"请正确输入mac格式" buttonTitle:@"确定"];
+        }
         NSLog(@"MAC EditDidEnd");
     }
+    else if([sender isEqual:portTextField])
+    {//^[1-9]\d*|0$
+        if(![SetViewController validateInput:portTextField.text RegexString:@"^[1-9]\\d*|0$"])
+        {
+            [SetViewController showUIAlertView:@"提示" content:@"请正确输入数字格式" buttonTitle:@"确定"];
+        }
+        NSLog(@"Port EditDidEnd");
+    }
+
     else if ([sender isEqual:relayUITextField])
     {
+        if(![SetViewController validateInput:relayUITextField.text  RegexString:@"^[1-9]\\d*|0$"])
+        {
+            [SetViewController showUIAlertView:@"提示" content:@"请正确输入数字格式" buttonTitle:@"确定"];
+        }
         NSLog(@"Relay EditDidEnd");
     }
 }
@@ -465,7 +634,7 @@ BOOL isViewOn;
     if(class == ComputerVO.class)
     {
         //创建电脑对象
-        [obj setAddressMac:ipTextField.text];
+        [obj setAddressMac:macUITextField.text];
         [(ComputerVO*)obj setPort:[portTextField.text intValue]];
         [obj setAType:typeComputer];
         if(isInsert)

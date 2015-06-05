@@ -33,7 +33,6 @@
 //视频快进
 @property (strong, nonatomic) UIButton* fastForwardBtn;
 
-
 //控制声音播放
 @property (strong, nonatomic) UISlider* audioSlider;
 

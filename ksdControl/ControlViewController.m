@@ -12,6 +12,13 @@
 #import "ProjectControl.h"
 #import "PlayerControl.h"
 #import "RelayControl.h"
+#import "AppDelegate.h"
+#import "AreaVO.h"
+#import "GroupVO.h"
+#import "ComputerVO.h"
+#import "RelayVO.h"
+#import "PlayerVO.h"
+#import "ProjectVO.h"
 
 @interface ControlViewController ()
 
@@ -29,6 +36,9 @@ NSDictionary* areaDict;
 NSArray* areaKeys;
 
 NSIndexPath *indexPathArea;
+
+//全局代理
+AppDelegate *appDelegate;
 
 - (void)viewDidLoad
 {
@@ -70,84 +80,49 @@ NSIndexPath *indexPathArea;
     flowLayout2.scrollDirection =UICollectionViewScrollDirectionHorizontal;
     //flowLayout2.minimumInteritemSpacing = 50;
     flowLayout2.minimumLineSpacing =50 ;
-    flowLayout2.sectionInset = UIEdgeInsetsMake(70,30, 70, 30);
+    flowLayout2.sectionInset = UIEdgeInsetsMake(10,30, 10, 30);
     self.grid.collectionViewLayout = flowLayout2;
     
     //初始展区indexPathArea
     indexPathArea = [NSIndexPath indexPathForRow:0 inSection:1];
     
-    
-    //加载Json数据
-    areaDict = [NSDictionary dictionary];
-    areaDict = [JsonControl jsonRead:@"PavilionData"];
-    
-    //areaKeys保存展区的所有key
-    areaKeys = [[areaDict allKeys]
-                sortedArrayUsingSelector:@selector(compare:)];
+    //获取设置全局变量
+    appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     
     //设置导航条的标题
-    NSString *name = [areaDict valueForKey:@"展厅名"];
-    self.navigationItem.title = name;
-    
-    
+    if(appDelegate.areaArray.count > 0)
+    {
+        NSString *name = ((AreaVO*)appDelegate.areaArray[0]).aName;
+        self.navigationItem.title = name;
+    }
+    else
+    {
+        [appDelegate getElements];
+    }
 }
 
-- (NSMutableDictionary*)getElements:(int)areaIndex
+//获取每个展区元素
+-(NSMutableArray*)getElements:(int)areaIndex
 {
-    NSMutableDictionary* eleDict = [NSMutableDictionary dictionary];
-    
-    //获取展区的字典
-    if(areaIndex < areaDict.count)
+    NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:nil];
+    for (int i =0; i < ((AreaVO*)appDelegate.areaArray[areaIndex]).groups.count; i++)
     {
-        NSString* aKey = [areaKeys objectAtIndex:areaIndex];
         
-        if(![aKey isEqual:@"展厅名"]&&![aKey isEqual:@"程序版本"])
+        if ([((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] isKindOfClass:[GroupVO class]])
         {
-            NSDictionary *aDict = [areaDict objectForKey:aKey];
-            
-            //获取组的所有键值
-            NSArray* groupKeys = [[aDict allKeys]sortedArrayUsingSelector:@selector(compare:)];
-            
-            int elementNum = 0;
-            
-            for(int j =0; j < groupKeys.count;j++)
+            for (int j =0; j < ((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements.count; j++)
             {
-                //获取组合的字典
-                NSString* gKey = [groupKeys objectAtIndex:j];
-                NSDictionary *gDict = [aDict objectForKey:gKey];
-                NSLog(@"AreaKey:%@ GroupKey: %@  ChildCount:%d",aKey,gKey,gDict.count);
-                
-                if([[gKey substringToIndex:2] isEqual: @"组元"])
-                {
-                    NSString* eName = [NSString stringWithFormat:@"元素%d",elementNum];
-                    elementNum++;
-                    
-                    [eleDict setValue:gDict forKey:eName];
-                    NSLog(@"AreaKey:%@ GroupElementKey: %@  ChildCount:%d",aKey,gKey,gDict.count);
-                }
-                
-                if([[gKey substringToIndex:2] isEqual: @"组合"])
-                {
-                    //获取元素的所有键值
-                    NSArray* elementKeys = [[gDict allKeys]sortedArrayUsingSelector:@selector(compare:)];
-                    
-                    //获取元素的字典
-                    for (int k = 0; k < elementKeys.count; k++)
-                    {
-                        NSString* eKey = [elementKeys objectAtIndex:k];
-                        NSDictionary *eDict = [gDict objectForKey:eKey];
-                        NSLog(@"AreaKey:%@ GroupKey: %@  Count:%d",aKey,eKey,eDict.count);
-                        
-                        NSString* eName = [NSString stringWithFormat:@"元素%d",elementNum];
-                        elementNum++;
-                        [eleDict setValue:eDict forKey:eName];
-                    }
-                }
+                [array addObject:((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements[j]];
             }
+        }
+        else
+        {
+            [array addObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i]];
         }
     }
     
-    return eleDict;
+    return array;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -170,13 +145,14 @@ NSIndexPath *indexPathArea;
     int count = 0;
     if((long)collectionView.tag == 0)
     {
-        count = [areaDict count] -2;
+        count = appDelegate.areaArray.count;
         
     }else if((long)collectionView.tag  == 1)
     {
         //返回每个展区控件单元格的个数
-        NSMutableDictionary *elementDict = [self getElements:indexPathArea.row];
-        count = elementDict.count;
+        NSMutableArray *elementArray = [self getElements:indexPathArea.row];
+        count = elementArray.count;
+        
     }
     
     return count;
@@ -184,7 +160,6 @@ NSIndexPath *indexPathArea;
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Size");
     CGSize size;
     if(collectionView.tag == 0)
     {
@@ -192,19 +167,18 @@ NSIndexPath *indexPathArea;
     }
     else
     {
-        NSMutableDictionary *elementDict = [self getElements:indexPathArea.row];
-        NSArray* elementKeys = [[elementDict allKeys]sortedArrayUsingSelector:@selector(compare:)];
-        NSString* elementName = [elementKeys objectAtIndex:indexPath.row];
-        NSDictionary *eDict = [elementDict objectForKey:elementName];
-        
-        //判断控件类型决定返回框的大小
-        if([[eDict objectForKey:@"type"]  isEqual: @"播放类型"])
+        NSMutableArray *eleArray =[self getElements:indexPathArea.row];
+        if(indexPath.row < eleArray.count)
         {
-            size = CGSizeMake(600, 200);
-        }
-        else
-        {
-            size = CGSizeMake(300, 200);
+            if([eleArray[indexPath.row] isKindOfClass:[PlayerVO class]])
+            {
+                size = CGSizeMake(450, 150);
+                
+            }
+            else
+            {
+                size = CGSizeMake(200, 150);
+            }
         }
     }
     return size;
@@ -228,8 +202,7 @@ NSIndexPath *indexPathArea;
         // 获取正在处理的单元格所在分区号、行号
         NSInteger rowNo = indexPath.row;
         
-        NSString* areaName = [areaKeys objectAtIndex:rowNo];
-        NSLog(@"%@",areaName);
+        NSString* areaName = ((AreaVO*)appDelegate.areaArray[rowNo]).aName;
         
         // 通过tag属性获取单元格内的UIImageView控件
         UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
@@ -244,51 +217,59 @@ NSIndexPath *indexPathArea;
     //展区网格控件cell
     if(collectionView.tag == 1)
     {
-        NSMutableDictionary *elementDict = [self getElements:indexPathArea.row];
-        NSArray* elementKeys = [[elementDict allKeys]sortedArrayUsingSelector:@selector(compare:)];
-        NSString* elementName = [elementKeys objectAtIndex:indexPath.row];
-        NSDictionary *eDict = [elementDict objectForKey:elementName];
+        NSMutableArray *eleArray =[self getElements:indexPathArea.row];
+         NSInteger rowNo = indexPath.row;
         
-        //布局不同的单元格控件
-        if([[eDict objectForKey:@"type"]  isEqual: @"电脑类型"])
+        if (rowNo < eleArray.count)
         {
-            //生产电脑机控制单元格
-            ComputerControl *cell = [collectionView
-                                     dequeueReusableCellWithReuseIdentifier:@"computerCellId"
-                                     forIndexPath:indexPath];
-            cell.label.text = [eDict objectForKey:@"name"];
+            if([eleArray[rowNo] isKindOfClass:[ComputerVO class]])
+            {
+                //生产电脑机控制单元格
+                ComputerControl *cell = [collectionView
+                                         dequeueReusableCellWithReuseIdentifier:@"computerCellId"
+                                         forIndexPath:indexPath];
+                cell.label.text = ((ComputerVO*)eleArray[rowNo]).aName;
+                
+                return cell;
+                
+            }
+            else if([eleArray[rowNo] isKindOfClass:[ProjectVO class]])
+            {
+                //生产投影机控制单元格
+                ProjectControl *cell = [collectionView
+                                        dequeueReusableCellWithReuseIdentifier:@"projectCellId"
+                                        forIndexPath:indexPath];
+                cell.label.text = ((ProjectVO*)eleArray[rowNo]).aName;
+                
+                return cell;
+                
+            }
+            else if ([eleArray[rowNo] isKindOfClass:[RelayVO class]])
+            {
+                //生产电路控制单元格
+                RelayControl *cell = [collectionView
+                                      dequeueReusableCellWithReuseIdentifier:@"relayCellId"
+                                      forIndexPath:indexPath];
+                cell.label.text = ((RelayVO*)eleArray[rowNo]).aName;
+                
+                
+                return cell;
+                
+            }
+            else if([eleArray[rowNo] isKindOfClass:[PlayerVO class]])
+            {
+                //生产播放控制单元格
+                PlayerControl *cell = [collectionView
+                                       dequeueReusableCellWithReuseIdentifier:@"playerCellId"
+                                       forIndexPath:indexPath];
+                cell.label.text = ((PlayerVO*)eleArray[rowNo]).aName;
+                
+                
+                return cell;
+                
+            }
             
-            return cell;
-        }
-        else if([[eDict objectForKey:@"type"]  isEqual: @"投影机类型"])
-        {
-            //生产投影机控制单元格
-            ProjectControl *cell = [collectionView
-                                    dequeueReusableCellWithReuseIdentifier:@"projectCellId"
-                                    forIndexPath:indexPath];
-            cell.label.text = [eDict objectForKey:@"name"];
-            
-            return cell;
-        }
-        else if([[eDict objectForKey:@"type"]  isEqual: @"播放类型"])
-        {
-            //生产播放控制单元格
-            PlayerControl *cell = [collectionView
-                                   dequeueReusableCellWithReuseIdentifier:@"playerCellId"
-                                   forIndexPath:indexPath];
-            cell.label.text = [eDict objectForKey:@"name"];
-            
-            return cell;
-        }
-        else if([[eDict objectForKey:@"type"]  isEqual: @"电路类型"])
-        {
-            //生产电路控制单元格
-            RelayControl *cell = [collectionView
-                                  dequeueReusableCellWithReuseIdentifier:@"relayCellId"
-                                  forIndexPath:indexPath];
-            cell.label.text = [eDict objectForKey:@"name"];
-            
-            return cell;
+
         }
     }
     
@@ -305,6 +286,15 @@ NSIndexPath *indexPathArea;
     {
         //保存当前选中的展区IndexPath
         indexPathArea = indexPath;
+        
+        
+        //设置导航条的标题
+        if(appDelegate.areaArray.count > 0)
+        {
+            NSString *name = ((AreaVO*)appDelegate.areaArray[indexPathArea.row]).aName;
+            self.navigationItem.title = name;
+        }
+        
         
         //更新展区网格单元格数据
         [self.grid reloadData];

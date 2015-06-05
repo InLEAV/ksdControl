@@ -64,10 +64,14 @@
     
     NSError *error=nil;
     
-    mutableDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
+    if(data != nil)
+    {
+        mutableDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error];
     
-       //NSDictionary *weatherInfo = [weatherDic objectForKey"weatherinfo"];
-    
+        if (!mutableDict || error) {
+            NSLog(@"JSON解析失败");
+        }
+    }
     return mutableDict;
 }
 

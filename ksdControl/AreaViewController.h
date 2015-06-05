@@ -40,6 +40,9 @@
 //添加展区行到展区列表
 - (IBAction)addArea:(id)sender;
 
+//创建展区对象
+- (void)createArea;
+
 //完成编辑sender放弃作为第一响应者
 - (IBAction)finishEdit:(id)sender;
 

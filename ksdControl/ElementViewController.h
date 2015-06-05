@@ -65,6 +65,9 @@
 //初始化列表
 - (void)initTable;
 
+//加载json元素列表
+- (void)LoadElementJson;
+
 //添加元素方法
 - (IBAction)addElement:(id)sender;
 

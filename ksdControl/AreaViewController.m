@@ -18,6 +18,8 @@
 #import "AreaVO.h"
 #import "Model.h"
 #import "JsonControl.h"
+#import "AppDelegate.h"
+
 @interface AreaViewController()
 
 @end
@@ -64,6 +66,15 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     //初始化当前选中选项
     grouptDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:4];
     areaDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:0];
+    
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    for (int i=0; i < appDelegate.areaArray.count; i++)
+    {
+        [areaDataList addObject:((AreaVO*)appDelegate.areaArray[i])];
+            
+        
+    }
+
     
 }
 
@@ -405,7 +416,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     
 }
 
-//
+//添加展区
 - (IBAction)addArea:(id)sender
 {
     if (areaNameFieldText.text!=nil&& areaNameFieldText.text.length==0)
@@ -414,23 +425,48 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     }
     else
     {
-        //创建展区对象并添加到展区数组
-        AreaVO* area = [AreaVO new];
-        [area initVO];
-        [area setAName:areaNameFieldText.text];
-        [areaDataList addObject:area];
-        NSInteger row = [areaDataList count]-1;
+        if([areaDataList count] == 0)
+        {
+            [self createArea];
+        }
+        else
+        {
+            for (int i=0;i<[areaDataList count];i++)
+            {
+                AreaVO *area =  [areaDataList objectAtIndex:i];
+                if ([area.aName isEqualToString:areaNameFieldText.text])
+                {
+                    NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的展区,请重新输入名称!",area.aName]];
+                    [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                    return;
+                }
+            }
+            [self createArea];
+        }
         
-        //插入列表并更新
-        [AreaTableView beginUpdates];
-        NSArray *_tempIndexPathArr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]];
-        [AreaTableView insertRowsAtIndexPaths:_tempIndexPathArr withRowAnimation:UITableViewRowAnimationFade];
-        [AreaTableView endUpdates];
-        
-        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的展区!",area.aName]];
-        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
         
     }
+}
+
+//创建展区对象
+- (void)createArea
+{
+    //创建展区对象并添加到展区数组
+    AreaVO* area = [AreaVO new];
+    [area initVO];
+    [area setAName:areaNameFieldText.text];
+    [areaDataList addObject:area];
+    NSInteger row = [areaDataList count]-1;
+    
+    //插入列表并更新
+    [AreaTableView beginUpdates];
+    NSArray *_tempIndexPathArr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]];
+    [AreaTableView insertRowsAtIndexPaths:_tempIndexPathArr withRowAnimation:UITableViewRowAnimationFade];
+    [AreaTableView endUpdates];
+    
+    NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的展区!",area.aName]];
+    [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+
 }
 
 //textfield放弃作为第一响应者
@@ -453,11 +489,6 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     //json多级字典，展厅全部数据（组合，元素）
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     
-    //保存程序版本号
-    [mutableDict setValue:@"V1.0.0" forKey:@"程序版本"];
-    
-    //保存展厅名称
-    [mutableDict setValue:pavilionName.text forKey:@"展厅名"];
     
     for (int i = 0; i < areaDataList.count; i++)
     {
@@ -471,6 +502,8 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                 GroupVO* group = (GroupVO*)[area.groups objectAtIndex:j];
                 
                 NSMutableDictionary *sub2Dict = [NSMutableDictionary dictionary];
+                
+               
                 for (int k = 0; k < group.elements.count ; k++)
                 {
                     //保存元素，命名“元素”，与“元素”名称区别，便于解析提取数据
@@ -481,8 +514,9 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [sub2Dict setValue:sub3Dict forKey:elementName];
                 }
                 
+                 //[sub2Dict setValue:group.aName forKey:@"name"];
                 //设置组合名键值
-                NSString* groupName = [NSString stringWithFormat:@"组合%d",j];
+                 NSString* groupName = [NSString stringWithFormat:@"组合_%@",group.aName];
                 [sub1Dict setValue:sub2Dict forKey:groupName];
             }
             else
@@ -499,7 +533,67 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         [mutableDict setValue:sub1Dict forKey:area.aName];
     }
     
+    //保存展厅名称
+    [mutableDict setValue:pavilionName.text forKey:@"展厅名"];
+    
+    //保存程序版本号
+    [mutableDict setValue:@"V1.0.0" forKey:@"程序版本"];
+    
     [JsonControl jsonWrite:mutableDict FileName:@"PavilionData"];
+    
+    //元素json
+    NSMutableDictionary *mutableElementDict = [NSMutableDictionary dictionary];
+    NSMutableDictionary *elementDict = [NSMutableDictionary dictionary];
+    for(int i =0;i < [elementViewController.computerDataList count];i++)
+    {
+        NSMutableDictionary *subDict = [NSMutableDictionary dictionary];
+        subDict = [self addSubDic:elementViewController.computerDataList[i]];
+        
+        NSString* elementName = [NSString stringWithFormat:@"元素%d",i];
+        [elementDict setValue:subDict forKey:elementName];
+    }
+    [mutableElementDict setValue:elementDict forKey:@"电脑"];
+    
+    elementDict = [NSMutableDictionary dictionary];
+    for(int i =0;i < [elementViewController.projectorDataList count];i++)
+    {
+        NSMutableDictionary *subDict = [NSMutableDictionary dictionary];
+        subDict = [self addSubDic:elementViewController.projectorDataList[i]];
+        
+        NSString* elementName = [NSString stringWithFormat:@"元素%d",i];
+        [elementDict setValue:subDict forKey:elementName];
+    }
+    [mutableElementDict setValue:elementDict forKey:@"投影机"];
+    
+    elementDict = [NSMutableDictionary dictionary];
+    for(int i =0;i < [elementViewController.relayDataList count];i++)
+    {
+        NSMutableDictionary *subDict = [NSMutableDictionary dictionary];
+        subDict = [self addSubDic:elementViewController.relayDataList[i]];
+        
+        NSString* elementName = [NSString stringWithFormat:@"元素%d",i];
+        [elementDict setValue:subDict forKey:elementName];
+    }
+    [mutableElementDict setValue:elementDict forKey:@"电路"];
+    
+    elementDict = [NSMutableDictionary dictionary];
+    for(int i =0;i < [elementViewController.playerDataList count];i++)
+    {
+        NSMutableDictionary *subDict = [NSMutableDictionary dictionary];
+        subDict = [self addSubDic:elementViewController.playerDataList[i]];
+        
+        NSString* elementName = [NSString stringWithFormat:@"元素%d",i];
+        [elementDict setValue:subDict forKey:elementName];
+    }
+    [mutableElementDict setValue:elementDict forKey:@"播放器"];
+    
+    //保存展厅名称
+    [mutableElementDict setValue:pavilionName.text forKey:@"展厅名"];
+    
+    //保存程序版本号
+    [mutableElementDict setValue:@"V1.0.0" forKey:@"程序版本"];
+
+    [JsonControl jsonWrite:mutableElementDict FileName:@"ElementData"];
 }
 
 //添加对象到字典中并返回字典

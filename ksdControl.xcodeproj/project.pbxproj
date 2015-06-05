@@ -195,9 +195,9 @@
 				2D81BDE51B0C71E3007F0220 /* ComponentCell */,
 				2D81BDE41B0C71BB007F0220 /* SetViewControllers */,
 				9E92212F1ADBB91700B942CC /* AppDelegate.h */,
+				9E9221301ADBB91700B942CC /* AppDelegate.m */,
 				2DB1327F1ADCFE0500A199C9 /* LoginViewController.h */,
 				2DB132801ADCFE0500A199C9 /* LoginViewController.m */,
-				9E9221301ADBB91700B942CC /* AppDelegate.m */,
 				9E9221351ADBB91700B942CC /* ViewController.h */,
 				9E9221361ADBB91700B942CC /* ViewController.m */,
 				9E9221381ADBB91700B942CC /* Main.storyboard */,
@@ -528,6 +528,7 @@
 				INFOPLIST_FILE = ksdControl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -538,6 +539,7 @@
 				INFOPLIST_FILE = ksdControl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};

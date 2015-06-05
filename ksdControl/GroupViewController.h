@@ -37,6 +37,9 @@
 //添加组合行到组合列表
 - (IBAction)addGroup:(id)sender;
 
+//添加组合对象
+- (void)createGroup;
+
 //完成编辑sender放弃作为第一响应者
 - (IBAction)finishEdit:(id)sender;
 

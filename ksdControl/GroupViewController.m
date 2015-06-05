@@ -14,8 +14,10 @@
 #import "PlayerVO.h"
 #import "ProjectVO.h"
 #import "GroupVO.h"
+#import "AreaVO.h"
 #import "Model.h"
-
+#import "JsonControl.h"
+#import "AppDelegate.h"
 @interface GroupViewController()
 
 @end
@@ -47,6 +49,21 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     containerDataList = [[NSMutableArray alloc] initWithObjects:nil];
     groupDataList = [[NSMutableArray alloc] initWithObjects:nil];
     
+    //加载组合设置列表
+    AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    for (int i=0; i < appDelegate.areaArray.count; i++)
+    {
+        for (int j =0; j < ((AreaVO*)appDelegate.areaArray[i]).groups.count; j++)
+        {
+          
+            if ([((AreaVO*)appDelegate.areaArray[i]).groups[j] isKindOfClass:[GroupVO class]])
+            {
+                [groupDataList addObject:((AreaVO*)appDelegate.areaArray[i]).groups[j]];
+            }
+        }
+    }
+    
+    
     //设置tableView的数据源
     elementTableView.dataSource = self;
     containerTablleView.dataSource = self;
@@ -62,6 +79,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     elementDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:0];
     
 }
+
 
 //当切换到当前视图是更新元素列表
 - (void)viewDidAppear:(BOOL)animated
@@ -381,24 +399,52 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     }
     else
     {
-        //创建展区对象并添加到展区数组
-        GroupVO* group = [GroupVO new];
-        [group initVO];
-        [group setAName:groupNameFieldText.text];
-        [groupDataList addObject:group];
-        NSInteger row = [groupDataList count]-1;
-        
-        //插入列表并更新
-        [groupTableView beginUpdates];
-        NSArray *_tempIndexPathArr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]];
-        [groupTableView insertRowsAtIndexPaths:_tempIndexPathArr withRowAnimation:UITableViewRowAnimationFade];
-        [groupTableView endUpdates];
-        
-        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合!",group.aName]];
-        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+        if([groupDataList count] == 0)
+        {
+            [self createGroup];
+        }
+        else
+        {
+            for (int i=0;i<[groupDataList count];i++)
+            {
+                GroupVO *group =  [groupDataList objectAtIndex:i];
+                if ([group.aName isEqualToString:groupNameFieldText.text])
+                {
+                    NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的元素组合,请重新输入名称!",group.aName]];
+                    [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                    
+                    return;
+                }
+            }
+            
+            [self createGroup];
+        }
+       
+      
     }
     
     
+}
+
+//创建组合对象
+- (void)createGroup
+{
+    //创建展区对象并添加到展区数组
+    GroupVO* group = [GroupVO new];
+    [group initVO];
+    [group setAName:groupNameFieldText.text];
+    [groupDataList addObject:group];
+    NSInteger row = [groupDataList count]-1;
+    
+    //插入列表并更新
+    [groupTableView beginUpdates];
+    NSArray *_tempIndexPathArr = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]];
+    [groupTableView insertRowsAtIndexPaths:_tempIndexPathArr withRowAnimation:UITableViewRowAnimationFade];
+    [groupTableView endUpdates];
+    
+    NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合!",group.aName]];
+    [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+
 }
 
 //textfield放弃作为第一响应者

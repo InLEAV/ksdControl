@@ -17,5 +17,7 @@ UICollectionViewDelegate>
 //水平的展区列表
 @property (strong, nonatomic) IBOutlet UICollectionView *horizontalList;
 
-- (NSMutableDictionary*)getElements:(int)areaIndex;
+//获取每个展区元素
+-(NSMutableArray*)getElements:(int)areaIndex;
+
 @end
