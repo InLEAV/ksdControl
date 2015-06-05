@@ -79,8 +79,8 @@ AppDelegate *appDelegate;
     // 设置UICollectionView的滚动方向
     flowLayout2.scrollDirection =UICollectionViewScrollDirectionHorizontal;
     //flowLayout2.minimumInteritemSpacing = 50;
-    flowLayout2.minimumLineSpacing =50 ;
-    flowLayout2.sectionInset = UIEdgeInsetsMake(10,30, 10, 30);
+    flowLayout2.minimumLineSpacing =0 ;
+    flowLayout2.sectionInset = UIEdgeInsetsMake(0,30, 0, 30);
     self.grid.collectionViewLayout = flowLayout2;
     
     //初始展区indexPathArea
@@ -205,8 +205,8 @@ AppDelegate *appDelegate;
         NSString* areaName = ((AreaVO*)appDelegate.areaArray[rowNo]).aName;
         
         // 通过tag属性获取单元格内的UIImageView控件
-        UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
-        iv.backgroundColor = [UIColor redColor];
+       // UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
+       // iv.backgroundColor = [UIColor redColor];
         UILabel* label = (UILabel*)[cell viewWithTag:2];
         // 为单元格内的UILabel控件设置文本
         label.text = areaName;
@@ -279,14 +279,27 @@ AppDelegate *appDelegate;
 //UICollectionView被选中时调用的方法
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.backgroundColor = [UIColor whiteColor];
+    
     
     if(collectionView.tag == 0)
     {
         //保存当前选中的展区IndexPath
         indexPathArea = indexPath;
         
+        for (int i = 0; i < indexPath.length; i++)
+        {
+            if(indexPath.row == i)
+            {
+                UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+                cell.backgroundColor = [UIColor redColor];
+            }
+            else
+            {
+                
+                UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+                cell.backgroundColor = [UIColor whiteColor];
+            }
+        }
         
         //设置导航条的标题
         if(appDelegate.areaArray.count > 0)
