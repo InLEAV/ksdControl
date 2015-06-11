@@ -479,7 +479,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
 - (IBAction)backTap:(id)sender
 {
     [self.areaNameFieldText resignFirstResponder];
-    [self.pavilionName resignFirstResponder];
+    //[self.pavilionName resignFirstResponder];
     [sender resignFirstResponder];
 }
 

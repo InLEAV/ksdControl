@@ -79,7 +79,7 @@ AppDelegate *appDelegate;
     // 设置UICollectionView的滚动方向
     flowLayout2.scrollDirection =UICollectionViewScrollDirectionHorizontal;
     //flowLayout2.minimumInteritemSpacing = 50;
-    flowLayout2.minimumLineSpacing =0 ;
+    flowLayout2.minimumLineSpacing =45 ;
     flowLayout2.sectionInset = UIEdgeInsetsMake(0,30, 0, 30);
     self.grid.collectionViewLayout = flowLayout2;
     
@@ -94,10 +94,24 @@ AppDelegate *appDelegate;
     {
         NSString *name = ((AreaVO*)appDelegate.areaArray[0]).aName;
         self.navigationItem.title = name;
+        
+       
     }
     else
     {
         [appDelegate getElements];
+        
+    }
+}
+//当切换到当前视图是更新元素列表
+- (void)viewDidAppear:(BOOL)animated
+{
+    if(appDelegate.areaArray.count > 0)
+    {
+        UICollectionViewCell * cell = (UICollectionViewCell *)[self.horizontalList cellForItemAtIndexPath:[NSIndexPath indexPathForRow:appDelegate.areaArray.count-1 inSection:0]];
+        cell.backgroundColor = [UIColor redColor];
+        
+        [self.horizontalList reloadData];
     }
 }
 
@@ -152,7 +166,6 @@ AppDelegate *appDelegate;
         //返回每个展区控件单元格的个数
         NSMutableArray *elementArray = [self getElements:indexPathArea.row];
         count = elementArray.count;
-        
     }
     
     return count;
@@ -285,7 +298,7 @@ AppDelegate *appDelegate;
     {
         //保存当前选中的展区IndexPath
         indexPathArea = indexPath;
-        
+        NSLog(@"Row: %d",indexPath.row);
         for (int i = 0; i < indexPath.length; i++)
         {
             if(indexPath.row == i)
@@ -295,7 +308,6 @@ AppDelegate *appDelegate;
             }
             else
             {
-                
                 UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
                 cell.backgroundColor = [UIColor whiteColor];
             }

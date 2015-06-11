@@ -31,7 +31,7 @@
         
         //这里创建一个圆角矩形的按钮，播放视频
         self.playBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.playBtn.frame = CGRectMake(20, 50, 50, 40);
+        self.playBtn.frame = CGRectMake(10, 50, 50, 40);
         self.playBtn.backgroundColor = [UIColor grayColor];
         self.playBtn.tintColor =[UIColor whiteColor];
         [self.playBtn setTitle:@"播放" forState:UIControlStateNormal];
@@ -40,7 +40,7 @@
         
         //这里创建一个圆角矩形的按钮，暂停视频
         self.pauseBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.pauseBtn.frame = CGRectMake(80, 50, 50, 40);
+        self.pauseBtn.frame = CGRectMake(70, 50, 50, 40);
         self.pauseBtn.backgroundColor = [UIColor grayColor];
         self.pauseBtn.tintColor =[UIColor whiteColor];
         [self.pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
@@ -49,7 +49,7 @@
         
         //这里创建一个圆角矩形的按钮，停止视频
         self.stopBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.stopBtn.frame = CGRectMake(140, 50, 50, 40);
+        self.stopBtn.frame = CGRectMake(130, 50, 50, 40);
         self.stopBtn.backgroundColor = [UIColor grayColor];
         self.stopBtn.tintColor =[UIColor whiteColor];
         [self.stopBtn setTitle:@"停止" forState:UIControlStateNormal];
@@ -58,7 +58,7 @@
         
         //这里创建一个圆角矩形的按钮，重播视频
         self.replayBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.replayBtn.frame = CGRectMake(200, 50, 50, 40);
+        self.replayBtn.frame = CGRectMake(190, 50, 50, 40);
         self.replayBtn.backgroundColor = [UIColor grayColor];
         self.replayBtn.tintColor =[UIColor whiteColor];
         [self.replayBtn setTitle:@"重播" forState:UIControlStateNormal];
@@ -67,7 +67,7 @@
         
         //这里创建一个圆角矩形的按钮，视频快退
         self.fastBackBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.fastBackBtn.frame = CGRectMake(260, 50, 50, 40);
+        self.fastBackBtn.frame = CGRectMake(250, 50, 50, 40);
         self.fastBackBtn.backgroundColor = [UIColor grayColor];
         self.fastBackBtn.tintColor =[UIColor whiteColor];
         [self.fastBackBtn setTitle:@"快退" forState:UIControlStateNormal];
@@ -76,7 +76,7 @@
 
         //这里创建一个圆角矩形的按钮，视频快进
         self.fastForwardBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.fastForwardBtn.frame = CGRectMake(320, 50, 50, 40);
+        self.fastForwardBtn.frame = CGRectMake(310, 50, 50, 40);
         self.fastForwardBtn.backgroundColor = [UIColor grayColor];
         self.fastForwardBtn.tintColor =[UIColor whiteColor];
         [self.fastForwardBtn setTitle:@"快进" forState:UIControlStateNormal];
@@ -84,7 +84,7 @@
         [self.contentView addSubview:self.fastForwardBtn];
         
         //这里创建一个滑动条，控制声音大小
-        self.audioSlider = [[UISlider alloc]initWithFrame:CGRectMake(380, 60,70 , 20)];
+        self.audioSlider = [[UISlider alloc]initWithFrame:CGRectMake(370, 60,70 , 20)];
         self.audioSlider.value = 0.5;
         self.audioSlider.backgroundColor = [UIColor clearColor];
         //滑块拖动时的事件

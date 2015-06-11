@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -14,9 +15,16 @@
 
 @implementation ViewController
 
+@synthesize pavilionNameLabel;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    //获取设置全局变量
+   AppDelegate* appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    
+    pavilionNameLabel.text = appDelegate.pavilionName;
 }
 
 - (void)didReceiveMemoryWarning {

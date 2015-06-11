@@ -22,7 +22,7 @@
 @implementation AppDelegate
 
 
-@synthesize areaArray;
+@synthesize areaArray,pavilionName;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -66,7 +66,7 @@
     //areaKeys保存展区的所有key
     NSArray* areaKeys = [[areaDict allKeys]
                          sortedArrayUsingSelector:@selector(compare:)];
-    
+    pavilionName = [areaDict objectForKey:@"展厅名"];
     
     for (int i = 0; i < [areaKeys count]; i++)
     {

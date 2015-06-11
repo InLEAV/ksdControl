@@ -30,7 +30,7 @@
         
         //这里创建一个圆角矩形的按钮，开电脑按钮
         self.openBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.openBtn.frame = CGRectMake(20, 50, 80, 40);
+        self.openBtn.frame = CGRectMake(20, 50, 70, 40);
         self.openBtn.backgroundColor = [UIColor grayColor];
         self.openBtn.tintColor =[UIColor whiteColor];
         [self.openBtn setTitle:@"开" forState:UIControlStateNormal];
@@ -39,7 +39,7 @@
         
         //这里创建一个圆角矩形的按钮，关电脑按钮
         self.closeBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.closeBtn.frame = CGRectMake(120, 50, 80, 40);
+        self.closeBtn.frame = CGRectMake(120, 50, 70, 40);
         self.closeBtn.backgroundColor = [UIColor grayColor];
         self.closeBtn.tintColor =[UIColor whiteColor];
         [self.closeBtn setTitle:@"关" forState:UIControlStateNormal];

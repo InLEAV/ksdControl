@@ -24,6 +24,7 @@
 //加载Json字典,并在设置界面显示
 @property (nonatomic, retain) NSMutableArray *areaArray;
 
+@property (nonatomic,retain) NSString* pavilionName;
 - (void)getElements;
 @end
 
