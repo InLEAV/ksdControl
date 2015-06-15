@@ -574,7 +574,7 @@ BOOL isViewOn;
     }
     else if([sender isEqual:macUITextField])
     {
-        if(![SetViewController validateInput:macUITextField.text RegexString:@"^([0-9a-fA-F]{2})(([/\\s:-][0-9a-fA-F]{2}){5})$"])
+        if(![SetViewController validateInput:macUITextField.text RegexString:@"^([0-9a-fA-F]{2})(([/\\s:][0-9a-fA-F]{2}){5})$"])
         {
             [SetViewController showUIAlertView:@"提示" content:@"请正确输入mac格式" buttonTitle:@"确定"];
         }
@@ -588,7 +588,6 @@ BOOL isViewOn;
         }
         NSLog(@"Port EditDidEnd");
     }
-
     else if ([sender isEqual:relayUITextField])
     {
         if(![SetViewController validateInput:relayUITextField.text  RegexString:@"^[1-9]\\d*|0$"])
@@ -720,8 +719,6 @@ BOOL isViewOn;
         }
         
     }
-    
-    
     
     if(isInsert)
     {
