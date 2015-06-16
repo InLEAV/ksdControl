@@ -278,7 +278,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入需要添加的组合名称" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RW7-qt-M0H">
-                                        <rect key="frame" x="128" y="496" width="189" height="30"/>
+                                        <rect key="frame" x="128" y="495" width="189" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
                                         <connections>
@@ -287,9 +287,9 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4t-Qn-8v2">
-                                        <rect key="frame" x="347" y="487" width="120" height="48"/>
+                                        <rect key="frame" x="347" y="495" width="60" height="30"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <state key="normal" title="添加组合">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -325,7 +325,7 @@
                                     <constraint firstItem="B1a-rq-uPM" firstAttribute="centerY" secondItem="M0t-aK-bxU" secondAttribute="centerY" constant="-2.5" id="fRZ-DK-XYH"/>
                                     <constraint firstItem="B1a-rq-uPM" firstAttribute="leading" secondItem="3tx-LD-yVe" secondAttribute="trailing" constant="20" id="h5B-KY-K9J"/>
                                     <constraint firstItem="Lb3-PA-D7t" firstAttribute="top" secondItem="3rb-bp-Aec" secondAttribute="top" constant="98" id="io3-Nz-3Yk"/>
-                                    <constraint firstItem="X4t-Qn-8v2" firstAttribute="top" secondItem="B1a-rq-uPM" secondAttribute="bottom" constant="15" id="kKy-00-3wG"/>
+                                    <constraint firstItem="X4t-Qn-8v2" firstAttribute="top" secondItem="B1a-rq-uPM" secondAttribute="bottom" constant="23" id="kKy-00-3wG"/>
                                     <constraint firstItem="3tx-LD-yVe" firstAttribute="centerY" secondItem="B1a-rq-uPM" secondAttribute="centerY" id="ll2-tG-aRp"/>
                                     <constraint firstItem="B1a-rq-uPM" firstAttribute="leading" secondItem="M0t-aK-bxU" secondAttribute="trailing" constant="70" id="nQo-rt-Hnm"/>
                                     <constraint firstItem="CrB-6l-m0E" firstAttribute="top" secondItem="LG5-C2-E5n" secondAttribute="bottom" constant="13" id="p49-gG-UEP"/>
@@ -1027,6 +1027,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="OPj-bL-ahc"/>
+        <segue reference="V63-IV-M6t"/>
     </inferredMetricsTieBreakers>
 </document>

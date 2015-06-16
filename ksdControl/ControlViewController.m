@@ -78,8 +78,9 @@ AppDelegate *appDelegate;
     UICollectionViewFlowLayout *flowLayout2 = [[UICollectionViewFlowLayout alloc] init];
     // 设置UICollectionView的滚动方向
     flowLayout2.scrollDirection =UICollectionViewScrollDirectionHorizontal;
-    //flowLayout2.minimumInteritemSpacing = 50;
-    flowLayout2.minimumLineSpacing =45 ;
+    flowLayout2.minimumInteritemSpacing = 0;
+    
+    flowLayout2.minimumLineSpacing =0 ;
     flowLayout2.sectionInset = UIEdgeInsetsMake(0,30, 0, 30);
     self.grid.collectionViewLayout = flowLayout2;
     
