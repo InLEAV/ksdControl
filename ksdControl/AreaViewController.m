@@ -99,7 +99,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     int sectionCount = 0;
     if(tableView == groupTableView)
     {
-        sectionCount =  elementViewController.elementSections.count + 1;
+        sectionCount =  (int)elementViewController.elementSections.count + 1;
     }
     else
     {

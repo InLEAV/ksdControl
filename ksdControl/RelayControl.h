@@ -10,6 +10,10 @@
 
 @interface RelayControl : UICollectionViewCell
 
+
+//背景
+@property (strong, nonatomic) UIImageView* backgroup;
+
 // 动态改变标题
 @property (strong, nonatomic) UILabel* label;
 

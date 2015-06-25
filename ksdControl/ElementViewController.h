@@ -71,6 +71,7 @@
 //添加元素方法
 - (IBAction)addElement:(id)sender;
 
+//切换左侧列表按钮
 //开关左边已有元素列表
 - (IBAction)SwitchMoveView:(id)sender;
 

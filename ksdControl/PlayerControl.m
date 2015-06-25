@@ -18,81 +18,78 @@
     self = [super initWithFrame:frame];
     if (self) {
         
+        
+        self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 488, 156)];
+        [self.backgroup setImage:[UIImage imageNamed:@"playerBg.png"]];
+        [self.contentView addSubview:self.backgroup];
+        
         // 创建一个UILabel控件
-        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0.0, 0.0,frame.size.width, 35)];
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 10,frame.size.width, 35)];
         self.label.backgroundColor = [UIColor clearColor];
         // 设置该控件的自动缩放属性
         self.label.autoresizingMask = UIViewAutoresizingFlexibleHeight|
         UIViewAutoresizingFlexibleWidth;
         self.label.textAlignment = NSTextAlignmentCenter;
         self.label.font = [UIFont boldSystemFontOfSize:35];
-        self.label.textColor = [UIColor blackColor];
+        self.label.textColor = [UIColor whiteColor];
         [self.contentView addSubview:self.label];
         
+        //这里创建一个圆角矩形的按钮，上一个视频
+        self.preMovieBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.preMovieBtn.frame = CGRectMake(35, 77, 70, 60);
+        self.preMovieBtn.backgroundColor = [UIColor clearColor];
+        [self.preMovieBtn setImage:[UIImage imageNamed:@"preMovie.png"] forState:UIControlStateNormal];
+        [self.preMovieBtn setImage:[UIImage imageNamed:@"preMovie-highlight.png"] forState:UIControlStateHighlighted];
+        [self.preMovieBtn addTarget:self action:@selector(preMovieBtn:)forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:self.preMovieBtn];
+        
         //这里创建一个圆角矩形的按钮，播放视频
-        self.playBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.playBtn.frame = CGRectMake(10, 50, 50, 40);
-        self.playBtn.backgroundColor = [UIColor grayColor];
-        self.playBtn.tintColor =[UIColor whiteColor];
-        [self.playBtn setTitle:@"播放" forState:UIControlStateNormal];
+        self.playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.playBtn.frame = CGRectMake(105, 77, 70, 60);
+        self.playBtn.backgroundColor = [UIColor clearColor];
+        [self.playBtn setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
+        [self.playBtn setImage:[UIImage imageNamed:@"play-highlight.png"] forState:UIControlStateHighlighted];
         [self.playBtn addTarget:self action:@selector(playVideo:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.playBtn];
         
-        //这里创建一个圆角矩形的按钮，暂停视频
-        self.pauseBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.pauseBtn.frame = CGRectMake(70, 50, 50, 40);
-        self.pauseBtn.backgroundColor = [UIColor grayColor];
-        self.pauseBtn.tintColor =[UIColor whiteColor];
-        [self.pauseBtn setTitle:@"暂停" forState:UIControlStateNormal];
-        [self.pauseBtn addTarget:self action:@selector(pauseVideo:)forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:self.pauseBtn];
+        //这里创建一个圆角矩形的按钮，下一个视频
+        self.nextMovieBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.nextMovieBtn.frame = CGRectMake(175, 77, 70, 60);
+        self.nextMovieBtn.backgroundColor = [UIColor clearColor];
+        [self.nextMovieBtn setImage:[UIImage imageNamed:@"nextMovie.png"] forState:UIControlStateNormal];
+        [self.nextMovieBtn setImage:[UIImage imageNamed:@"nextMovie-highlight.png"] forState:UIControlStateHighlighted];
+        [self.nextMovieBtn addTarget:self action:@selector(nextMovieBtn:)forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:self.nextMovieBtn];
+        
         
         //这里创建一个圆角矩形的按钮，停止视频
-        self.stopBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.stopBtn.frame = CGRectMake(130, 50, 50, 40);
-        self.stopBtn.backgroundColor = [UIColor grayColor];
-        self.stopBtn.tintColor =[UIColor whiteColor];
-        [self.stopBtn setTitle:@"停止" forState:UIControlStateNormal];
+        self.stopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.stopBtn.frame = CGRectMake(245, 77, 70, 60);
+        self.stopBtn.backgroundColor = [UIColor clearColor];
+        [self.stopBtn setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
+        [self.stopBtn setImage:[UIImage imageNamed:@"stop-highlight.png"] forState:UIControlStateHighlighted];
         [self.stopBtn addTarget:self action:@selector(stopVideo:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.stopBtn];
         
-        //这里创建一个圆角矩形的按钮，重播视频
-        self.replayBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.replayBtn.frame = CGRectMake(190, 50, 50, 40);
-        self.replayBtn.backgroundColor = [UIColor grayColor];
-        self.replayBtn.tintColor =[UIColor whiteColor];
-        [self.replayBtn setTitle:@"重播" forState:UIControlStateNormal];
-        [self.replayBtn addTarget:self action:@selector(replayVideo:)forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:self.replayBtn];
-        
-        //这里创建一个圆角矩形的按钮，视频快退
-        self.fastBackBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.fastBackBtn.frame = CGRectMake(250, 50, 50, 40);
-        self.fastBackBtn.backgroundColor = [UIColor grayColor];
-        self.fastBackBtn.tintColor =[UIColor whiteColor];
-        [self.fastBackBtn setTitle:@"快退" forState:UIControlStateNormal];
-        [self.fastBackBtn addTarget:self action:@selector(fastBackVideo:)forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:self.fastBackBtn];
 
-        //这里创建一个圆角矩形的按钮，视频快进
-        self.fastForwardBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        self.fastForwardBtn.frame = CGRectMake(310, 50, 50, 40);
-        self.fastForwardBtn.backgroundColor = [UIColor grayColor];
-        self.fastForwardBtn.tintColor =[UIColor whiteColor];
-        [self.fastForwardBtn setTitle:@"快进" forState:UIControlStateNormal];
-        [self.fastForwardBtn addTarget:self action:@selector(fastForwardVideo:)forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:self.fastForwardBtn];
+        //这里创建一个圆角矩形的按钮，减小声量
+        self.minusVolumeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.minusVolumeBtn.frame = CGRectMake(315, 77, 70, 60);
+        self.minusVolumeBtn.backgroundColor = [UIColor clearColor];
+        [self.minusVolumeBtn setImage:[UIImage imageNamed:@"volumeMinus.png"] forState:UIControlStateNormal];
+        [self.minusVolumeBtn setImage:[UIImage imageNamed:@"volumeMinus-highlight.png"] forState:UIControlStateHighlighted];
+        [self.minusVolumeBtn addTarget:self action:@selector(minusVolumeBtn:)forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:self.minusVolumeBtn];
         
-        //这里创建一个滑动条，控制声音大小
-        self.audioSlider = [[UISlider alloc]initWithFrame:CGRectMake(370, 60,70 , 20)];
-        self.audioSlider.value = 0.5;
-        self.audioSlider.backgroundColor = [UIColor clearColor];
-        //滑块拖动时的事件
-        [self.audioSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
-        //滑动拖动后的事件
-        [self.audioSlider addTarget:self action:@selector(sliderDragUp:) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.contentView addSubview:self.audioSlider];
+        //这里创建一个圆角矩形的按钮，放大声量
+        self.addVolumeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.addVolumeBtn.frame = CGRectMake(385, 77, 70, 60);
+        self.addVolumeBtn.backgroundColor = [UIColor clearColor];
+        [self.addVolumeBtn setImage:[UIImage imageNamed:@"volumeAdd.png"] forState:UIControlStateNormal];
+        [self.addVolumeBtn setImage:[UIImage imageNamed:@"volumeAdd-highlight.png"] forState:UIControlStateHighlighted];
+        [self.addVolumeBtn addTarget:self action:@selector(addVolumeBtn:)forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:self.addVolumeBtn];
+
         
         // 设置边框
         self.contentView.layer.borderWidth = 2.0f;
@@ -123,32 +120,27 @@
     
 }
 
-//重播视频
--(void)replayVideo :(id)sende
+
+//播放上一个视频
+-(void)preMovieBtn :(id)sende
 {
     
 }
 
-//视频快进
--(void)fastForwardVideo :(id)sende
+//播放下一个视频
+-(void)nextMovieBtn :(id)sende
 {
     
 }
 
-//视频快退
--(void)fastBackVideo :(id)sende
+//声量放大
+-(void)addVolumeBtn :(id)sende
 {
     
 }
 
-//拖拽滑动条
-- (void)sliderValueChanged:(id)sender
-{
-    
-}
-
-//放开滑动条
-- (void)sliderDragUp:(id)sender
+//声量减小
+- (void)minusVolumeBtn:(id)sender
 {
     
 }

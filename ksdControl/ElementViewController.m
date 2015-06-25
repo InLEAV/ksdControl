@@ -413,49 +413,63 @@ BOOL isViewOn;
     {
         case 0:
         {
-            if([computerDataList count]!=0)
+            if (nameTextField.text!=nil&& nameTextField.text.length==0)
             {
-                for (int i=0;i<[computerDataList count];i++)
-                {
-                    ComputerVO *computer =  [computerDataList objectAtIndex:i];
-                    if ([computer.aName isEqualToString:nameTextField.text])
-                    {
-                        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的电脑元素!",computer.aName]];
-                        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
-                    }else
-                    {
-                        [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0];
-                        
-                    }
-                }
+                [SetViewController showUIAlertView:@"提示"content:@"请输入添加电脑的名称！" buttonTitle:@"确定"];
             }
             else
             {
-                 [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0];
+                if([computerDataList count]==0)
+                {
+                    [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0];
+                }
+                else
+                {
+                    for (int i=0;i<[computerDataList count];i++)
+                    {
+                        ComputerVO *computer =  [computerDataList objectAtIndex:i];
+                        if ([computer.aName isEqualToString:nameTextField.text])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的电脑元素,请重新输入名称!",computer.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            return;
+                        }
+                    }
+                      [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0];
+                }
+
             }
         }
             break;
         case 1:
         {
-            if([projectorDataList count]!=0)
+            if (nameTextField.text!=nil&& nameTextField.text.length==0)
             {
-                for (int i=0;i<[projectorDataList count];i++)
-                {
-                    ProjectVO *project =  [projectorDataList objectAtIndex:i];
-                    if ([project.aName isEqualToString:nameTextField.text])
-                    {
-                        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的投影机元素!",project.aName]];
-                        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
-                    }else
-                    {
-                        [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0];
-                        
-                    }
-                }
+                [SetViewController showUIAlertView:@"提示"content:@"请输入添加展区的名称！" buttonTitle:@"确定"];
             }
             else
             {
-                [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0];
+                if([projectorDataList count]==0)
+                {
+                    [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0];
+
+                }
+                else
+                {
+                    for (int i=0;i<[projectorDataList count];i++)
+                    {
+                        ProjectVO *project =  [projectorDataList objectAtIndex:i];
+                        if ([project.aName isEqualToString:nameTextField.text])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的投影机元素,请重新输入名称!",project.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            return;
+                        }
+                        
+                    }
+                    [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0];
+                    
+                }
 
             }
             
@@ -463,50 +477,67 @@ BOOL isViewOn;
             break;
         case 2:
         {
-            if([relayDataList count]!=0)
+            if (nameTextField.text!=nil&& nameTextField.text.length==0)
             {
-                for (int i=0;i<[relayDataList count];i++)
-                {
-                    RelayVO *relay =  [relayDataList objectAtIndex:i];
-                    if ([relay.aName isEqualToString:nameTextField.text])
-                    {
-                        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的电路元素!",relay.aName]];
-                        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
-                    }
-                    else
-                    {
-                        [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
-                    }
-                }
+                [SetViewController showUIAlertView:@"提示"content:@"请输入添加展区的名称！" buttonTitle:@"确定"];
             }
             else
             {
-                [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
+                if([relayDataList count]==0)
+                {
+                     [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
+                }
+                else
+                {
+                    for (int i=0;i<[relayDataList count];i++)
+                    {
+                        RelayVO *relay =  [relayDataList objectAtIndex:i];
+                        if ([relay.aName isEqualToString:nameTextField.text])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的电路元素,请重新输入名称!",relay.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            return;
+                        }
+                        
+                        
+                    }
+                     [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
+                }
+
             }
-            
+
             
         }
             break;
         case 3:
         {
-            if([playerDataList count]!=0)
+            if (nameTextField.text!=nil&& nameTextField.text.length==0)
             {
-                for (int i=0;i<[playerDataList count];i++)
-                {
-                    PlayerVO *player =  [playerDataList objectAtIndex:i];
-                    if ([player.aName isEqualToString:nameTextField.text])
-                    {
-                        NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的播放器元素,请重新输入名称!",player.aName]];
-                        [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
-                    }else
-                    {
-                        [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
-                    }
-                }
+                [SetViewController showUIAlertView:@"提示"content:@"请输入添加展区的名称！" buttonTitle:@"确定"];
             }
             else
             {
-                [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
+                if([playerDataList count]==0)
+                {
+                     [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
+                }
+                else
+                {
+                    for (int i=0;i<[playerDataList count];i++)
+                    {
+                        PlayerVO *player =  [playerDataList objectAtIndex:i];
+                        if ([player.aName isEqualToString:nameTextField.text])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的播放器元素,请重新输入名称!",player.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            return;
+                        }
+                        
+                    }
+                    
+                    [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
+                }
+
             }
         }
             break;
@@ -753,20 +784,27 @@ BOOL isViewOn;
     
     if(isViewOn)
     {
+        [(UIButton*)sender setImage:[UIImage imageNamed:@"arrowRight.png"] forState:UIControlStateNormal];
+        
         //关闭左侧列表
         CGPoint point = CGPointMake(elementViewOrignalPoint.x, elementTableView.center.y);
         [self moveWindow:elementTableView desPoint:point isCloseWin:FALSE];
         CGPoint bntPoint = CGPointMake((((UIButton*)sender).frame.size.width/2), elementTableView.center.y);
         [self moveWindow:sender desPoint:bntPoint isCloseWin:FALSE];
+
         isViewOn = FALSE;
     }
     else
     {
+        
+        [(UIButton*)sender setImage:[UIImage imageNamed:@"arrowLeft.png"] forState:UIControlStateNormal];
+
         //打开左侧列表
         CGPoint point = CGPointMake(elementViewOrignalPoint.x+elementTableView.frame.size.width, elementTableView.center.y);
         [self moveWindow:elementTableView desPoint:point isCloseWin:FALSE];
         CGPoint bntPoint = CGPointMake(elementViewOrignalPoint.x + elementTableView.frame.size.width*1.5+(((UIButton*)sender).frame.size.width/2), elementTableView.center.y);
         [self moveWindow:sender desPoint:bntPoint isCloseWin:FALSE];
+        
         isViewOn = TRUE;
     }
 }

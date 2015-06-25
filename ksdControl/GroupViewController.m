@@ -51,6 +51,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     
     //加载组合设置列表
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+    NSMutableArray * array =  [[NSMutableArray alloc] initWithObjects:nil];
     for (int i=0; i < appDelegate.areaArray.count; i++)
     {
         for (int j =0; j < ((AreaVO*)appDelegate.areaArray[i]).groups.count; j++)
@@ -58,7 +59,25 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
           
             if ([((AreaVO*)appDelegate.areaArray[i]).groups[j] isKindOfClass:[GroupVO class]])
             {
-                [groupDataList addObject:((AreaVO*)appDelegate.areaArray[i]).groups[j]];
+                GroupVO *appGroup =((GroupVO*)(((AreaVO*)appDelegate.areaArray[i]).groups[j]));
+                
+                if(groupDataList.count!=0)
+                {
+                    for(int i =0;i < array.count;i++)
+                    {
+                        if(![array containsObject:appGroup.aName])
+                        {
+                            [array addObject:appGroup.aName];
+                            [groupDataList addObject:appGroup];
+                        }
+                    }
+                }
+                else
+                {
+                    [array addObject:appGroup.aName];
+                    [groupDataList addObject:appGroup];
+                }
+    
             }
         }
     }

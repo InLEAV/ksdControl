@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SLUICollectionViewLayout.h"
 
 @interface ControlViewController : UIViewController<UICollectionViewDataSource,
-UICollectionViewDelegate>
+UICollectionViewDelegate,SLUICollectionViewDelegateLayout>
 
 //单元表格列表，显示展区的元素组件
 @property (strong, nonatomic) IBOutlet UICollectionView *grid;
@@ -19,5 +20,9 @@ UICollectionViewDelegate>
 
 //获取每个展区元素
 -(NSMutableArray*)getElements:(int)areaIndex;
+
+@property (strong, nonatomic) IBOutlet UILabel *zqTitle;
+
+@property (nonatomic, strong) NSMutableArray *elementArray;
 
 @end

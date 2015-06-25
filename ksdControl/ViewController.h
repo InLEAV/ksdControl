@@ -13,4 +13,3 @@
 @property (strong, nonatomic) IBOutlet UILabel *pavilionNameLabel;
 
 @end
-

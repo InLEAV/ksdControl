@@ -11,6 +11,9 @@
 @interface ComputerControl : UICollectionViewCell
 
 
+//背景
+@property (strong, nonatomic) UIImageView* backgroup;
+
 //文本允许动态改变标题
 @property (strong, nonatomic) UILabel* label;
 

@@ -14,6 +14,9 @@
 //动态改变标题
 @property (strong, nonatomic) UILabel* label;
 
+//背景
+@property (strong, nonatomic) UIImageView* backgroup;
+
 //播放视频或
 @property (strong, nonatomic) UIButton* playBtn;
 
@@ -23,18 +26,18 @@
 //停止视频
 @property (strong, nonatomic) UIButton* stopBtn;
 
-//重新开始播放视频
-@property (strong, nonatomic) UIButton* replayBtn;
-
+//播放上一个视频
+@property (strong, nonatomic) UIButton* preMovieBtn;
 
 //视频快退
-@property (strong, nonatomic) UIButton* fastBackBtn;
+@property (strong, nonatomic) UIButton* nextMovieBtn;
 
 //视频快进
-@property (strong, nonatomic) UIButton* fastForwardBtn;
+@property (strong, nonatomic) UIButton* addVolumeBtn;
 
-//控制声音播放
-@property (strong, nonatomic) UISlider* audioSlider;
+//视频快进
+@property (strong, nonatomic) UIButton* minusVolumeBtn;
+
 
 //播放视频
 -(void)playVideo :(id)sender;
@@ -45,19 +48,17 @@
 //停止视频
 -(void)stopVideo :(id)sende;
 
-//重播视频
--(void)replayVideo :(id)sende;
+//播放上一个视频
+-(void)preMovieBtn :(id)sende;
 
-//视频快进
--(void)fastForwardVideo :(id)sende;
+//播放下一个视频
+-(void)nextMovieBtn :(id)sende;
 
-//视频快退
--(void)fastBackVideo :(id)sende;
+//声量放大
+-(void)addVolumeBtn :(id)sende;
 
-//拖拽滑动条
-- (void)sliderValueChanged:(id)sender;
+//声量减小
+- (void)minusVolumeBtn:(id)sender;
 
-//放开滑动条
-- (void)sliderDragUp:(id)sender;
 
 @end
