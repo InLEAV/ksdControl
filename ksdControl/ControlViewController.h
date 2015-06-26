@@ -21,8 +21,10 @@ UICollectionViewDelegate,SLUICollectionViewDelegateLayout>
 //获取每个展区元素
 -(NSMutableArray*)getElements:(int)areaIndex;
 
+//展区标题
 @property (strong, nonatomic) IBOutlet UILabel *zqTitle;
 
+//控件数组
 @property (nonatomic, strong) NSMutableArray *elementArray;
 
 @end

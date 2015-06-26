@@ -122,7 +122,7 @@
     CGSize contentSize = self.collectionView.frame.size;
     NSUInteger rowIndex = [self longestRowIndex];
     CGFloat width = [self.RowWidths[rowIndex] floatValue];
-    contentSize.width = width - self.lineSpacing + self.sectionInset.right;
+    contentSize.width = width - 15 + self.sectionInset.right;
     return contentSize;
 }
 

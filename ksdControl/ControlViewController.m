@@ -45,6 +45,7 @@ AppDelegate *appDelegate;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     SLUICollectionViewLayout *layout = [[SLUICollectionViewLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsMake(40, 15, 40, 15);
     layout.delegate = self;
@@ -61,16 +62,14 @@ AppDelegate *appDelegate;
     [self.grid registerClass:[PlayerControl class] forCellWithReuseIdentifier:@"playerCellId"];
     [self.grid registerClass:[RelayControl class] forCellWithReuseIdentifier:@"relayCellId"];
     
-    SLUICollectionViewLayout *layout1 = [[SLUICollectionViewLayout alloc] init];
-    layout1.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
-    layout1.delegate = self;
-    self.horizontalList.collectionViewLayout = layout1;
-    self.horizontalList.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-    
-    // 为UICollectionView设置dataSource和delegate对象
-    self.horizontalList.dataSource = self;
-    self.horizontalList.delegate = self;
+//    SLUICollectionViewLayout *layout1 = [[SLUICollectionViewLayout alloc] init];
+//    layout1.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+//    layout1.delegate = self;
+//    self.horizontalList.collectionViewLayout = layout1;
+//    self.horizontalList.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
 
+
+    
     // 创建UICollectionViewFlowLayout布局对象
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     // 设置单元格控件的大小
@@ -81,6 +80,9 @@ AppDelegate *appDelegate;
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     // 为UICollectionView设置布局管理器具
     self.horizontalList.collectionViewLayout = flowLayout;
+    // 为UICollectionView设置dataSource和delegate对象
+    self.horizontalList.dataSource = self;
+    self.horizontalList.delegate = self;
     
     //初始展区indexPathArea
     indexPathArea = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -94,11 +96,9 @@ AppDelegate *appDelegate;
     {
         NSString *name = ((AreaVO*)appDelegate.areaArray[0]).aName;
         zqTitle.text = name;
-        
+        elementArray = [self getElements:(int)indexPathArea.row];
     }
 
-    elementArray = [self getElements:(int)indexPathArea.row];
-   
     [self updateLayout];
 }
 
@@ -114,12 +114,15 @@ AppDelegate *appDelegate;
 {
     [super viewDidAppear:animated];
     
-    [appDelegate getElements];
-    elementArray = [self getElements:(int)indexPathArea.row];
-    [self updateLayout];
+    if(appDelegate.areaArray.count > 0)
+    {
+        [appDelegate getElements];
+        elementArray = [self getElements:(int)indexPathArea.row];
+        [self updateLayout];
+        
+        //[self collectionView:self.horizontalList didSelectItemAtIndexPath:indexPathArea];
 
-    [self collectionView:self.horizontalList didSelectItemAtIndexPath:indexPathArea];
-    //[self.horizontalList reloadData];
+    }
     
 }
 
@@ -153,12 +156,14 @@ AppDelegate *appDelegate;
     // Dispose of any resources that can be recreated.
 }
 
+//当旋转完成时更新布局
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
 {
     [self updateLayout];
     [self.grid reloadData];
 }
 
+//当设备旋转时自动更新布局
 - (void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
                                          duration:(NSTimeInterval)duration
 {
@@ -167,7 +172,7 @@ AppDelegate *appDelegate;
     [self updateLayout];
 }
 
-
+//更新布局，设定横屏竖屏的行数
 - (void)updateLayout
 {
     SLUICollectionViewLayout *layout = (SLUICollectionViewLayout *)self.grid.collectionViewLayout;
@@ -187,6 +192,7 @@ AppDelegate *appDelegate;
 }
 
 #pragma mark - UICollectionViewDataSource
+// 该方法的返回值控制该UICollectionView指定分区包含多少个单元格
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     NSInteger count = 0;
@@ -204,6 +210,7 @@ AppDelegate *appDelegate;
     return count;
 }
 
+// 该方法的返回值控制该UICollectionView包含多少个分区。
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;
@@ -228,6 +235,17 @@ AppDelegate *appDelegate;
         
         NSString* areaName = ((AreaVO*)appDelegate.areaArray[rowNo]).aName;
         
+        
+        if( indexPathArea != indexPath)
+        {
+            UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
+            [iv setImage:[UIImage imageNamed:@"zq.png"]];
+        }
+        else
+        {
+            UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
+            [iv setImage:[UIImage imageNamed:@"zq-highlight.png"]];
+        }
         UILabel* label = (UILabel*)[cell viewWithTag:2];
         label.lineBreakMode = NSLineBreakByTruncatingMiddle;
         
@@ -297,6 +315,7 @@ AppDelegate *appDelegate;
     return nil;
 }
 
+//下菜单单元格的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CGSize size;
@@ -310,6 +329,7 @@ AppDelegate *appDelegate;
 }
 
 #pragma mark - UICollectionViewWaterfallLayoutDelegate
+//返回控件的宽度
 - (CGFloat)collectionView:(UICollectionView *)collectionView
                    layout:(SLUICollectionViewLayout *)collectionViewLayout
   widthForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -340,26 +360,24 @@ AppDelegate *appDelegate;
 {
     if(collectionView.tag == 0)
     {
+        
+        NSLog(@"Row: %d  Section:  %d",(int)indexPath.row,(int)indexPath.section);
+       
+        
+        
+        UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath:indexPathArea];
+        UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
+        [iv setImage:[UIImage imageNamed:@"zq.png"]];
+        
         //保存当前选中的展区IndexPath
         indexPathArea = indexPath;
         elementArray = [self getElements:(int)indexPathArea.row];
-        NSLog(@"Row: %d  Section:  %d",(int)indexPath.row,(int)indexPath.section);
         
-        for (int i = 0; i < appDelegate.areaArray.count; i++)
-        {
-            if(indexPath.row == i)
-            {
-                UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
-                UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
-                [iv setImage:[UIImage imageNamed:@"zq-highlight.png"]];
-            }
-            else
-            {
-                UICollectionViewCell * cell = (UICollectionViewCell *)[collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-                UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
-                [iv setImage:[UIImage imageNamed:@"zq.png"]];
-            }
-        }
+        UICollectionViewCell * cell1 = [collectionView cellForItemAtIndexPath:indexPathArea];
+        UIImageView* iv1 = (UIImageView*)[cell1 viewWithTag:1];
+        [iv1 setImage:[UIImage imageNamed:@"zq-highlight.png"]];
+
+       
         
         //设置导航条的标题
         if(appDelegate.areaArray.count > 0)

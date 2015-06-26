@@ -22,7 +22,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroup.png" translatesAutoresizingMaskIntoConstraints="NO" id="ey9-b3-9JU">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifx-Yf-4jp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ifx-Yf-4jp" userLabel="Info Button">
                                 <rect key="frame" x="486" y="8" width="74" height="74"/>
                                 <state key="normal" image="info.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -38,7 +38,7 @@
                                     <segue destination="ipc-SM-tWP" kind="presentation" id="Eik-yW-m98"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0r-jb-DM6">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0r-jb-DM6" userLabel="Enter Button">
                                 <rect key="frame" x="188" y="271" width="224" height="59"/>
                                 <state key="normal" image="enter.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -54,13 +54,7 @@
                                     <segue destination="e7q-8F-aCA" kind="presentation" id="mQA-mA-lT4"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="展 厅 名 称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfB-A3-kbc">
-                                <rect key="frame" x="204" y="144" width="192" height="48"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJv-of-MS1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJv-of-MS1" userLabel="Setting Button">
                                 <rect key="frame" x="391" y="8" width="74" height="74"/>
                                 <state key="normal" image="setting.png">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -76,6 +70,12 @@
                                     <segue destination="6th-aw-zns" kind="presentation" id="s1W-8D-LaO"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="展 厅 名 称" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfB-A3-kbc">
+                                <rect key="frame" x="204" y="90" width="192" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -84,7 +84,7 @@
                             <constraint firstItem="CJv-of-MS1" firstAttribute="baseline" secondItem="ifx-Yf-4jp" secondAttribute="baseline" id="49b-r0-L0g"/>
                             <constraint firstAttribute="trailing" secondItem="ey9-b3-9JU" secondAttribute="trailing" id="LP2-nP-Ta5"/>
                             <constraint firstItem="ifx-Yf-4jp" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="N4y-jM-TOj"/>
-                            <constraint firstItem="g0r-jb-DM6" firstAttribute="top" secondItem="KfB-A3-kbc" secondAttribute="bottom" constant="79" id="PpR-I7-lqA"/>
+                            <constraint firstItem="g0r-jb-DM6" firstAttribute="top" secondItem="KfB-A3-kbc" secondAttribute="bottom" constant="133" id="PpR-I7-lqA"/>
                             <constraint firstItem="ey9-b3-9JU" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="RRX-Xc-Zq8"/>
                             <constraint firstAttribute="trailing" secondItem="ifx-Yf-4jp" secondAttribute="trailing" constant="40" id="SJ9-ZW-CbL"/>
                             <constraint firstAttribute="bottom" secondItem="ey9-b3-9JU" secondAttribute="bottom" id="U38-65-HlH"/>
@@ -823,34 +823,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="信息页面" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mz9-kE-hC4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroup.png" translatesAutoresizingMaskIntoConstraints="NO" id="wVd-uo-FzY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="信息页面" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mz9-kE-hC4">
                                 <rect key="frame" x="266" y="80" width="68" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此软件最终解释权丝路" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEY-3G-KWO">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="此软件最终解释权丝路" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sEY-3G-KWO">
                                 <rect key="frame" x="215" y="290" width="170" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZqQ-9i-RDR">
                                 <rect key="frame" x="283" y="465" width="35" height="30"/>
                                 <state key="normal" title="确 定">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="presentation" id="OPj-bL-ahc"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Mq-Z3-L4W">
+                                <rect key="frame" x="250" y="126" width="100" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dcD-0U-fxd" firstAttribute="top" secondItem="wVd-uo-FzY" secondAttribute="bottom" id="4mh-sv-i3p"/>
+                            <constraint firstAttribute="trailing" secondItem="wVd-uo-FzY" secondAttribute="trailing" id="IUP-9c-ik7"/>
                             <constraint firstItem="Mz9-kE-hC4" firstAttribute="top" secondItem="CV6-LN-J3T" secondAttribute="bottom" constant="80" id="Lp4-zV-EGW"/>
                             <constraint firstAttribute="centerX" secondItem="ZqQ-9i-RDR" secondAttribute="centerX" id="Phv-vi-Fz6"/>
+                            <constraint firstItem="wVd-uo-FzY" firstAttribute="leading" secondItem="he4-Lv-tCw" secondAttribute="leading" id="Sjl-E9-kM2"/>
                             <constraint firstAttribute="centerX" secondItem="sEY-3G-KWO" secondAttribute="centerX" id="YIA-Ba-ogb"/>
+                            <constraint firstItem="4Mq-Z3-L4W" firstAttribute="centerX" secondItem="Mz9-kE-hC4" secondAttribute="centerX" id="gun-7y-sKT"/>
+                            <constraint firstItem="wVd-uo-FzY" firstAttribute="top" secondItem="CV6-LN-J3T" secondAttribute="bottom" id="h0u-1g-akE"/>
                             <constraint firstItem="ZqQ-9i-RDR" firstAttribute="top" secondItem="sEY-3G-KWO" secondAttribute="bottom" constant="154" id="lG1-tH-iVX"/>
+                            <constraint firstItem="4Mq-Z3-L4W" firstAttribute="top" secondItem="Mz9-kE-hC4" secondAttribute="bottom" constant="25" id="rge-uX-Hke"/>
                             <constraint firstAttribute="centerY" secondItem="sEY-3G-KWO" secondAttribute="centerY" id="rgl-a1-lb8"/>
                             <constraint firstAttribute="centerX" secondItem="Mz9-kE-hC4" secondAttribute="centerX" id="rvc-xE-yKx"/>
                         </constraints>
@@ -1085,6 +1101,6 @@
         <image name="zqmenu-bg.png" width="1024" height="103"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="IVx-U3-aKG"/>
+        <segue reference="OPj-bL-ahc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -75,7 +75,6 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         
     }
 
-    
 }
 
 //当切换到当前视图是更新组合列表
@@ -396,7 +395,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                 break;
         }
 
-        
+        areaNameFieldText.text=@"";
         [containerTableView reloadData];
     }
     else if(grouptDidSelectRowAtIndexPath.row==-1)

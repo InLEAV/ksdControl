@@ -389,6 +389,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                 break;
         }
         
+        groupNameFieldText.text=@"";
         [containerTablleView reloadData];
         
     }
