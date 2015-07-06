@@ -363,8 +363,6 @@ AppDelegate *appDelegate;
         
         NSLog(@"Row: %d  Section:  %d",(int)indexPath.row,(int)indexPath.section);
        
-        
-        
         UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath:indexPathArea];
         UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
         [iv setImage:[UIImage imageNamed:@"zq.png"]];
