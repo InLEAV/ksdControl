@@ -10,10 +10,13 @@
 
 @implementation ProjectControl
 
+
 //初始单元格，添加控件
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    
+    self.VO = [ProjectVO new];
     
     if (self)
     {
@@ -58,15 +61,74 @@
         // 设置圆角
         self.layer.cornerRadius = 8.0;
         self.layer.masksToBounds = YES;
+        
+        dispatch_queue_t tcpSocketQueue = dispatch_queue_create("com.manmanlai.tcpSocketQueue", DISPATCH_QUEUE_CONCURRENT);
+        tcpSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:tcpSocketQueue];
     }
     
     return self;
+}
+
+-(void)setIsShow:(BOOL)isShow2
+{
+    self.isShow = isShow2;
+    if (isShow2 == YES)
+    {
+        NSError *error = nil;
+        if (![tcpSocket connectToHost:self.VO.ip
+                               onPort:self.VO.port
+                                error:&error])
+        {
+            NSLog(@"Error connecting: %@", error);
+            
+        } else
+        {
+            NSLog(@"Connected");
+            [tcpSocket readDataWithTimeout:-1 tag:0];
+        }
+    }
+    else
+    {
+        [tcpSocket disconnect];
+    }
+}
+
+// TCP socket已连接
+-(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
+{
+    NSLog(@"socket已连接");
+}
+// TCP socket已断开
+-(void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
+{
+    NSLog(@"socket已断开");
+}
+// TCP socket已写入数据
+-(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
+{
+    NSLog(@"socket已写入数据");
+}
+// TCP socket已发送数据
+-(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+    NSLog(@"socket已发送数据");
 }
 
 //打开投影机
 -(void)openProject:(id)sender
 {
     NSLog(@"OpenProject!");
+    char outbuffer[7];
+    memset(outbuffer, 0x00, sizeof(outbuffer));
+    outbuffer[0] = 0xfe;
+    outbuffer[1] = 0x00;
+    outbuffer[2] = 0x22;
+    outbuffer[3] = 0x42;
+    outbuffer[4] = 0x00;
+    outbuffer[5] = 0x64;
+    outbuffer[6] = 0xff;
+    NSData *data = [NSData dataWithBytes:outbuffer length:7];
+    [tcpSocket writeData:data withTimeout:-1 tag:0];
 }
 
 //关闭投影机
@@ -74,5 +136,6 @@
 {
     NSLog(@"CloseProject!");
 }
+
 
 @end

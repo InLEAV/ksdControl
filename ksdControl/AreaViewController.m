@@ -301,6 +301,8 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         else
         {
             [areaDataList removeObjectAtIndex: rowNo];
+            [containerDataList removeAllObjects];
+            [containerTableView reloadData];
         }
         
         // 从UITable程序界面上删除指定表格行。
