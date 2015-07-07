@@ -67,6 +67,7 @@
 -(void)openProject:(id)sender
 {
     NSLog(@"OpenProject!");
+    
 }
 
 //关闭投影机

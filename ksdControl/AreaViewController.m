@@ -301,6 +301,8 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         else
         {
             [areaDataList removeObjectAtIndex: rowNo];
+            [containerDataList removeAllObjects];
+            [containerTableView reloadData];
         }
         
         // 从UITable程序界面上删除指定表格行。
@@ -372,24 +374,137 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         
         switch (grouptDidSelectRowAtIndexPath.section) {
             case 0:
-                [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                if([containerDataList count] == 0)
+                {
+                    [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+                else
+                {
+                    for (int i=0;i<[containerDataList count];i++)
+                    {
+                        VO *vo1 =  [containerDataList objectAtIndex:i];
+                        VO *vo2 =  [groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row];
+                        if ([vo1.aName isEqualToString:vo2.aName])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合,请重新选择!",vo2.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            
+                            return;
+                        }
+                    }
+                    [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+//                
+//                [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+//                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 break;
             case 1:
-                [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                if([containerDataList count] == 0)
+                {
+                    [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+                else
+                {
+                    for (int i=0;i<[containerDataList count];i++)
+                    {
+                        VO *vo1 =  [containerDataList objectAtIndex:i];
+                        VO *vo2 =  [elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row];
+                        if ([vo1.aName isEqualToString:vo2.aName])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合,请重新选择!",vo2.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            
+                            return;
+                        }
+                    }
+                    [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+//                [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+//                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 break;
             case 2:
-                [area.groups addObject:[elementViewController.projectorDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                if([containerDataList count] == 0)
+                {
+                    [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+                else
+                {
+                    for (int i=0;i<[containerDataList count];i++)
+                    {
+                        VO *vo1 =  [containerDataList objectAtIndex:i];
+                        VO *vo2 =  [elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row];
+                        if ([vo1.aName isEqualToString:vo2.aName])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合,请重新选择!",vo2.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            
+                            return;
+                        }
+                    }
+                    [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+
+//                [area.groups addObject:[elementViewController.projectorDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+//                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 break;
             case 3:
-                [area.groups addObject:[elementViewController.relayDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                if([containerDataList count] == 0)
+                {
+                    [area.groups addObject:[elementViewController.relayDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+                else
+                {
+                    for (int i=0;i<[containerDataList count];i++)
+                    {
+                        VO *vo1 =  [containerDataList objectAtIndex:i];
+                        VO *vo2 =  [elementViewController.relayDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row];
+                        if ([vo1.aName isEqualToString:vo2.aName])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合,请重新选择!",vo2.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            
+                            return;
+                        }
+                    }
+                    [area.groups addObject:[elementViewController.relayDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+//                [area.groups addObject:[elementViewController.relayDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+//                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 break;
             case 4:
-                [area.groups addObject:[elementViewController.playerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                if([containerDataList count] == 0)
+                {
+                    [area.groups addObject:[elementViewController.playerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+                else
+                {
+                    for (int i=0;i<[containerDataList count];i++)
+                    {
+                        VO *vo1 =  [containerDataList objectAtIndex:i];
+                        VO *vo2 =  [elementViewController.playerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row];
+                        if ([vo1.aName isEqualToString:vo2.aName])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合,请重新选择!",vo2.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            
+                            return;
+                        }
+                    }
+                    [area.groups addObject:[elementViewController.playerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+
+//                [area.groups addObject:[elementViewController.playerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+//                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 break;
             default:
                 break;
