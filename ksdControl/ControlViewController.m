@@ -19,6 +19,7 @@
 #import "RelayVO.h"
 #import "PlayerVO.h"
 #import "ProjectVO.h"
+#import "GroupControl.h"
 
 #define CELL_Height 156
 
@@ -61,14 +62,7 @@ AppDelegate *appDelegate;
     [self.grid registerClass:[ProjectControl class] forCellWithReuseIdentifier:@"projectCellId"];
     [self.grid registerClass:[PlayerControl class] forCellWithReuseIdentifier:@"playerCellId"];
     [self.grid registerClass:[RelayControl class] forCellWithReuseIdentifier:@"relayCellId"];
-    
-//    SLUICollectionViewLayout *layout1 = [[SLUICollectionViewLayout alloc] init];
-//    layout1.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
-//    layout1.delegate = self;
-//    self.horizontalList.collectionViewLayout = layout1;
-//    self.horizontalList.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-
-
+    [self.grid registerClass:[GroupControl class] forCellWithReuseIdentifier:@"groupCellId"];
     
     // 创建UICollectionViewFlowLayout布局对象
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -132,15 +126,18 @@ AppDelegate *appDelegate;
     for (int i =0; i < ((AreaVO*)appDelegate.areaArray[areaIndex]).groups.count; i++)
     {
         
-        if ([((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] isKindOfClass:[GroupVO class]])
-        {
-            for (int j =0; j < ((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements.count; j++)
-            {
-                [array addObject:((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements[j]];
-            }
-        }
-        else
-        {
+//        if ([((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] isKindOfClass:[GroupVO class]])
+//        {
+//            [groupArray addObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i]];
+        
+//            for (int j =0; j < ((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements.count; j++)
+//            {
+//               
+//                [array addObject:((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements[j]];
+//            }
+//        }
+//        else
+//        {
             if ([((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] isKindOfClass:[PlayerVO class]])
             {
                 [array insertObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] atIndex:0];
@@ -149,7 +146,7 @@ AppDelegate *appDelegate;
             {
                 [array addObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i]];
             }
-        }
+//        }
     }
     
     return array;
@@ -317,6 +314,19 @@ AppDelegate *appDelegate;
                 return cell;
                 
             }
+            else if([elementArray[rowNo] isKindOfClass:[GroupVO class]])
+            {
+                //生产播放控制单元格
+                GroupControl *cell = [collectionView
+                                       dequeueReusableCellWithReuseIdentifier:@"groupCellId"
+                                       forIndexPath:indexPath];
+                cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
+                cell.label.text = ((GroupVO*)elementArray[rowNo]).aName;
+                
+                return cell;
+                
+            }
+
         }
     }
     

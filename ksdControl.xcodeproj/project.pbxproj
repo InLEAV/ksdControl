@@ -89,6 +89,7 @@
 		F7334F7F1B393EC0003307BE /* zq-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7334F7B1B393EC0003307BE /* zq-highlight@2x.png */; };
 		F7334F801B393EC0003307BE /* zq@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7334F7C1B393EC0003307BE /* zq@1x.png */; };
 		F7334F811B393EC0003307BE /* zq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7334F7D1B393EC0003307BE /* zq@2x.png */; };
+		F77F7B8F1B4B86EA00E585AD /* GroupControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F7B8E1B4B86EA00E585AD /* GroupControl.m */; };
 		F77FF3AC1B3BEB6C00309BB5 /* zqmenu-bg@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77FF3AA1B3BEB6C00309BB5 /* zqmenu-bg@1x.png */; };
 		F77FF3AD1B3BEB6C00309BB5 /* zqmenu-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77FF3AB1B3BEB6C00309BB5 /* zqmenu-bg@2x.png */; };
 		F77FF3B21B3C014700309BB5 /* arrowLeft@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77FF3AE1B3C014700309BB5 /* arrowLeft@1x.png */; };
@@ -220,6 +221,8 @@
 		F7334F7B1B393EC0003307BE /* zq-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zq-highlight@2x.png"; sourceTree = "<group>"; };
 		F7334F7C1B393EC0003307BE /* zq@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zq@1x.png"; sourceTree = "<group>"; };
 		F7334F7D1B393EC0003307BE /* zq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zq@2x.png"; sourceTree = "<group>"; };
+		F77F7B8D1B4B86EA00E585AD /* GroupControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupControl.h; sourceTree = "<group>"; };
+		F77F7B8E1B4B86EA00E585AD /* GroupControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupControl.m; sourceTree = "<group>"; };
 		F77FF3AA1B3BEB6C00309BB5 /* zqmenu-bg@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zqmenu-bg@1x.png"; sourceTree = "<group>"; };
 		F77FF3AB1B3BEB6C00309BB5 /* zqmenu-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zqmenu-bg@2x.png"; sourceTree = "<group>"; };
 		F77FF3AE1B3C014700309BB5 /* arrowLeft@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrowLeft@1x.png"; sourceTree = "<group>"; };
@@ -274,6 +277,8 @@
 				9E9221611ADBBE1200B942CC /* RelayControl.m */,
 				2D81BDE61B0C7304007F0220 /* PlayerControl.h */,
 				2D81BDE71B0C7304007F0220 /* PlayerControl.m */,
+				F77F7B8D1B4B86EA00E585AD /* GroupControl.h */,
+				F77F7B8E1B4B86EA00E585AD /* GroupControl.m */,
 			);
 			name = ComponentCell;
 			sourceTree = "<group>";
@@ -636,6 +641,7 @@
 				9EDB01861AEF261000FD74FE /* ControlViewController.m in Sources */,
 				9EDB01921AEF2BF500FD74FE /* AreaVO.m in Sources */,
 				9E92215F1ADBBDF300B942CC /* ComputerControl.m in Sources */,
+				F77F7B8F1B4B86EA00E585AD /* GroupControl.m in Sources */,
 				2D81BDE81B0C7304007F0220 /* PlayerControl.m in Sources */,
 				9E92216B1ADBBF5F00B942CC /* ProjectVO.m in Sources */,
 				2D99CA611B05DB2300E6A409 /* AreaViewController.m in Sources */,
