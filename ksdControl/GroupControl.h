@@ -16,10 +16,10 @@
 // 动态改变标题
 @property (strong, nonatomic) UILabel* label;
 
-// 打开电路
+// 打开组合
 @property (strong, nonatomic) UIButton* openBtn;
 
-// 关闭电路
+// 关闭组合
 @property (strong, nonatomic) UIButton* closeBtn;
 
 //打开组合

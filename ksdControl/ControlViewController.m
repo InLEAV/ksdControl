@@ -125,19 +125,6 @@ AppDelegate *appDelegate;
     NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:nil];
     for (int i =0; i < ((AreaVO*)appDelegate.areaArray[areaIndex]).groups.count; i++)
     {
-        
-//        if ([((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] isKindOfClass:[GroupVO class]])
-//        {
-//            [groupArray addObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i]];
-        
-//            for (int j =0; j < ((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements.count; j++)
-//            {
-//               
-//                [array addObject:((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements[j]];
-//            }
-//        }
-//        else
-//        {
             if ([((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] isKindOfClass:[PlayerVO class]])
             {
                 [array insertObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] atIndex:0];
@@ -146,7 +133,6 @@ AppDelegate *appDelegate;
             {
                 [array addObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i]];
             }
-//        }
     }
     
     return array;

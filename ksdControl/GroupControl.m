@@ -33,7 +33,7 @@
         self.label.textColor = [UIColor whiteColor];
         [self.contentView addSubview:self.label];
         
-        //这里创建一个圆角矩形的按钮，开电路按钮
+        //这里创建一个圆角矩形的按钮，开组合按钮
         self.openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.openBtn.frame = CGRectMake(30, 77, 70, 60);
         self.openBtn.backgroundColor = [UIColor clearColor];
@@ -42,7 +42,7 @@
         [self.openBtn addTarget:self action:@selector(openGroup:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.openBtn];
         
-        //这里创建一个圆角矩形的按钮，关电路按钮
+        //这里创建一个圆角矩形的按钮，关组合按钮
         self.closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         self.closeBtn.frame = CGRectMake(137, 77, 70, 60);
         self.closeBtn.backgroundColor = [UIColor clearColor];
