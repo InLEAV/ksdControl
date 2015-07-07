@@ -580,7 +580,7 @@
                                             <action selector="finishEdit:" destination="B15-ob-9aX" eventType="editingDidEndOnExit" id="qEY-Wa-03v"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入IP地址" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YqT-ec-50R" userLabel="IP Text Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="192.168.0.1" borderStyle="roundedRect" placeholder="请输入IP地址" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YqT-ec-50R" userLabel="IP Text Field">
                                         <rect key="frame" x="245" y="267" width="215" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -592,7 +592,7 @@
                                             <action selector="finishEdit:" destination="B15-ob-9aX" eventType="editingDidEndOnExit" id="Qvw-da-DRg"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入端口号" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yqn-Fr-eqb" userLabel="Port Text Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="8867" borderStyle="roundedRect" placeholder="请输入端口号" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Yqn-Fr-eqb" userLabel="Port Text Field">
                                         <rect key="frame" x="245" y="326" width="215" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
@@ -604,7 +604,7 @@
                                             <action selector="finishEdit:" destination="B15-ob-9aX" eventType="editingDidEndOnExit" id="YXM-3V-ooM"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入MAC地址" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxh-wv-LSa" userLabel="MAC Text Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="AA-DD-BB-CC-GG-RR" borderStyle="roundedRect" placeholder="请输入MAC地址" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pxh-wv-LSa" userLabel="MAC Text Field">
                                         <rect key="frame" x="245" y="385" width="215" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -622,10 +622,10 @@
                                             <rect key="frame" x="426" y="523" width="51" height="31"/>
                                         </variation>
                                     </switch>
-                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入继电器路数" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZE-Xc-NXo" userLabel="Relay Text Field">
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" placeholder="请输入继电器路数" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZE-Xc-NXo" userLabel="Relay Text Field">
                                         <rect key="frame" x="245" y="385" width="215" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits"/>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
                                             <rect key="frame" x="338" y="524" width="255" height="30"/>
                                         </variation>
@@ -1101,6 +1101,6 @@
         <image name="zqmenu-bg.png" width="1024" height="103"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OPj-bL-ahc"/>
+        <segue reference="lqQ-LF-tEO"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -35,6 +35,8 @@
 		9EDB018F1AEF2BA200FD74FE /* GroupVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB018E1AEF2BA200FD74FE /* GroupVO.m */; };
 		9EDB01921AEF2BF500FD74FE /* AreaVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB01911AEF2BF500FD74FE /* AreaVO.m */; };
 		9EDB01971AEF3B4300FD74FE /* PlayerVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EDB01961AEF3B4300FD74FE /* PlayerVO.m */; };
+		9EFDE8891B4A61E600734881 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EFDE8861B4A61E600734881 /* GCDAsyncSocket.m */; };
+		9EFDE88A1B4A61E600734881 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EFDE8881B4A61E600734881 /* GCDAsyncUdpSocket.m */; };
 		F7334F431B39037B003307BE /* enter@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7334F161B39037B003307BE /* enter@1x.png */; };
 		F7334F441B39037B003307BE /* enter@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7334F171B39037B003307BE /* enter@2x.png */; };
 		F7334F451B39037B003307BE /* info@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7334F181B39037B003307BE /* info@1x.png */; };
@@ -162,6 +164,10 @@
 		9EDB01911AEF2BF500FD74FE /* AreaVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AreaVO.m; sourceTree = "<group>"; };
 		9EDB01951AEF3B4300FD74FE /* PlayerVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerVO.h; sourceTree = "<group>"; };
 		9EDB01961AEF3B4300FD74FE /* PlayerVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerVO.m; sourceTree = "<group>"; };
+		9EFDE8851B4A61E600734881 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = libs/GCDAsyncSocket.h; sourceTree = "<group>"; };
+		9EFDE8861B4A61E600734881 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = libs/GCDAsyncSocket.m; sourceTree = "<group>"; };
+		9EFDE8871B4A61E600734881 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = libs/GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		9EFDE8881B4A61E600734881 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = libs/GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
 		F7334F161B39037B003307BE /* enter@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter@1x.png"; sourceTree = "<group>"; };
 		F7334F171B39037B003307BE /* enter@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "enter@2x.png"; sourceTree = "<group>"; };
 		F7334F181B39037B003307BE /* info@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info@1x.png"; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 		9E92212A1ADBB91700B942CC /* ksdControl */ = {
 			isa = PBXGroup;
 			children = (
+				9EFDE88B1B4A61FB00734881 /* libs */,
 				2D6D71D81B33BAA600401721 /* ksdControl.entitlements */,
 				2D81BDE51B0C71E3007F0220 /* ComponentCell */,
 				2D81BDE41B0C71BB007F0220 /* SetViewControllers */,
@@ -376,6 +383,17 @@
 				9EDB01961AEF3B4300FD74FE /* PlayerVO.m */,
 			);
 			name = ElementVO;
+			sourceTree = "<group>";
+		};
+		9EFDE88B1B4A61FB00734881 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				9EFDE8851B4A61E600734881 /* GCDAsyncSocket.h */,
+				9EFDE8861B4A61E600734881 /* GCDAsyncSocket.m */,
+				9EFDE8871B4A61E600734881 /* GCDAsyncUdpSocket.h */,
+				9EFDE8881B4A61E600734881 /* GCDAsyncUdpSocket.m */,
+			);
+			name = libs;
 			sourceTree = "<group>";
 		};
 		F7334F151B39037B003307BE /* Images */ = {
@@ -608,6 +626,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E92215C1ADBBD9C00B942CC /* ProjectControl.m in Sources */,
+				9EFDE88A1B4A61E600734881 /* GCDAsyncUdpSocket.m in Sources */,
 				F7A427FA1B3AB0BB00391828 /* SLUICollectionViewLayout.m in Sources */,
 				9E9221311ADBB91700B942CC /* AppDelegate.m in Sources */,
 				9E92212E1ADBB91700B942CC /* main.m in Sources */,
@@ -621,6 +640,7 @@
 				9E92216B1ADBBF5F00B942CC /* ProjectVO.m in Sources */,
 				2D99CA611B05DB2300E6A409 /* AreaViewController.m in Sources */,
 				9EDB01971AEF3B4300FD74FE /* PlayerVO.m in Sources */,
+				9EFDE8891B4A61E600734881 /* GCDAsyncSocket.m in Sources */,
 				9E33E1841AF0D258002B90FB /* Model.m in Sources */,
 				2D88D53D1B01C07C0091BDB0 /* ElementViewController.m in Sources */,
 				9E9221341ADBB91700B942CC /* ksdControl.xcdatamodeld in Sources */,

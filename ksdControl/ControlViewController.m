@@ -105,7 +105,6 @@ AppDelegate *appDelegate;
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
 }
 
 
@@ -282,6 +281,8 @@ AppDelegate *appDelegate;
                                         forIndexPath:indexPath];
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((ProjectVO*)elementArray[rowNo]).aName;
+                cell.VO = ((ProjectVO*)elementArray[rowNo]);
+                
                 
                 return cell;
             }
@@ -374,8 +375,8 @@ AppDelegate *appDelegate;
         UICollectionViewCell * cell1 = [collectionView cellForItemAtIndexPath:indexPathArea];
         UIImageView* iv1 = (UIImageView*)[cell1 viewWithTag:1];
         [iv1 setImage:[UIImage imageNamed:@"zq-highlight.png"]];
-
-       
+        
+        
         
         //设置导航条的标题
         if(appDelegate.areaArray.count > 0)
@@ -387,9 +388,21 @@ AppDelegate *appDelegate;
         
         //更新展区网格单元格数据
         [self.grid reloadData];
+        
+        for (int i = 0; i < elementArray.count; i++)
+        {
+            NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
+            
+            if([newcell isKindOfClass:[ProjectControl class]])
+            {
+                
+            }
+        }
     }
     
 }
+
 
 
 @end

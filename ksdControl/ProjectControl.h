@@ -8,8 +8,16 @@
 
 //#import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "ProjectVO.h"
+#import "libs/GCDAsyncSocket.h"
 
 @interface ProjectControl : UICollectionViewCell
+{
+    BOOL isShow;
+    GCDAsyncSocket *tcpSocket;
+}
+
+@property(nonatomic, retain) ProjectVO * VO;
 
 
 //背景
@@ -23,6 +31,8 @@
 
 //关闭投影机
 @property (strong, nonatomic) UIButton* closeBtn;
+
+-(void)setIsShow:(BOOL)isShow2;
 
 //打开投影机
 -(void)openProject:(id)sender;

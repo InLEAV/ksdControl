@@ -588,11 +588,11 @@ BOOL isViewOn;
 
             break;
     }
-    nameTextField.text=@"";
-    ipTextField.text=@"";
-    portTextField.text=@"";
-    macUITextField.text=@"";
-    relayUITextField.text=@"";
+//    nameTextField.text=@"";
+//    ipTextField.text=@"";
+//    portTextField.text=@"";
+//    macUITextField.text=@"";
+//    relayUITextField.text=@"";
     
     
 }
@@ -607,7 +607,7 @@ BOOL isViewOn;
         if(![SetViewController validateInput:ipTextField.text RegexString:@"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b"])
         {
             [SetViewController showUIAlertView:@"提示" content:@"请正确输入IP格式" buttonTitle:@"确定"];
-            ipTextField.text=@"";
+//            ipTextField.text=@"";
         }
         NSLog(@"Ip EditDidEnd");
     }
@@ -616,7 +616,7 @@ BOOL isViewOn;
         if(![SetViewController validateInput:macUITextField.text RegexString:@"^([0-9a-fA-F]{2})(([/\\s:][0-9a-fA-F]{2}){5})$"])
         {
             [SetViewController showUIAlertView:@"提示" content:@"请正确输入mac格式" buttonTitle:@"确定"];
-            macUITextField.text=@"";
+//            macUITextField.text=@"";
         }
         NSLog(@"MAC EditDidEnd");
     }
@@ -625,7 +625,7 @@ BOOL isViewOn;
         if(![SetViewController validateInput:portTextField.text RegexString:@"^[1-9]\\d*|0$"])
         {
             [SetViewController showUIAlertView:@"提示" content:@"请正确输入数字格式" buttonTitle:@"确定"];
-            portTextField.text=@"";
+//            portTextField.text=@"";
         }
         NSLog(@"Port EditDidEnd");
     }
@@ -634,7 +634,7 @@ BOOL isViewOn;
         if(![SetViewController validateInput:relayUITextField.text  RegexString:@"^[1-9]\\d*|0$"])
         {
             [SetViewController showUIAlertView:@"提示" content:@"请正确输入数字格式" buttonTitle:@"确定"];
-            relayUITextField.text=@"";
+//            relayUITextField.text=@"";
         }
         NSLog(@"Relay EditDidEnd");
     }
@@ -771,11 +771,11 @@ BOOL isViewOn;
         [elementTableView endUpdates];
     }
     
-    nameTextField.text=@"";
-    ipTextField.text=@"";
-    portTextField.text=@"";
-    macUITextField.text=@"";
-    relayUITextField.text=@"";
+//    nameTextField.text=@"";
+//    ipTextField.text=@"";
+//    portTextField.text=@"";
+//    macUITextField.text=@"";
+//    relayUITextField.text=@"";
     
 }
 
