@@ -396,9 +396,6 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
-//                
-//                [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-//                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 break;
             case 1:
                 if([containerDataList count] == 0)
@@ -423,8 +420,6 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
-//                [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-//                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 break;
             case 2:
                 if([containerDataList count] == 0)
@@ -450,8 +445,6 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
 
-//                [area.groups addObject:[elementViewController.projectorDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-//                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 break;
             case 3:
                 if([containerDataList count] == 0)
@@ -476,8 +469,6 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [area.groups addObject:[elementViewController.relayDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
-//                [area.groups addObject:[elementViewController.relayDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-//                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 break;
             case 4:
                 if([containerDataList count] == 0)
@@ -503,8 +494,6 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
 
-//                [area.groups addObject:[elementViewController.playerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
-//                [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 break;
             default:
                 break;

@@ -417,9 +417,6 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                     [group.elements addObject:[elementViewController.projectorDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
                 }
-
-//                [group.elements addObject:[elementViewController.projectorDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
-//                [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
             }
                 break;
             case 2:
@@ -447,9 +444,6 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                     [group.elements addObject:[elementViewController.relayDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
                 }
-//                
-//                [group.elements addObject:[elementViewController.relayDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
-//                [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
             }
                 break;
             case 3:
@@ -477,8 +471,6 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                     [group.elements addObject:[elementViewController.playerDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
                 }
-//                [group.elements addObject:[elementViewController.playerDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
-//                [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
             }
                 break;
         }

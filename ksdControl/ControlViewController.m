@@ -141,7 +141,14 @@ AppDelegate *appDelegate;
         }
         else
         {
-            [array addObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i]];
+            if ([((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] isKindOfClass:[PlayerVO class]])
+            {
+                [array insertObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] atIndex:0];
+            }
+            else
+            {
+                [array addObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i]];
+            }
         }
     }
     
