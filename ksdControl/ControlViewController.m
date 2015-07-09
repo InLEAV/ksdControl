@@ -122,7 +122,6 @@ AppDelegate *appDelegate;
         //[self collectionView:self.horizontalList didSelectItemAtIndexPath:indexPathArea];
 
     }
-    
 }
 
 //获取每个展区元素
@@ -289,7 +288,7 @@ AppDelegate *appDelegate;
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((ProjectVO*)elementArray[rowNo]).aName;
                 cell.VO = ((ProjectVO*)elementArray[rowNo]);
-                
+                [cell setIsShow:YES];
                 
                 return cell;
             }
@@ -375,6 +374,19 @@ AppDelegate *appDelegate;
         UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
         [iv setImage:[UIImage imageNamed:@"zq.png"]];
         
+//        NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
+//        
+//        for (int i = 0; i < arr.count; i++)
+//        {
+//            NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+//            UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
+//            
+//            if([newcell isKindOfClass:[ProjectControl class]])
+//            {
+//                [((ProjectControl *) newcell) setIsShow:NO];
+//            }
+//        }
+        
         //保存当前选中的展区IndexPath
         indexPathArea = indexPath;
         elementArray = [self getElements:(int)indexPathArea.row];
@@ -384,6 +396,8 @@ AppDelegate *appDelegate;
         [iv1 setImage:[UIImage imageNamed:@"zq-highlight.png"]];
         
         
+        //更新展区网格单元格数据
+        [self.grid reloadData];
         
         //设置导航条的标题
         if(appDelegate.areaArray.count > 0)
@@ -393,19 +407,18 @@ AppDelegate *appDelegate;
             zqTitle.text = name;
         }
         
-        //更新展区网格单元格数据
-        [self.grid reloadData];
         
-        for (int i = 0; i < elementArray.count; i++)
-        {
-            NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
-            
-            if([newcell isKindOfClass:[ProjectControl class]])
-            {
-                
-            }
-        }
+//        NSMutableArray * arr1 = [self getElements:(int)indexPathArea.row];
+//        for (int i = 0; i < arr1.count; i++)
+//        {
+//            NSIndexPath *new_indexPath1 = [NSIndexPath indexPathForRow:i inSection:0];
+//            UICollectionViewCell * newcell1 = [self.grid cellForItemAtIndexPath:new_indexPath1];
+//            
+//            if([newcell1 isKindOfClass:[ProjectControl class]])
+//            {
+//                [((ProjectControl *) newcell1) setIsShow:YES];
+//            }
+//        }
     }
     
 }

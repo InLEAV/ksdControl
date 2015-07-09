@@ -18,6 +18,12 @@
     
     self.VO = [ProjectVO new];
     
+    isShow = NO;
+    
+    powerOff = [NSString stringWithFormat:@"%1POWR 0\r"];
+    powerOn = [NSString stringWithFormat:@"%1POWR 1\r"];
+    powerQuery = [NSString stringWithFormat:@"%1POWR ?\r"];
+    
     if (self)
     {
         self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 237, 156)];
@@ -71,9 +77,10 @@
 
 -(void)setIsShow:(BOOL)isShow2
 {
-    self.isShow = isShow2;
-    if (isShow2 == YES)
+    isShow = isShow2;
+    if (isShow == YES)
     {
+        NSLog(@"show:YES:ip:%@.port:%d",self.VO.ip,self.VO.port);
         NSError *error = nil;
         if (![tcpSocket connectToHost:self.VO.ip
                                onPort:self.VO.port
@@ -89,6 +96,7 @@
     }
     else
     {
+        NSLog(@"show:NO");
         [tcpSocket disconnect];
     }
 }
@@ -118,6 +126,8 @@
 -(void)openProject:(id)sender
 {
     NSLog(@"OpenProject!");
+    NSData *data = [@"%1POWR 1\r" dataUsingEncoding:NSUTF8StringEncoding];
+    [tcpSocket writeData:data withTimeout:-1 tag:0];
     
 }
 
@@ -125,6 +135,8 @@
 -(void)closeProject:(id)sender
 {
     NSLog(@"CloseProject!");
+    NSData *data = [@"%1POWR 0\r" dataUsingEncoding:NSUTF8StringEncoding];
+    [tcpSocket writeData:data withTimeout:-1 tag:0];
 }
 
 

@@ -424,7 +424,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
             case 2:
                 if([containerDataList count] == 0)
                 {
-                    [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [area.groups addObject:[elementViewController.projectorDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
                 else
@@ -432,7 +432,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     for (int i=0;i<[containerDataList count];i++)
                     {
                         VO *vo1 =  [containerDataList objectAtIndex:i];
-                        VO *vo2 =  [elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row];
+                        VO *vo2 =  [elementViewController.projectorDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row];
                         if ([vo1.aName isEqualToString:vo2.aName])
                         {
                             NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合,请重新选择!",vo2.aName]];
@@ -441,7 +441,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                             return;
                         }
                     }
-                    [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [area.groups addObject:[elementViewController.projectorDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
 
