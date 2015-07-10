@@ -358,7 +358,6 @@ AppDelegate *appDelegate;
         }
     }
     return width;
-    
 }
 
 
@@ -374,18 +373,18 @@ AppDelegate *appDelegate;
         UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
         [iv setImage:[UIImage imageNamed:@"zq.png"]];
         
-//        NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
-//        
-//        for (int i = 0; i < arr.count; i++)
-//        {
-//            NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-//            UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
-//            
-//            if([newcell isKindOfClass:[ProjectControl class]])
-//            {
-//                [((ProjectControl *) newcell) setIsShow:NO];
-//            }
-//        }
+        NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
+        
+        for (int i = 0; i < arr.count; i++)
+        {
+            NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
+            
+            if([newcell isKindOfClass:[ProjectControl class]])
+            {
+                [((ProjectControl *) newcell) setIsShow:NO];
+            }
+        }
         
         //保存当前选中的展区IndexPath
         indexPathArea = indexPath;
@@ -407,18 +406,6 @@ AppDelegate *appDelegate;
             zqTitle.text = name;
         }
         
-        
-//        NSMutableArray * arr1 = [self getElements:(int)indexPathArea.row];
-//        for (int i = 0; i < arr1.count; i++)
-//        {
-//            NSIndexPath *new_indexPath1 = [NSIndexPath indexPathForRow:i inSection:0];
-//            UICollectionViewCell * newcell1 = [self.grid cellForItemAtIndexPath:new_indexPath1];
-//            
-//            if([newcell1 isKindOfClass:[ProjectControl class]])
-//            {
-//                [((ProjectControl *) newcell1) setIsShow:YES];
-//            }
-//        }
     }
     
 }

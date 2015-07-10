@@ -71,8 +71,6 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     for (int i=0; i < appDelegate.areaArray.count; i++)
     {
         [areaDataList addObject:((AreaVO*)appDelegate.areaArray[i])];
-            
-        
     }
 
 }

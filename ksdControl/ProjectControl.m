@@ -20,9 +20,9 @@
     
     isShow = NO;
     
-    powerOff = [NSString stringWithFormat:@"%1POWR 0\r"];
-    powerOn = [NSString stringWithFormat:@"%1POWR 1\r"];
-    powerQuery = [NSString stringWithFormat:@"%1POWR ?\r"];
+    powerOff = [NSString stringWithFormat:@"%1%POWR 0\r"];
+    powerOn = [NSString stringWithFormat:@"%1%POWR 1\r"];
+    powerQuery = [NSString stringWithFormat:@"%1%POWR ?\r"];
     
     if (self)
     {
@@ -90,13 +90,13 @@
             
         } else
         {
-            NSLog(@"Connected");
+            NSLog(@"Connected: %@",self.VO.aName);
             [tcpSocket readDataWithTimeout:-1 tag:0];
         }
     }
     else
     {
-        NSLog(@"show:NO");
+         NSLog(@"DisConnected: %@",self.VO.aName);
         [tcpSocket disconnect];
     }
 }
@@ -104,12 +104,12 @@
 // TCP socket已连接
 -(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
 {
-    NSLog(@"socket已连接");
+    NSLog(@"socket已连接: %@",self.VO.aName);
 }
 // TCP socket已断开
 -(void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
-    NSLog(@"socket已断开");
+    NSLog(@"socket已断开: %@",self.VO.aName);
 }
 // TCP socket已写入数据
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
