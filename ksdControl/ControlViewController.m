@@ -307,10 +307,10 @@ AppDelegate *appDelegate;
                                        forIndexPath:indexPath];
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((GroupVO*)elementArray[rowNo]).aName;
-//                for (int j =0; j < ((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements.count; j++)
-//                {
-//                    [array addObject:((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements[j]];
-//                }
+//              for (int j =0; j < ((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements.count; j++)
+//              {
+//                  [array addObject:((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements[j]];
+//              }
 
                 return cell;
                 

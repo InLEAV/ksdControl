@@ -10,7 +10,6 @@
 
 @implementation ProjectControl
 
-
 //初始单元格，添加控件
 - (id)initWithFrame:(CGRect)frame
 {
@@ -68,7 +67,7 @@
         self.layer.cornerRadius = 8.0;
         self.layer.masksToBounds = YES;
         
-        dispatch_queue_t tcpSocketQueue = dispatch_queue_create("com.manmanlai.tcpSocketQueue", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_queue_t tcpSocketQueue = dispatch_queue_create("com.manmanlai.tcpSocketQueue",DISPATCH_QUEUE_CONCURRENT);
         tcpSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:tcpSocketQueue];
     }
     
