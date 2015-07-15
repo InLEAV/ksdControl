@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RelayVO.h"
+@protocol relayDelegate <NSObject>
+- (void)sendUDPDataRelayCommand:(NSData *)command toPort:(NSInteger)port toHost:(NSString *)host;
+@end
 
 @interface RelayControl : UICollectionViewCell
 
+@property(nonatomic, retain) RelayVO * VO;
+
+@property (nonatomic, retain) id <relayDelegate> delegate;
 
 //背景
 @property (strong, nonatomic) UIImageView* backgroup;

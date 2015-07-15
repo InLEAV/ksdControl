@@ -15,6 +15,8 @@
 {
     self = [super initWithFrame:frame];
     
+    self.VO = [ComputerVO new];
+    
     if (self)
     {
         self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 237, 156)];
@@ -57,17 +59,49 @@
         // 设置圆角
         self.layer.cornerRadius = 8.0;
         self.layer.masksToBounds = YES;
+        
+        
+        
     }
     return self;
 }
 
+-(void)updatePacket:(NSString *)macStr
+{
+    NSArray * macChilds = [macStr componentsSeparatedByString:@"-"];
+
+    for (int i = 0; i < macChilds.count; i++) {
+    
+        NSString * aa = macChilds[i];
+        unsigned char bb = strtoul([aa UTF8String], 0, 16);
+        mac[i] = bb;
+    }
+    for (int j = 0; j < 6; j++) {
+        packet[j] = 0xff;
+    }
+    for (int k = 1; k < 17; k++) {
+        for (int u = 0; u < 6; u++) {
+            packet[k*6 + u] = mac[u];
+        }
+    }
+    NSLog(@"计算完成");
+    NSData *data = [NSData dataWithBytes:packet length:102];
+    [_delegate sendUDPDataComputerCommand:data toPort:self.VO.port toHost:self.VO.ip];
+    NSLog(@"ip:%@",self.VO.ip);
+}
+
+
 -(void)openComputer:(id)sender
 {
     NSLog(@"OpenComputer!");
+//    [self updatePacket:@"8C-DC-D4-36-C3-85"];
+    [self updatePacket:self.VO.addressMac];
+    
 }
 
 -(void)closeComputer:(id)sender
 {
     NSLog(@"CloseComputer!");
+    [_delegate sendUDPComputerCommand:@"computer&1&0" toPort:self.VO.port toHost:self.VO.ip];
 }
 @end

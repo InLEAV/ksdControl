@@ -16,6 +16,8 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    
+    self.VO = [PlayerVO new];
     if (self) {
         
         

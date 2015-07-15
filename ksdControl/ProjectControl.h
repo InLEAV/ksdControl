@@ -16,6 +16,7 @@
     BOOL isShow;
     GCDAsyncSocket *tcpSocket;
     NSString * powerOn, *powerOff, *powerQuery;
+    int _tag1;
 }
 
 @property(nonatomic, retain) ProjectVO * VO;

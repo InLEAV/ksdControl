@@ -7,9 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PlayerVO.h"
+
+@protocol playDelegate <NSObject>
+- (void)sendUDPPlayCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host;
+@end
 
 @interface PlayerControl  : UICollectionViewCell
 
+//模型
+@property(nonatomic, retain) PlayerVO * VO;
+
+//代理
+@property (nonatomic, retain) id <playDelegate> delegate;
 
 //动态改变标题
 @property (strong, nonatomic) UILabel* label;
