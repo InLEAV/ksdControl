@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import "ComputerControl.h"
 
 @interface ViewController ()
 
@@ -25,11 +26,15 @@
    AppDelegate* appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     
     pavilionNameLabel.text = appDelegate.pavilionName;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 @end

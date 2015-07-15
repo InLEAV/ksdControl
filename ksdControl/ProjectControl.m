@@ -16,6 +16,7 @@
 {
     self = [super initWithFrame:frame];
     
+    _tag1 = 200;
     self.VO = [ProjectVO new];
     
     isShow = NO;
@@ -91,7 +92,7 @@
         } else
         {
             NSLog(@"Connected: %@",self.VO.aName);
-            [tcpSocket readDataWithTimeout:-1 tag:0];
+            [tcpSocket readDataWithTimeout:-1 tag:_tag1++];
         }
     }
     else
@@ -127,7 +128,7 @@
 {
     NSLog(@"OpenProject!");
     NSData *data = [@"%1POWR 1\r" dataUsingEncoding:NSUTF8StringEncoding];
-    [tcpSocket writeData:data withTimeout:-1 tag:0];
+    [tcpSocket writeData:data withTimeout:-1 tag:_tag1++];
     
 }
 
@@ -136,7 +137,7 @@
 {
     NSLog(@"CloseProject!");
     NSData *data = [@"%1POWR 0\r" dataUsingEncoding:NSUTF8StringEncoding];
-    [tcpSocket writeData:data withTimeout:-1 tag:0];
+    [tcpSocket writeData:data withTimeout:-1 tag:_tag1++];
 }
 
 

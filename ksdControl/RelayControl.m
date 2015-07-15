@@ -15,6 +15,8 @@
 {
     self = [super initWithFrame:frame];
     
+    self.VO = [RelayVO new];
+    
     if (self)
     {
         self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 237, 156)];
@@ -66,12 +68,44 @@
 -(void)openRelay:(id)sender
 {
     NSLog(@"OpenRelay!");
+    [self setRelayStatus:self.VO.circuit toStatus:1];
+    
 }
 
 //关闭电路
 -(void)closeRelay:(id)sender
 {
     NSLog(@"CloseRelay!");
+    [self setRelayStatus:self.VO.circuit toStatus:0];
+}
+
+-(void)setRelayStatus:(int)index toStatus:(int)status
+{
+    unsigned char packet[8];
+    unsigned char _status;
+    if (status == 0) {
+        _status = 0x11;
+    }
+    else
+    {
+        _status = 0x12;
+    }
+    packet[0] = 0x55;
+    packet[1] = 0x01;
+    packet[2] = _status;
+    packet[3] = 0;
+    packet[4] = 0;
+    packet[5] = index >> 8;
+    packet[6] = index;
+    
+    int sum = 0;
+    for (int i = 0; i <= 6; i++) {
+        sum = sum + packet[i];
+    }
+    packet[7] = (sum % 256);
+    
+    NSData *data = [NSData dataWithBytes:packet length:sizeof(packet)];
+    [_delegate sendUDPDataRelayCommand:data toPort:self.VO.port toHost:self.VO.ip];
 }
 
 

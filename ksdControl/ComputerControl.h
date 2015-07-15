@@ -7,9 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ComputerVO.h"
+@protocol computerDelegate <NSObject>
+- (void)sendUDPDataComputerCommand:(NSData *)command toPort:(NSInteger)port toHost:(NSString *)host;
+- (void)sendUDPComputerCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host;
+@end
 
 @interface ComputerControl : UICollectionViewCell
+{
+   unsigned char mac[6];
+   unsigned char packet[102];
+}
 
+@property(nonatomic, retain) ComputerVO * VO;
+
+@property (nonatomic, retain) id <computerDelegate> delegate;
 
 //背景
 @property (strong, nonatomic) UIImageView* backgroup;
@@ -28,4 +40,6 @@
 
 //关闭电脑
 -(void)closeComputer:(id)sende;
+
+-(void)updatePacket:(NSString *)mac;
 @end

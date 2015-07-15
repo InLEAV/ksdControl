@@ -15,6 +15,7 @@
 		2DB132811ADCFE0500A199C9 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DB132801ADCFE0500A199C9 /* LoginViewController.m */; };
 		2DF43B491B03577000FBA7C7 /* GroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF43B481B03577000FBA7C7 /* GroupViewController.m */; };
 		9E33E1841AF0D258002B90FB /* Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E33E1831AF0D258002B90FB /* Model.m */; };
+		9E4682041B543597009FD6E6 /* Sever.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4682031B543597009FD6E6 /* Sever.m */; };
 		9E92212E1ADBB91700B942CC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E92212D1ADBB91700B942CC /* main.m */; };
 		9E9221311ADBB91700B942CC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221301ADBB91700B942CC /* AppDelegate.m */; };
 		9E9221341ADBB91700B942CC /* ksdControl.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9E9221321ADBB91700B942CC /* ksdControl.xcdatamodeld */; };
@@ -126,6 +127,8 @@
 		2DF43B481B03577000FBA7C7 /* GroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupViewController.m; sourceTree = "<group>"; };
 		9E33E1821AF0D258002B90FB /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		9E33E1831AF0D258002B90FB /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
+		9E4682021B543597009FD6E6 /* Sever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sever.h; sourceTree = "<group>"; };
+		9E4682031B543597009FD6E6 /* Sever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sever.m; sourceTree = "<group>"; };
 		9E9221281ADBB91700B942CC /* ksdControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ksdControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E92212C1ADBB91700B942CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E92212D1ADBB91700B942CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -313,6 +316,8 @@
 				2DB1327F1ADCFE0500A199C9 /* LoginViewController.h */,
 				2DB132801ADCFE0500A199C9 /* LoginViewController.m */,
 				9E9221351ADBB91700B942CC /* ViewController.h */,
+				9E4682021B543597009FD6E6 /* Sever.h */,
+				9E4682031B543597009FD6E6 /* Sever.m */,
 				9E9221361ADBB91700B942CC /* ViewController.m */,
 				9E9221381ADBB91700B942CC /* Main.storyboard */,
 				9E92213B1ADBB91700B942CC /* Images.xcassets */,
@@ -637,6 +642,7 @@
 				9E92212E1ADBB91700B942CC /* main.m in Sources */,
 				9E9221651ADBBF2200B942CC /* ComputerVO.m in Sources */,
 				9E9221371ADBB91700B942CC /* ViewController.m in Sources */,
+				9E4682041B543597009FD6E6 /* Sever.m in Sources */,
 				9EDB018F1AEF2BA200FD74FE /* GroupVO.m in Sources */,
 				9EDB01861AEF261000FD74FE /* ControlViewController.m in Sources */,
 				9EDB01921AEF2BF500FD74FE /* AreaVO.m in Sources */,

@@ -47,6 +47,9 @@ AppDelegate *appDelegate;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    sever = [[Sever alloc] init];
+    [sever initSever:8873];
+    
     SLUICollectionViewLayout *layout = [[SLUICollectionViewLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsMake(40, 15, 40, 15);
     layout.delegate = self;
@@ -259,7 +262,8 @@ AppDelegate *appDelegate;
                                          forIndexPath:indexPath];
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((ComputerVO*)elementArray[rowNo]).aName;
-                
+                cell.VO = ((ComputerVO*)elementArray[rowNo]);
+                cell.delegate = self;
                 return cell;
             }
             else if([elementArray[rowNo] isKindOfClass:[ProjectVO class]])
@@ -283,7 +287,8 @@ AppDelegate *appDelegate;
                                       forIndexPath:indexPath];
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((RelayVO*)elementArray[rowNo]).aName;
-                
+                cell.VO = ((RelayVO*)elementArray[rowNo]);
+                cell.delegate = self;
                 return cell;
                 
             }
@@ -295,7 +300,8 @@ AppDelegate *appDelegate;
                                        forIndexPath:indexPath];
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((PlayerVO*)elementArray[rowNo]).aName;
-                
+                cell.VO = ((PlayerVO*)elementArray[rowNo]);
+                cell.delegate = self;
                 return cell;
                 
             }
@@ -410,6 +416,28 @@ AppDelegate *appDelegate;
     
 }
 
+- (void)sendUDPDataComputerCommand:(NSData *)command toPort:(NSInteger)port toHost:(NSString *)host
+{
+    NSLog(@"发送数据给电脑端");
+    [sever sendDataCommand:command toPort:port toHost:host];
+}
 
+- (void)sendUDPComputerCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host
+{
+    NSLog(@"发送字符串类型给电脑端");
+    [sever sendCommand:command toPort:port toHost:host];
+}
+
+- (void)sendUDPDataRelayCommand:(NSData *)command toPort:(NSInteger)port toHost:(NSString *)host
+{
+    [sever sendDataCommand:command toPort:port toHost:host];
+     NSLog(@"发送数据给继电器端");
+}
+
+- (void)sendUDPPlayCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host
+{
+    [sever sendCommand:command toPort:port toHost:host];
+    NSLog(@"发送字符串类型给继电器端");
+}
 
 @end

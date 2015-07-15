@@ -8,9 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "SLUICollectionViewLayout.h"
+#import "Sever.h"
+#import "ComputerControl.h"
+#import "RelayControl.h"
+#import "PlayerControl.h"
 
 @interface ControlViewController : UIViewController<UICollectionViewDataSource,
-UICollectionViewDelegate,SLUICollectionViewDelegateLayout>
+UICollectionViewDelegate,SLUICollectionViewDelegateLayout,computerDelegate,relayDelegate,playDelegate>
+{
+    Sever * sever;
+}
 
 //单元表格列表，显示展区的元素组件
 @property (strong, nonatomic) IBOutlet UICollectionView *grid;
