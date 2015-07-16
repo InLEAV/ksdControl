@@ -1,5 +1,5 @@
 //
-//  PlayerControl.h
+//  PlayerVideoControl.h
 //  ksdControl
 //
 //  Created by CMQ on 15/5/20.
@@ -13,7 +13,7 @@
 - (void)sendUDPPlayCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host;
 @end
 
-@interface PlayerControl  : UICollectionViewCell
+@interface PlayerVideoControl  : UICollectionViewCell
 
 //模型
 @property(nonatomic, retain) PlayerVO * VO;

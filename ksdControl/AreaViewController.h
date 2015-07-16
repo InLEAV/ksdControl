@@ -52,6 +52,6 @@
 - (IBAction)save:(id)sender;
 
 //添加对象到字典中并返回字典
-- (NSMutableDictionary*)addSubDic:(id)obj;
+- (NSMutableDictionary*)addSubDic:(id)obj isImage:(BOOL)isImage;
 
 @end

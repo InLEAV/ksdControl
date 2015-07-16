@@ -122,7 +122,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
 {
     if(tableView == elementTableView)
     {
-        return elementViewController.elementSections.count -1 ;
+        return elementViewController.elementSections.count -2 ;
     }
     else
     {
@@ -160,6 +160,8 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                 count= [elementViewController.relayDataList count];
                 break;
             case 3:
+                count = 0;
+            case 4:
                 count = 0;
                 //count= [elementViewController.playerDataList count];
                 break;
@@ -222,7 +224,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                 cell.textLabel.text = [[elementViewController.relayDataList objectAtIndex:rowNo] aName];
                 break;
             case 3:
-                cell.textLabel.text = [[elementViewController.playerDataList objectAtIndex:rowNo] aName];
+                cell.textLabel.text = [[elementViewController.playerVideoDataList objectAtIndex:rowNo] aName];
                 break;
             default:
                 break;
@@ -389,7 +391,10 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                     
                     [group.elements addObject:[elementViewController.computerDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
+                    
                 }
+                
+                [self tableView:elementTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:elementDidSelectRowAtIndexPath.row+1 inSection:elementDidSelectRowAtIndexPath.section]];
             }
                 break;
             case 1:
@@ -450,7 +455,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
             {
                 if([containerDataList count] == 0)
                 {
-                    [group.elements addObject:[elementViewController.playerDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
+                    [group.elements addObject:[elementViewController.playerVideoDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
                 }
                 else
@@ -458,7 +463,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                     for (int i=0;i<[containerDataList count];i++)
                     {
                         VO *vo1 =  [containerDataList objectAtIndex:i];
-                        VO *vo2 =  [elementViewController.playerDataList objectAtIndex:elementDidSelectRowAtIndexPath.row];
+                        VO *vo2 =  [elementViewController.playerVideoDataList objectAtIndex:elementDidSelectRowAtIndexPath.row];
                         if ([vo1.aName isEqualToString:vo2.aName])
                         {
                             NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的元素,请重新选择!",vo2.aName]];
@@ -468,7 +473,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                         }
                     }
                     
-                    [group.elements addObject:[elementViewController.playerDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
+                    [group.elements addObject:[elementViewController.playerVideoDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
                 }
             }

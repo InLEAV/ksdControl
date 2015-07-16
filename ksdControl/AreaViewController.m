@@ -138,7 +138,10 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                 count = [elementViewController.relayDataList count];
                 break;
             case 4:
-                count = [elementViewController.playerDataList count];
+                count = [elementViewController.playerVideoDataList count];
+                break;
+            case 5:
+                count = [elementViewController.playerImageDataList count];
                 break;
             default:
                 break;
@@ -200,8 +203,12 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                 cell.textLabel.text = [[elementViewController.relayDataList objectAtIndex:rowNo] aName];
                 break;
             case 4:
-                cell.textLabel.text = [[elementViewController.playerDataList objectAtIndex:rowNo] aName];
+                cell.textLabel.text = [[elementViewController.playerVideoDataList objectAtIndex:rowNo] aName];
                 break;
+            case 5:
+                cell.textLabel.text = [[elementViewController.playerImageDataList objectAtIndex:rowNo] aName];
+                break;
+
             default:
                 break;
         }
@@ -240,8 +247,12 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                 sectionName = @"电路";
                 break;
             case 4:
-                sectionName = @"播放器";
+                sectionName = @"视频播放器";
                 break;
+            case 5:
+                sectionName = @"图片播放器";
+                break;
+
             default:
                 break;
         }
@@ -471,7 +482,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
             case 4:
                 if([containerDataList count] == 0)
                 {
-                    [area.groups addObject:[elementViewController.playerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [area.groups addObject:[elementViewController.playerVideoDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
                 else
@@ -479,7 +490,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     for (int i=0;i<[containerDataList count];i++)
                     {
                         VO *vo1 =  [containerDataList objectAtIndex:i];
-                        VO *vo2 =  [elementViewController.playerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row];
+                        VO *vo2 =  [elementViewController.playerVideoDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row];
                         if ([vo1.aName isEqualToString:vo2.aName])
                         {
                             NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合,请重新选择!",vo2.aName]];
@@ -488,11 +499,37 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                             return;
                         }
                     }
-                    [area.groups addObject:[elementViewController.playerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [area.groups addObject:[elementViewController.playerVideoDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
 
                 break;
+            case 5:
+                if([containerDataList count] == 0)
+                {
+                    [area.groups addObject:[elementViewController.playerImageDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+                else
+                {
+                    for (int i=0;i<[containerDataList count];i++)
+                    {
+                        VO *vo1 =  [containerDataList objectAtIndex:i];
+                        VO *vo2 =  [elementViewController.playerImageDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row];
+                        if ([vo1.aName isEqualToString:vo2.aName])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的组合,请重新选择!",vo2.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            
+                            return;
+                        }
+                    }
+                    [area.groups addObject:[elementViewController.playerImageDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
+                    [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
+                }
+                
+                break;
+
             default:
                 break;
         }
@@ -609,7 +646,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                 {
                     //保存元素，命名“元素”，与“元素”名称区别，便于解析提取数据
                     NSMutableDictionary *sub3Dict = [NSMutableDictionary dictionary];
-                    sub3Dict = [self addSubDic:group.elements[k]];
+                    sub3Dict = [self addSubDic:group.elements[k] isImage:FALSE];
                     
                     NSString* elementName = [NSString stringWithFormat:@"元素%d",k];
                     [sub2Dict setValue:sub3Dict forKey:elementName];
@@ -624,7 +661,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
             {
                 //保存元素，命名“组元”，便于解析提取数据
                 NSMutableDictionary *sub3Dict = [NSMutableDictionary dictionary];
-                sub3Dict = [self addSubDic:area.groups[j]];
+                sub3Dict = [self addSubDic:area.groups[j] isImage:FALSE];
               
                 NSString* elementName = [NSString stringWithFormat:@"组元%d",j];
                 [sub1Dict setValue:sub3Dict forKey:elementName];
@@ -648,7 +685,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     for(int i =0;i < [elementViewController.computerDataList count];i++)
     {
         NSMutableDictionary *subDict = [NSMutableDictionary dictionary];
-        subDict = [self addSubDic:elementViewController.computerDataList[i]];
+        subDict = [self addSubDic:elementViewController.computerDataList[i] isImage:FALSE];
         
         NSString* elementName = [NSString stringWithFormat:@"元素%d",i];
         [elementDict setValue:subDict forKey:elementName];
@@ -659,7 +696,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     for(int i =0;i < [elementViewController.projectorDataList count];i++)
     {
         NSMutableDictionary *subDict = [NSMutableDictionary dictionary];
-        subDict = [self addSubDic:elementViewController.projectorDataList[i]];
+        subDict = [self addSubDic:elementViewController.projectorDataList[i] isImage:FALSE];
         
         NSString* elementName = [NSString stringWithFormat:@"元素%d",i];
         [elementDict setValue:subDict forKey:elementName];
@@ -670,7 +707,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     for(int i =0;i < [elementViewController.relayDataList count];i++)
     {
         NSMutableDictionary *subDict = [NSMutableDictionary dictionary];
-        subDict = [self addSubDic:elementViewController.relayDataList[i]];
+        subDict = [self addSubDic:elementViewController.relayDataList[i] isImage:FALSE];
         
         NSString* elementName = [NSString stringWithFormat:@"元素%d",i];
         [elementDict setValue:subDict forKey:elementName];
@@ -678,15 +715,26 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     [mutableElementDict setValue:elementDict forKey:@"电路"];
     
     elementDict = [NSMutableDictionary dictionary];
-    for(int i =0;i < [elementViewController.playerDataList count];i++)
+    for(int i =0;i < [elementViewController.playerVideoDataList count];i++)
     {
         NSMutableDictionary *subDict = [NSMutableDictionary dictionary];
-        subDict = [self addSubDic:elementViewController.playerDataList[i]];
+        subDict = [self addSubDic:elementViewController.playerVideoDataList[i] isImage:FALSE];
         
         NSString* elementName = [NSString stringWithFormat:@"元素%d",i];
         [elementDict setValue:subDict forKey:elementName];
     }
-    [mutableElementDict setValue:elementDict forKey:@"播放器"];
+    [mutableElementDict setValue:elementDict forKey:@"视频播放器"];
+    
+    elementDict = [NSMutableDictionary dictionary];
+    for(int i =0;i < [elementViewController.playerImageDataList count];i++)
+    {
+        NSMutableDictionary *subDict = [NSMutableDictionary dictionary];
+        subDict = [self addSubDic:elementViewController.playerImageDataList[i] isImage:TRUE];
+        
+        NSString* elementName = [NSString stringWithFormat:@"元素%d",i];
+        [elementDict setValue:subDict forKey:elementName];
+    }
+    [mutableElementDict setValue:elementDict forKey:@"图片播放器"];
     
     //保存展厅名称
     [mutableElementDict setValue:pavilionName.text forKey:@"展厅名"];
@@ -698,7 +746,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
 }
 
 //添加对象到字典中并返回字典
-- (NSMutableDictionary*)addSubDic:(id)obj
+- (NSMutableDictionary*)addSubDic:(id)obj isImage:(BOOL)isImage
 {
     NSMutableDictionary* sub = [NSMutableDictionary dictionary];
     
@@ -717,9 +765,18 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     }
     else if([obj isMemberOfClass:PlayerVO.class])
     {
-        //保存播放类型设置
-        PlayerVO *player = (PlayerVO*)(obj);
-        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"播放类型",@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.isPic],@"是否播放图片",nil];
+        if(!isImage)
+        {
+           //保存播放类型设置
+            PlayerVO *player = (PlayerVO*)(obj);
+            sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"视频播放类型",@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.playerID],@"ID",[NSNumber numberWithBool:player.count],@"数量",[NSNumber numberWithBool:player.isPic],@"是否图片",nil];
+        }
+        else
+        {
+            //保存播放类型设置
+            PlayerVO *player = (PlayerVO*)(obj);
+            sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"图片播放类型",@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.playerID],@"ID",[NSNumber numberWithBool:player.count],@"数量",[NSNumber numberWithBool:player.isPic],@"是否图片",nil];
+        }
     }
     else if([obj isMemberOfClass:RelayVO.class])
     {
