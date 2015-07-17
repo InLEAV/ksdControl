@@ -107,19 +107,22 @@
 //播放视频
 -(void)playVideo :(id)sender
 {
-    
+    NSString * msg = [NSString stringWithFormat:@"%d&play&0",self.VO.playerID];
+    [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
 //暂停视频
 -(void)pauseVideo :(id)sende
 {
-    
+    NSString * msg = [NSString stringWithFormat:@"%d&pause&0",self.VO.playerID];
+    [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
 //停止视频
 -(void)stopVideo :(id)sende
 {
-    
+    NSString * msg = [NSString stringWithFormat:@"%d&stop&0",self.VO.playerID];
+    [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
 

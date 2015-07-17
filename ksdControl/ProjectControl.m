@@ -19,7 +19,7 @@
     _tag1 = 200;
     self.VO = [ProjectVO new];
     
-    isShow = NO;
+//    isShow = YES;
     
     powerOff = [NSString stringWithFormat:@"%1%POWR 0\r"];
     powerOn = [NSString stringWithFormat:@"%1%POWR 1\r"];
@@ -99,6 +99,7 @@
     {
          NSLog(@"DisConnected: %@",self.VO.aName);
         [tcpSocket disconnect];
+        
     }
 }
 
@@ -111,6 +112,9 @@
 -(void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err
 {
     NSLog(@"socket已断开: %@",self.VO.aName);
+    if (isShow == YES) {
+        [self setIsShow:YES];
+    }
 }
 // TCP socket已写入数据
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
