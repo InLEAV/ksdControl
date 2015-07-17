@@ -512,9 +512,10 @@
                                         <rect key="frame" x="245" y="138" width="215" height="29"/>
                                         <segments>
                                             <segment title="电脑"/>
-                                            <segment title="投影机"/>
+                                            <segment title="投影"/>
                                             <segment title="电路"/>
-                                            <segment title="播放器"/>
+                                            <segment title="视频"/>
+                                            <segment title="图片"/>
                                         </segments>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
@@ -551,7 +552,7 @@
                                             <rect key="frame" x="222" y="524" width="80" height="30"/>
                                         </variation>
                                     </label>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="图片" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-ms-NfZ" userLabel="Picture Label">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ID" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFn-ms-NfZ" userLabel="ID Label">
                                         <rect key="frame" x="160" y="385" width="50" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -616,12 +617,6 @@
                                             <action selector="finishEdit:" destination="B15-ob-9aX" eventType="editingDidEndOnExit" id="ZxX-wV-Pby"/>
                                         </connections>
                                     </textField>
-                                    <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="APt-mB-Mts" userLabel="Picture Switch">
-                                        <rect key="frame" x="323" y="385" width="51" height="31"/>
-                                        <variation key="heightClass=regular-widthClass=regular" fixedFrame="YES">
-                                            <rect key="frame" x="426" y="523" width="51" height="31"/>
-                                        </variation>
-                                    </switch>
                                     <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" borderStyle="roundedRect" placeholder="请输入继电器路数" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZE-Xc-NXo" userLabel="Relay Text Field">
                                         <rect key="frame" x="245" y="385" width="215" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -675,7 +670,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcg-QV-p4d">
-                                        <rect key="frame" x="270" y="465" width="61" height="36"/>
+                                        <rect key="frame" x="270" y="515" width="61" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="61" id="de4-3X-wfV"/>
                                         </constraints>
@@ -688,11 +683,35 @@
                                             <action selector="addElement:" destination="B15-ob-9aX" eventType="touchUpInside" id="eFG-mx-DTX"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0pI-Ht-bQ2" userLabel="ID Text Field">
+                                        <rect key="frame" x="245" y="385" width="215" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="215" id="pz1-ge-A8s"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数量" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="55A-is-uNW">
+                                        <rect key="frame" x="160" y="444" width="50" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uiq-2F-sJm" userLabel="Count Text Field">
+                                        <rect key="frame" x="245" y="444" width="215" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="215" id="ogy-ze-ajc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="vcg-QV-p4d" firstAttribute="top" secondItem="pxh-wv-LSa" secondAttribute="bottom" constant="50" id="1x4-2v-xNF"/>
+                                    <constraint firstItem="vcg-QV-p4d" firstAttribute="top" secondItem="pxh-wv-LSa" secondAttribute="bottom" constant="100" id="1x4-2v-xNF"/>
                                     <constraint firstItem="UbU-JZ-EPr" firstAttribute="trailing" secondItem="rX5-Az-JAR" secondAttribute="trailing" id="2a4-p2-A5w"/>
+                                    <constraint firstItem="55A-is-uNW" firstAttribute="leading" secondItem="bFn-ms-NfZ" secondAttribute="leading" id="3SA-AE-Rq8"/>
+                                    <constraint firstItem="Yqn-Fr-eqb" firstAttribute="leading" secondItem="Uiq-2F-sJm" secondAttribute="leading" id="3T9-Jy-Gvw"/>
                                     <constraint firstItem="UbU-JZ-EPr" firstAttribute="leading" secondItem="rX5-Az-JAR" secondAttribute="leading" id="3UZ-8q-V3Z"/>
                                     <constraint firstItem="1IE-We-Dwg" firstAttribute="top" secondItem="27c-nM-bIk" secondAttribute="top" id="4nJ-kz-vgK"/>
                                     <constraint firstItem="Xpm-UR-54A" firstAttribute="leading" secondItem="1IE-We-Dwg" secondAttribute="trailing" id="5C7-eD-tTi"/>
@@ -704,7 +723,6 @@
                                     <constraint firstItem="di5-X5-Y7I" firstAttribute="top" secondItem="Tp9-9O-Vkh" secondAttribute="bottom" constant="26" id="Cf3-op-8yd"/>
                                     <constraint firstItem="BoW-Sr-xea" firstAttribute="leading" secondItem="di5-X5-Y7I" secondAttribute="trailing" constant="35" id="CiG-VP-XNh"/>
                                     <constraint firstItem="YqT-ec-50R" firstAttribute="top" secondItem="Hqa-Oi-duw" secondAttribute="bottom" constant="33" id="EwU-1c-lTv"/>
-                                    <constraint firstItem="APt-mB-Mts" firstAttribute="top" secondItem="Yqn-Fr-eqb" secondAttribute="bottom" constant="29" id="F9w-cA-prh"/>
                                     <constraint firstItem="Yqn-Fr-eqb" firstAttribute="top" secondItem="YqT-ec-50R" secondAttribute="bottom" constant="29" id="GCA-rJ-71v"/>
                                     <constraint firstItem="iFg-RR-Dr9" firstAttribute="top" secondItem="UbU-JZ-EPr" secondAttribute="bottom" constant="29" id="GNl-Q2-S6H"/>
                                     <constraint firstItem="1IE-We-Dwg" firstAttribute="leading" secondItem="27c-nM-bIk" secondAttribute="leading" constant="-200" id="IWw-5U-iXT"/>
@@ -713,17 +731,20 @@
                                     <constraint firstItem="Hqa-Oi-duw" firstAttribute="leading" secondItem="YqT-ec-50R" secondAttribute="leading" id="PCR-85-n8o"/>
                                     <constraint firstItem="YqT-ec-50R" firstAttribute="leading" secondItem="Yqn-Fr-eqb" secondAttribute="leading" id="PGf-ez-EMs"/>
                                     <constraint firstItem="NLx-u9-8Cq" firstAttribute="top" secondItem="UbU-JZ-EPr" secondAttribute="bottom" constant="29" id="QYB-qI-o5O"/>
-                                    <constraint firstItem="APt-mB-Mts" firstAttribute="centerX" secondItem="Yqn-Fr-eqb" secondAttribute="centerX" constant="-5" id="RUd-aU-Dyt"/>
                                     <constraint firstItem="iFg-RR-Dr9" firstAttribute="centerX" secondItem="UbU-JZ-EPr" secondAttribute="centerX" id="Tzh-0i-0T7"/>
                                     <constraint firstItem="UbU-JZ-EPr" firstAttribute="firstBaseline" secondItem="Yqn-Fr-eqb" secondAttribute="baseline" id="UD3-kh-BrT"/>
                                     <constraint firstItem="NLx-u9-8Cq" firstAttribute="centerX" secondItem="UbU-JZ-EPr" secondAttribute="centerX" id="VFi-ZK-Eb4"/>
                                     <constraint firstItem="Hqa-Oi-duw" firstAttribute="top" secondItem="BoW-Sr-xea" secondAttribute="bottom" constant="38" id="Vai-sk-TvW"/>
+                                    <constraint firstItem="0pI-Ht-bQ2" firstAttribute="trailing" secondItem="pxh-wv-LSa" secondAttribute="trailing" id="Vru-is-T0g"/>
                                     <constraint firstItem="Hqa-Oi-duw" firstAttribute="width" secondItem="YqT-ec-50R" secondAttribute="width" id="W6x-Pa-63j"/>
                                     <constraint firstItem="vcg-QV-p4d" firstAttribute="centerX" secondItem="Tp9-9O-Vkh" secondAttribute="centerX" id="WHv-eh-M1i"/>
                                     <constraint firstAttribute="bottom" secondItem="1IE-We-Dwg" secondAttribute="bottom" id="XjW-y0-i0V"/>
                                     <constraint firstItem="bFn-ms-NfZ" firstAttribute="bottom" secondItem="uZE-Xc-NXo" secondAttribute="bottom" id="YVF-Yf-U5F"/>
                                     <constraint firstItem="pxh-wv-LSa" firstAttribute="width" secondItem="Yqn-Fr-eqb" secondAttribute="width" id="aMf-Co-uox"/>
                                     <constraint firstItem="bFn-ms-NfZ" firstAttribute="trailing" secondItem="UbU-JZ-EPr" secondAttribute="trailing" id="agy-QO-ae6"/>
+                                    <constraint firstItem="0pI-Ht-bQ2" firstAttribute="baseline" secondItem="uZE-Xc-NXo" secondAttribute="baseline" id="bi7-DR-F61"/>
+                                    <constraint firstItem="0pI-Ht-bQ2" firstAttribute="leading" secondItem="uZE-Xc-NXo" secondAttribute="leading" id="bjL-bJ-9de"/>
+                                    <constraint firstItem="55A-is-uNW" firstAttribute="top" secondItem="bFn-ms-NfZ" secondAttribute="bottom" constant="29" id="eca-us-tDM"/>
                                     <constraint firstItem="bFn-ms-NfZ" firstAttribute="leading" secondItem="UbU-JZ-EPr" secondAttribute="leading" id="eyh-dt-oxR"/>
                                     <constraint firstItem="Xpm-UR-54A" firstAttribute="centerY" secondItem="1IE-We-Dwg" secondAttribute="centerY" constant="-9.5" id="fNT-iZ-wIm"/>
                                     <constraint firstItem="rX5-Az-JAR" firstAttribute="firstBaseline" secondItem="YqT-ec-50R" secondAttribute="baseline" id="fgD-mk-oCQ"/>
@@ -740,6 +761,8 @@
                                     <constraint firstItem="BoW-Sr-xea" firstAttribute="leading" secondItem="Tp9-9O-Vkh" secondAttribute="leading" constant="-5" id="s1N-aK-Isb"/>
                                     <constraint firstItem="UbU-JZ-EPr" firstAttribute="bottom" secondItem="Yqn-Fr-eqb" secondAttribute="bottom" id="sE3-X4-SFo"/>
                                     <constraint firstItem="Hqa-Oi-duw" firstAttribute="width" secondItem="BoW-Sr-xea" secondAttribute="width" id="uBN-W3-NWB"/>
+                                    <constraint firstItem="55A-is-uNW" firstAttribute="trailing" secondItem="bFn-ms-NfZ" secondAttribute="trailing" id="viY-Pe-CBb"/>
+                                    <constraint firstItem="Uiq-2F-sJm" firstAttribute="top" secondItem="0pI-Ht-bQ2" secondAttribute="bottom" constant="29" id="wRA-eZ-QGU"/>
                                 </constraints>
                                 <variation key="widthClass=regular" fixedFrame="YES">
                                     <rect key="frame" x="-4" y="64" width="808" height="551"/>
@@ -772,13 +795,15 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="addElementBtn" destination="vcg-QV-p4d" id="nOm-Kw-H5h"/>
+                        <outlet property="countLable" destination="55A-is-uNW" id="t5I-sa-nJh"/>
+                        <outlet property="countUITextField" destination="Uiq-2F-sJm" id="2r0-Vd-o6U"/>
                         <outlet property="elementTableView" destination="1IE-We-Dwg" id="GXi-LJ-Zu9"/>
+                        <outlet property="idLabel" destination="bFn-ms-NfZ" id="Vkn-Yc-WSK"/>
+                        <outlet property="idUITextField" destination="0pI-Ht-bQ2" id="uCp-aJ-X01"/>
                         <outlet property="ipTextField" destination="YqT-ec-50R" id="quG-a4-UlK"/>
                         <outlet property="macLabel" destination="iFg-RR-Dr9" id="Drh-Xk-dW1"/>
                         <outlet property="macUITextField" destination="pxh-wv-LSa" id="Osf-Jq-NDm"/>
                         <outlet property="nameTextField" destination="Hqa-Oi-duw" id="F5e-nv-oHN"/>
-                        <outlet property="pictureLabel" destination="bFn-ms-NfZ" id="9cw-fy-4ot"/>
-                        <outlet property="pictureUISwitch" destination="APt-mB-Mts" id="kSU-zd-llR"/>
                         <outlet property="portTextField" destination="Yqn-Fr-eqb" id="mp0-Fa-ruF"/>
                         <outlet property="relayLabel" destination="NLx-u9-8Cq" id="q1A-dc-zhe"/>
                         <outlet property="relayUITextField" destination="uZE-Xc-NXo" id="JnD-5L-lJe"/>

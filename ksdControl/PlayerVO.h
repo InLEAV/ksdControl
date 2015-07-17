@@ -15,6 +15,8 @@
 
 @property int playerID;
 
+@property int count;
+
 @property BOOL isPic;
 
 @end

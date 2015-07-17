@@ -10,7 +10,7 @@
 #import "JsonControl.h"
 #import "ComputerControl.h"
 #import "ProjectControl.h"
-#import "PlayerControl.h"
+#import "PlayerVideoControl.h"
 #import "RelayControl.h"
 #import "AppDelegate.h"
 #import "AreaVO.h"
@@ -63,7 +63,8 @@ AppDelegate *appDelegate;
     //为该控件的UICollectionView注册单元格控件
     [self.grid registerClass:[ComputerControl class] forCellWithReuseIdentifier:@"computerCellId"];
     [self.grid registerClass:[ProjectControl class] forCellWithReuseIdentifier:@"projectCellId"];
-    [self.grid registerClass:[PlayerControl class] forCellWithReuseIdentifier:@"playerCellId"];
+    [self.grid registerClass:[PlayerVideoControl class] forCellWithReuseIdentifier:@"playerVideoCellId"];
+    [self.grid registerClass:[PlayerImageControl class] forCellWithReuseIdentifier:@"playerImageCellId"];
     [self.grid registerClass:[RelayControl class] forCellWithReuseIdentifier:@"relayCellId"];
     [self.grid registerClass:[GroupControl class] forCellWithReuseIdentifier:@"groupCellId"];
     
@@ -117,7 +118,6 @@ AppDelegate *appDelegate;
         [self updateLayout];
         
         //[self collectionView:self.horizontalList didSelectItemAtIndexPath:indexPathArea];
-
     }
 }
 
@@ -138,7 +138,6 @@ AppDelegate *appDelegate;
     }
     
     return array;
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -168,7 +167,7 @@ AppDelegate *appDelegate;
 {
     SLUICollectionViewLayout *layout = (SLUICollectionViewLayout *)self.grid.collectionViewLayout;
     UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-    if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight  )
+    if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight)
     {
         
         layout.rowCount =  3;
@@ -294,15 +293,34 @@ AppDelegate *appDelegate;
             }
             else if([elementArray[rowNo] isKindOfClass:[PlayerVO class]])
             {
-                //生产播放控制单元格
-                PlayerControl *cell = [collectionView
-                                       dequeueReusableCellWithReuseIdentifier:@"playerCellId"
-                                       forIndexPath:indexPath];
-                cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
-                cell.label.text = ((PlayerVO*)elementArray[rowNo]).aName;
-                cell.VO = ((PlayerVO*)elementArray[rowNo]);
-                cell.delegate = self;
-                return cell;
+                
+                PlayerVO *player =((PlayerVO*)elementArray[rowNo]);
+                
+                if(!player.isPic)
+                {
+                    //生产播放控制单元格
+                    PlayerVideoControl *cell = [collectionView
+                                                dequeueReusableCellWithReuseIdentifier:@"playerVideoCellId"
+                                                forIndexPath:indexPath];
+                    cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
+                    cell.label.text = player.aName;
+                    cell.VO = player;
+                    cell.delegate = self;
+                    return cell;
+
+                }
+                else
+                {
+                    //生产播放控制单元格
+                    PlayerImageControl *cell = [collectionView
+                                                dequeueReusableCellWithReuseIdentifier:@"playerImageCellId"
+                                                forIndexPath:indexPath];
+                    cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
+                    cell.label.text = player.aName;
+                   
+                    return cell;
+
+                }
                 
             }
             else if([elementArray[rowNo] isKindOfClass:[GroupVO class]])
@@ -313,10 +331,10 @@ AppDelegate *appDelegate;
                                        forIndexPath:indexPath];
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((GroupVO*)elementArray[rowNo]).aName;
-//                for (int j =0; j < ((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements.count; j++)
-//                {
-//                    [array addObject:((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements[j]];
-//                }
+//              for (int j =0; j < ((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements.count; j++)
+//              {
+//                  [array addObject:((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements[j]];
+//              }
 
                 return cell;
                 
@@ -355,7 +373,17 @@ AppDelegate *appDelegate;
         {
             if([elementArray[indexPath.item] isKindOfClass:[PlayerVO class]])
             {
-                width = 488;
+                
+                PlayerVO *player =((PlayerVO*)elementArray[indexPath.item]);
+                if(!player.isPic)
+                {
+                    
+                    width = 488;
+                }
+                else
+                {
+                    width = 237;
+                }
             }
             else
             {

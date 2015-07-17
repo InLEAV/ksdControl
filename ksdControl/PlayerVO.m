@@ -10,6 +10,6 @@
 
 @implementation PlayerVO
 
-@synthesize isPic,playerID;
+@synthesize count,playerID,isPic;
 
 @end

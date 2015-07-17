@@ -15,7 +15,8 @@
 
 @property (nonatomic, retain) NSMutableArray *computerDataList;
 @property (nonatomic, retain) NSMutableArray *projectorDataList;
-@property (nonatomic, retain) NSMutableArray *playerDataList;
+@property (nonatomic, retain) NSMutableArray *playerVideoDataList;
+@property (nonatomic, retain) NSMutableArray *playerImageDataList;
 @property (nonatomic, retain) NSMutableArray *relayDataList;
 
 //元素类别数组
@@ -48,19 +49,25 @@
 @property (strong, nonatomic) IBOutlet UILabel *macLabel;
 
 //图片标签名
-@property (strong, nonatomic) IBOutlet UILabel *pictureLabel;
+@property (strong, nonatomic) IBOutlet UILabel *idLabel;
 
 //继电器标签
 @property (strong, nonatomic) IBOutlet UILabel *relayLabel;
+
+//视频或图片总数标签
+@property (weak, nonatomic) IBOutlet UILabel *countLable;
 
 //mac地址输入框
 @property (strong, nonatomic) IBOutlet UITextField *macUITextField;
 
 //图片切换开关
-@property (strong, nonatomic) IBOutlet UISwitch *pictureUISwitch;
+//@property (strong, nonatomic) IBOutlet UISwitch *pictureUISwitch;
+@property (weak, nonatomic) IBOutlet UITextField *idUITextField;
 
 //电路输入框
 @property (strong, nonatomic) IBOutlet UITextField *relayUITextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *countUITextField;
 
 //初始化列表
 - (void)initTable;
@@ -87,7 +94,7 @@
 - (IBAction)segmentedChanged:(id)sender;
 
 //创建新元素，编辑修改元素
-- (void)createElement:(NSString*)className insert:(BOOL)isInsert replaceIndex:(int)index;
+- (void)createElement:(NSString*)className insert:(BOOL)isInsert replaceIndex:(int)index isImage:(BOOL)isImage;
 
 //移动窗口
 - (void)moveWindow:(UIView*)uiView desPoint:(CGPoint)point isCloseWin:(BOOL)isClose;

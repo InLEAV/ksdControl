@@ -126,19 +126,36 @@
                             [area.groups addObject:project];
                         }
                         
-                        if([type isEqualToString:@"播放类型"])
+                        if([type isEqualToString:@"视频播放类型"])
                         {
                             NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
                             PlayerVO* player = [PlayerVO new];
                             [player initVO];
-                            [player setAType:@"播放器类型"];
+                            [player setAType:@"视频播放器类型"];
                             [player setIp:[gDict objectForKey:@"ip"]];
                             [player setAName:[gDict objectForKey:@"name"]];
                             [player setPort:[[gDict objectForKey:@"port"] intValue]] ;
-                            [player setIsPic:[[gDict objectForKey:@"是否播放图片"] boolValue]];
-                            
+                            [player setPlayerID:[[gDict objectForKey:@"ID"] intValue]];
+                            [player setCount:[[gDict objectForKey:@"数量"] intValue]];
+                            [player setIsPic:[[gDict objectForKey:@"是否图片"] boolValue]];
                             [area.groups addObject:player];
                         }
+                        
+                        if([type isEqualToString:@"图片播放类型"])
+                        {
+                            NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
+                            PlayerVO* player = [PlayerVO new];
+                            [player initVO];
+                            [player setAType:@"图片播放器类型"];
+                            [player setIp:[gDict objectForKey:@"ip"]];
+                            [player setAName:[gDict objectForKey:@"name"]];
+                            [player setPort:[[gDict objectForKey:@"port"] intValue]] ;
+                            [player setPlayerID:[[gDict objectForKey:@"ID"] intValue]];
+                            [player setCount:[[gDict objectForKey:@"数量"] intValue]];
+                            [player setIsPic:[[gDict objectForKey:@"是否图片"] boolValue]];
+                            [area.groups addObject:player];
+                        }
+
                         
                         if([type isEqualToString:@"电路类型"])
                         {
@@ -196,17 +213,32 @@
                                 [group.elements addObject:project];
                             }
                             
-                            if([type isEqualToString:@"播放类型"])
+                            if([type isEqualToString:@"视频播放类型"])
                             {
                                 PlayerVO* player = [PlayerVO new];
                                 [player initVO];
-                                [player setAType:@"播放器类型"];
+                                [player setAType:@"视频播放器类型"];
                                 [player setIp:[eDict objectForKey:@"ip"]];
                                 [player setAName:[eDict objectForKey:@"name"]];
                                 [player setPort:[[eDict objectForKey:@"port"] intValue]] ;
-                                [player setIsPic:[[eDict objectForKey:@"是否播放图片"] boolValue]];
+                                [player setPlayerID:[[eDict objectForKey:@"ID"] intValue]];
+                                [player setCount:[[eDict objectForKey:@"数量"] intValue]];
                                 [group.elements addObject:player];
                             }
+                            
+                            if([type isEqualToString:@"图片播放类型"])
+                            {
+                                PlayerVO* player = [PlayerVO new];
+                                [player initVO];
+                                [player setAType:@"图片播放器类型"];
+                                [player setIp:[eDict objectForKey:@"ip"]];
+                                [player setAName:[eDict objectForKey:@"name"]];
+                                [player setPort:[[eDict objectForKey:@"port"] intValue]] ;
+                                [player setPlayerID:[[eDict objectForKey:@"ID"] intValue]];
+                                [player setCount:[[eDict objectForKey:@"数量"] intValue]];
+                                [group.elements addObject:player];
+                            }
+
                             
                             if([type isEqualToString:@"电路类型"])
                             {

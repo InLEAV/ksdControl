@@ -23,9 +23,9 @@
 
 @implementation ElementViewController
 
-@synthesize elementTableView,computerDataList,projectorDataList,playerDataList,relayDataList;
+@synthesize elementTableView,computerDataList,projectorDataList,playerVideoDataList,playerImageDataList,relayDataList;
 
-@synthesize setTypeLabel,nameTextField,ipTextField,macUITextField,pictureUISwitch,relayUITextField,macLabel,pictureLabel,relayLabel,typeSegmented,portTextField;
+@synthesize setTypeLabel,nameTextField,ipTextField,macUITextField,idUITextField,relayUITextField,macLabel,idLabel,relayLabel,typeSegmented,portTextField,countLable,countUITextField;
 
 @synthesize elementSections,curSelecetIndexPath;
 
@@ -57,12 +57,13 @@ BOOL isViewOn;
 -(void)initTable
 {
     //初始化元素列表4个分区名称
-    elementSections = [[NSArray alloc]initWithObjects:@"电脑",@"投影机",@"电路",@"播放器", nil];
+    elementSections = [[NSArray alloc]initWithObjects:@"电脑",@"投影机",@"电路",@"视频播放器",@"图片播放器", nil];
     
     //初始化4种类型的数组
     computerDataList = [[NSMutableArray alloc] initWithObjects:nil];
     projectorDataList = [[NSMutableArray alloc] initWithObjects:nil];
-    playerDataList = [[NSMutableArray alloc] initWithObjects:nil];
+    playerVideoDataList = [[NSMutableArray alloc] initWithObjects:nil];
+    playerImageDataList = [[NSMutableArray alloc] initWithObjects:nil];
     relayDataList = [[NSMutableArray alloc] initWithObjects:nil];
     
     [self LoadElementJson];
@@ -136,21 +137,39 @@ BOOL isViewOn;
             [relayDataList addObject:relay];
         }
         
-        NSDictionary *playerDict = [dict objectForKey:@"播放器"];
-        for(int i = 0;i < [playerDict count];i++)
+        NSDictionary *playerVideoDict = [dict objectForKey:@"视频播放器"];
+        for(int i = 0;i < [playerVideoDict count];i++)
         {
             NSString* pName = [NSString stringWithFormat:@"元素%d",i];
-            NSDictionary *pDect = [playerDict objectForKey:pName];
+            NSDictionary *pDect = [playerVideoDict objectForKey:pName];
             PlayerVO* player = [PlayerVO new];
             [player initVO];
-            [player setAType:@"播放器类型"];
+            [player setAType:@"视频播放器类型"];
             [player setIp:[pDect objectForKey:@"ip"]];
             [player setAName:[pDect objectForKey:@"name"]];
             [player setPort:[[pDect objectForKey:@"port"] intValue]] ;
-            [player setIsPic:[[pDect objectForKey:@"是否播放图片"] boolValue]];
-            [playerDataList addObject:player];
+            [player setPlayerID:[[pDect objectForKey:@"ID"] intValue]];
+            [player setCount:[[pDect objectForKey:@"数量"] intValue]];
+            [player setIsPic:[[pDect objectForKey:@"是否图片"] boolValue]];
+            [playerVideoDataList addObject:player];
         }
 
+        NSDictionary *playerImageDict = [dict objectForKey:@"图片播放器"];
+        for(int i = 0;i < [playerImageDict count];i++)
+        {
+            NSString* pName = [NSString stringWithFormat:@"元素%d",i];
+            NSDictionary *pDect = [playerImageDict objectForKey:pName];
+            PlayerVO* player = [PlayerVO new];
+            [player initVO];
+            [player setAType:@"图片播放器类型"];
+            [player setIp:[pDect objectForKey:@"ip"]];
+            [player setAName:[pDect objectForKey:@"name"]];
+            [player setPort:[[pDect objectForKey:@"port"] intValue]] ;
+            [player setPlayerID:[[pDect objectForKey:@"ID"] intValue]];
+            [player setCount:[[pDect objectForKey:@"数量"] intValue]];
+            [player setIsPic:[[pDect objectForKey:@"是否图片"] boolValue]];
+            [playerImageDataList addObject:player];
+        }
     }
 
 }
@@ -197,8 +216,12 @@ BOOL isViewOn;
             return [relayDataList count];
             break;
         case 3:
-            return [playerDataList count];
+            return [playerVideoDataList count];
             break;
+        case 4:
+            return [playerImageDataList count];
+            break;
+
         default:
             break;
     }
@@ -245,7 +268,10 @@ BOOL isViewOn;
             cell.textLabel.text = [[relayDataList objectAtIndex:rowNo] aName];
             break;
         case 3:
-            cell.textLabel.text = [[playerDataList objectAtIndex:rowNo] aName];
+            cell.textLabel.text = [[playerVideoDataList objectAtIndex:rowNo] aName];
+            break;
+        case 4:
+            cell.textLabel.text = [[playerImageDataList objectAtIndex:rowNo] aName];
             break;
         default:
             break;
@@ -297,7 +323,10 @@ BOOL isViewOn;
                 [relayDataList removeObjectAtIndex: rowNo];
                 break;
             case 3:
-                [playerDataList removeObjectAtIndex: rowNo];
+                [playerVideoDataList removeObjectAtIndex: rowNo];
+                break;
+            case 4:
+                [playerImageDataList removeObjectAtIndex: rowNo];
                 break;
             default:
                 break;
@@ -328,8 +357,12 @@ BOOL isViewOn;
                                     atIndex:indexPath.row + 1];
                 break;
             case 3:
-                [playerDataList insertObject:[playerDataList objectAtIndex:indexPath.row]
+                [playerVideoDataList insertObject:[playerVideoDataList objectAtIndex:indexPath.row]
                                      atIndex:indexPath.row + 1];
+                break;
+            case 4:
+                [playerImageDataList insertObject:[playerImageDataList objectAtIndex:indexPath.row]
+                                          atIndex:indexPath.row + 1];
                 break;
             default:
                 break;
@@ -361,6 +394,15 @@ BOOL isViewOn;
             ipTextField.text = computer.ip;
             macUITextField.text = computer.addressMac;
             portTextField.text = [NSString stringWithFormat:@"%d",computer.port];
+            
+            [macUITextField setHidden:FALSE];
+            [idUITextField setHidden:TRUE];
+            [relayUITextField setHidden:TRUE];
+            [macLabel setHidden:FALSE];
+            [idLabel setHidden:TRUE];
+            [relayLabel setHidden:TRUE];
+            [countLable setHidden:TRUE];
+            [countUITextField setHidden:TRUE];
         }
             break;
         case 1:
@@ -370,6 +412,15 @@ BOOL isViewOn;
             nameTextField.text = project.aName;
             ipTextField.text = project.ip;
             portTextField.text = [NSString stringWithFormat:@"%d",project.port];
+            
+            [macUITextField setHidden:true];
+            [idUITextField setHidden:true];
+            [relayUITextField setHidden:true];
+            [macLabel setHidden:TRUE];
+            [idLabel setHidden:TRUE];
+            [relayLabel setHidden:TRUE];
+            [countLable setHidden:TRUE];
+            [countUITextField setHidden:TRUE];
             
         }
             break;
@@ -382,20 +433,61 @@ BOOL isViewOn;
             ipTextField.text = relay.ip;
             relayUITextField.text = [NSString stringWithFormat:@"%d",relay.circuit];
             portTextField.text = [NSString stringWithFormat:@"%d",relay.port];
+            
+            [macUITextField setHidden:true];
+            [idUITextField setHidden:true];
+            [relayUITextField setHidden:false];
+            [macLabel setHidden:TRUE];
+            [idLabel setHidden:TRUE];
+            [relayLabel setHidden:FALSE];
+            [countLable setHidden:TRUE];
+            [countUITextField setHidden:TRUE];
         }
             break;
         case 3:
         {
             [typeSegmented setSelectedSegmentIndex:3];
-            PlayerVO *player =  [playerDataList objectAtIndex:indexPath.row];
+            PlayerVO *player =  [playerVideoDataList objectAtIndex:indexPath.row];
             nameTextField.text = player.aName;
             ipTextField.text = player.ip;
-            [pictureUISwitch setOn:player.isPic animated:TRUE];
+            idUITextField.text = [NSString stringWithFormat:@"%d",player.playerID];
+            
+            //[idUITextField setOn:player.isPic animated:TRUE];
             portTextField.text = [NSString stringWithFormat:@"%d",player.port];
 
-            
+            [macUITextField setHidden:true];
+            [idUITextField setHidden:false];
+            [relayUITextField setHidden:true];
+            [macLabel setHidden:TRUE];
+            [idLabel setHidden:FALSE];
+            [relayLabel setHidden:TRUE];
+            [countLable setHidden:FALSE];
+            [countUITextField setHidden:FALSE];
             
         }
+            break;
+        case 4:
+        {
+            [typeSegmented setSelectedSegmentIndex:3];
+            PlayerVO *player =  [playerVideoDataList objectAtIndex:indexPath.row];
+            nameTextField.text = player.aName;
+            ipTextField.text = player.ip;
+            idUITextField.text = [NSString stringWithFormat:@"%d",player.playerID];
+            
+            //[idUITextField setOn:player.isPic animated:TRUE];
+            portTextField.text = [NSString stringWithFormat:@"%d",player.port];
+            
+            [macUITextField setHidden:true];
+            [idUITextField setHidden:false];
+            [relayUITextField setHidden:true];
+            [macLabel setHidden:TRUE];
+            [idLabel setHidden:FALSE];
+            [relayLabel setHidden:TRUE];
+            [countLable setHidden:FALSE];
+            [countUITextField setHidden:FALSE];
+            
+        }
+
             break;
         default:
             break;
@@ -421,7 +513,7 @@ BOOL isViewOn;
             {
                 if([computerDataList count]==0)
                 {
-                    [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0];
+                    [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0 isImage:FALSE];
                 }
                 else
                 {
@@ -435,7 +527,7 @@ BOOL isViewOn;
                             return;
                         }
                     }
-                      [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0];
+                      [self createElement:@"ComputerVO" insert:TRUE replaceIndex:0  isImage:FALSE];
                 }
 
             }
@@ -451,7 +543,7 @@ BOOL isViewOn;
             {
                 if([projectorDataList count]==0)
                 {
-                    [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0];
+                    [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0  isImage:FALSE];
 
                 }
                 else
@@ -467,7 +559,7 @@ BOOL isViewOn;
                         }
                         
                     }
-                    [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0];
+                    [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0  isImage:FALSE];
                     
                 }
 
@@ -485,7 +577,7 @@ BOOL isViewOn;
             {
                 if([relayDataList count]==0)
                 {
-                     [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
+                     [self createElement:@"RelayVO" insert:TRUE replaceIndex:0  isImage:FALSE];
                 }
                 else
                 {
@@ -501,7 +593,7 @@ BOOL isViewOn;
                         
                         
                     }
-                     [self createElement:@"RelayVO" insert:TRUE replaceIndex:0];
+                     [self createElement:@"RelayVO" insert:TRUE replaceIndex:0  isImage:FALSE];
                 }
 
             }
@@ -517,15 +609,15 @@ BOOL isViewOn;
             }
             else
             {
-                if([playerDataList count]==0)
+                if([playerVideoDataList count]==0)
                 {
-                     [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
+                     [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0  isImage:FALSE];
                 }
                 else
                 {
-                    for (int i=0;i<[playerDataList count];i++)
+                    for (int i=0;i<[playerVideoDataList count];i++)
                     {
-                        PlayerVO *player =  [playerDataList objectAtIndex:i];
+                        PlayerVO *player =  [playerVideoDataList objectAtIndex:i];
                         if ([player.aName isEqualToString:nameTextField.text])
                         {
                             NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的播放器元素,请重新输入名称!",player.aName]];
@@ -535,12 +627,45 @@ BOOL isViewOn;
                         
                     }
                     
-                    [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0];
+                    [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0  isImage:FALSE];
                 }
 
             }
         }
             break;
+        case 4:
+        {
+            if (nameTextField.text!=nil&& nameTextField.text.length==0)
+            {
+                [SetViewController showUIAlertView:@"提示"content:@"请输入添加展区的名称！" buttonTitle:@"确定"];
+            }
+            else
+            {
+                if([playerImageDataList count]==0)
+                {
+                    [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0  isImage:TRUE];
+                }
+                else
+                {
+                    for (int i=0;i<[playerImageDataList count];i++)
+                    {
+                        PlayerVO *player =  [playerImageDataList objectAtIndex:i];
+                        if ([player.aName isEqualToString:nameTextField.text])
+                        {
+                            NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"您已添加名称为%@的播放器元素,请重新输入名称!",player.aName]];
+                            [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+                            return;
+                        }
+                        
+                    }
+                    
+                    [self createElement:@"PlayerVO" insert:TRUE replaceIndex:0  isImage:TRUE];
+                }
+                
+            }
+        }
+            break;
+
     }
 }
 
@@ -553,39 +678,56 @@ BOOL isViewOn;
         case 0:
             [setTypeLabel setText:@"电脑类型"];
             [macUITextField setHidden:false];
-            [pictureUISwitch setHidden:true];
+            [idUITextField setHidden:true];
             [relayUITextField setHidden:true];
             [macLabel setHidden:FALSE];
-            [pictureLabel setHidden:TRUE];
+            [idLabel setHidden:TRUE];
             [relayLabel setHidden:TRUE];
+            [countLable setHidden:TRUE];
+            [countUITextField setHidden:TRUE];
             break;
         case 1:
             [setTypeLabel setText:@"投影类型"];
             [macUITextField setHidden:true];
-            [pictureUISwitch setHidden:true];
+            [idUITextField setHidden:true];
             [relayUITextField setHidden:true];
             [macLabel setHidden:TRUE];
-            [pictureLabel setHidden:TRUE];
+            [idLabel setHidden:TRUE];
             [relayLabel setHidden:TRUE];
+            [countLable setHidden:TRUE];
+            [countUITextField setHidden:TRUE];
             break;
         case 2:
             [setTypeLabel setText:@"电路类型"];
             [macUITextField setHidden:true];
-            [pictureUISwitch setHidden:true];
+            [idUITextField setHidden:true];
             [relayUITextField setHidden:false];
             [macLabel setHidden:TRUE];
-            [pictureLabel setHidden:TRUE];
+            [idLabel setHidden:TRUE];
             [relayLabel setHidden:FALSE];
+            [countLable setHidden:TRUE];
+            [countUITextField setHidden:TRUE];
             break;
         case 3:
-            [setTypeLabel setText:@"播放类型"];
+            [setTypeLabel setText:@"视频播放"];
             [macUITextField setHidden:true];
-            [pictureUISwitch setHidden:false];
+            [idUITextField setHidden:false];
             [relayUITextField setHidden:true];
             [macLabel setHidden:TRUE];
-            [pictureLabel setHidden:FALSE];
+            [idLabel setHidden:FALSE];
             [relayLabel setHidden:TRUE];
-
+            [countLable setHidden:FALSE];
+            [countUITextField setHidden:FALSE];
+        case 4:
+            [setTypeLabel setText:@"图片播放"];
+            [macUITextField setHidden:true];
+            [idUITextField setHidden:false];
+            [relayUITextField setHidden:true];
+            [macLabel setHidden:TRUE];
+            [idLabel setHidden:FALSE];
+            [relayLabel setHidden:TRUE];
+            [countLable setHidden:FALSE];
+            [countUITextField setHidden:FALSE];
             break;
     }
 //    nameTextField.text=@"";
@@ -631,11 +773,11 @@ BOOL isViewOn;
     }
     else if ([sender isEqual:relayUITextField])
     {
-        if(![SetViewController validateInput:relayUITextField.text  RegexString:@"^[1-9]\\d*|0$"])
-        {
-            [SetViewController showUIAlertView:@"提示" content:@"请正确输入数字格式" buttonTitle:@"确定"];
-//            relayUITextField.text=@"";
-        }
+//        if(![SetViewController validateInput:relayUITextField.text  RegexString:@"^[1-9]\\d*|0$"])
+//        {
+//            [SetViewController showUIAlertView:@"提示" content:@"请正确输入数字格式" buttonTitle:@"确定"];
+////            relayUITextField.text=@"";
+//        }
         NSLog(@"Relay EditDidEnd");
     }
 }
@@ -655,12 +797,14 @@ BOOL isViewOn;
     [self.portTextField resignFirstResponder];
     [self.macUITextField resignFirstResponder];
     [self.relayUITextField resignFirstResponder];
+    [self.idUITextField resignFirstResponder];
+    [self.countUITextField resignFirstResponder];
     [sender resignFirstResponder];
 }
 
 
 //创建新元素和修改元素
-- (void)createElement:(NSString*)className insert:(BOOL)isInsert replaceIndex:(int)index
+- (void)createElement:(NSString*)className insert:(BOOL)isInsert replaceIndex:(int)index isImage:(BOOL)isImage
 {
     NSUInteger section = 0;
     NSUInteger row = 0;
@@ -742,18 +886,49 @@ BOOL isViewOn;
     else if(class == PlayerVO.class)
     {
         //创建播放器对象
-        [obj setIsPic:pictureUISwitch.isOn];
+        //[obj setIsPic:pictureUISwitch.isOn];
         [obj setAType:typePlayer];
         [(PlayerVO*)obj setPort:[portTextField.text intValue]];
-        if(isInsert)
+        [(PlayerVO*)obj setCount:[countUITextField.text intValue]];
+        [(PlayerVO*)obj setPlayerID:[idUITextField.text intValue]];
+        
+        if(!isImage)
         {
-            [playerDataList insertObject:obj atIndex:[playerDataList count]];
-            section = 3;
-            row = [playerDataList count]-1;
+            [(PlayerVO*)obj setIsPic:FALSE];
         }
         else
         {
-            [playerDataList replaceObjectAtIndex:index withObject:obj];
+            [(PlayerVO*)obj setIsPic:TRUE];
+        }
+        
+        if(isInsert)
+        {
+            if(!isImage)
+            {
+                [playerVideoDataList insertObject:obj atIndex:[playerVideoDataList count]];
+                section = 3;
+                row = [playerVideoDataList count]-1;
+            }
+            else
+            {
+                [playerImageDataList insertObject:obj atIndex:[playerImageDataList count]];
+                section = 4;
+                row = [playerImageDataList count]-1;
+            }
+          
+        }
+        else
+        {
+            if(!isImage)
+            {
+                [playerVideoDataList replaceObjectAtIndex:index withObject:obj];
+
+            }
+            else
+            {
+                [playerImageDataList replaceObjectAtIndex:index withObject:obj];
+
+            }
             NSArray *arr = [elementTableView visibleCells];
             UITableViewCell *cell = [arr objectAtIndex:index];
             cell.textLabel.text =nameTextField.text;

@@ -1,5 +1,5 @@
 //
-//  PlayerControl.m
+//  PlayerVideoControl.m
 //  ksdControl
 //
 //  Created by CMQ on 15/5/20.
@@ -8,9 +8,9 @@
 
 
 #import <QuartzCore/QuartzCore.h>
-#import "PlayerControl.h"
+#import "PlayerVideoControl.h"
 
-@implementation PlayerControl
+@implementation PlayerVideoControl
 
 //初始单元格，添加控件
 - (id)initWithFrame:(CGRect)frame
