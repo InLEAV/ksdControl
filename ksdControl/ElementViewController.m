@@ -718,6 +718,7 @@ BOOL isViewOn;
             [relayLabel setHidden:TRUE];
             [countLable setHidden:FALSE];
             [countUITextField setHidden:FALSE];
+            break;
         case 4:
             [setTypeLabel setText:@"图片播放"];
             [macUITextField setHidden:true];
