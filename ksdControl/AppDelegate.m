@@ -14,6 +14,7 @@
 #import "GroupVO.h"
 #import "AreaVO.h"
 #import "JsonControl.h"
+#import "Model.h"
 
 @interface AppDelegate ()
 
@@ -103,7 +104,7 @@
                             NSLog(@"电脑类型:%@",[gDict objectForKey:@"name"]);
                             ComputerVO* computer = [ComputerVO new];
                             [computer initVO];
-                            [computer setAType:@"电脑类型"];
+                            [computer setAType:typeComputer];
                             [computer setIp:[gDict objectForKey:@"ip"]];
                             [computer setAName:[gDict objectForKey:@"name"]];
                             [computer setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -117,7 +118,7 @@
                             NSLog(@"投影机类型:%@",[gDict objectForKey:@"name"]);
                             ProjectVO* project = [ProjectVO new];
                             [project initVO];
-                            [project setAType:@"投影类型"];
+                            [project setAType:typeProject];
                             [project setIp:[gDict objectForKey:@"ip"]];
                             [project setAName:[gDict objectForKey:@"name"]];
                             [project setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -131,7 +132,7 @@
                             NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
                             PlayerVO* player = [PlayerVO new];
                             [player initVO];
-                            [player setAType:@"视频播放器类型"];
+                            [player setAType:typeVideoPlayer];
                             [player setIp:[gDict objectForKey:@"ip"]];
                             [player setAName:[gDict objectForKey:@"name"]];
                             [player setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -146,7 +147,7 @@
                             NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
                             PlayerVO* player = [PlayerVO new];
                             [player initVO];
-                            [player setAType:@"图片播放器类型"];
+                            [player setAType:typeImagePlayer];
                             [player setIp:[gDict objectForKey:@"ip"]];
                             [player setAName:[gDict objectForKey:@"name"]];
                             [player setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -162,7 +163,7 @@
                             NSLog(@"电路类型:%@",[gDict objectForKey:@"name"]);
                             RelayVO* relay = [RelayVO new];
                             [relay initVO];
-                            [relay setAType:@"电路类型"];
+                            [relay setAType:typeRelay];
                             [relay setIp:[gDict objectForKey:@"ip"]];
                             [relay setAName:[gDict objectForKey:@"name"]];
                             [relay setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -195,7 +196,7 @@
                             {
                                 ComputerVO* computer = [ComputerVO new];
                                 [computer initVO];
-                                [computer setAType:@"电脑类型"];
+                                [computer setAType:typeComputer];
                                 [computer setIp:[eDict objectForKey:@"ip"]];
                                 [computer setAName:[eDict objectForKey:@"name"]];
                                 [computer setPort:[[eDict objectForKey:@"port"] intValue]] ;
@@ -206,7 +207,7 @@
                             {
                                 ProjectVO* project = [ProjectVO new];
                                 [project initVO];
-                                [project setAType:@"投影类型"];
+                                [project setAType:typeProject];
                                 [project setIp:[eDict objectForKey:@"ip"]];
                                 [project setAName:[eDict objectForKey:@"name"]];
                                 [project setPort:[[eDict objectForKey:@"port"] intValue]] ;
@@ -217,7 +218,7 @@
                             {
                                 PlayerVO* player = [PlayerVO new];
                                 [player initVO];
-                                [player setAType:@"视频播放器类型"];
+                                [player setAType:typeVideoPlayer];
                                 [player setIp:[eDict objectForKey:@"ip"]];
                                 [player setAName:[eDict objectForKey:@"name"]];
                                 [player setPort:[[eDict objectForKey:@"port"] intValue]] ;
@@ -230,7 +231,7 @@
                             {
                                 PlayerVO* player = [PlayerVO new];
                                 [player initVO];
-                                [player setAType:@"图片播放器类型"];
+                                [player setAType:typeImagePlayer];
                                 [player setIp:[eDict objectForKey:@"ip"]];
                                 [player setAName:[eDict objectForKey:@"name"]];
                                 [player setPort:[[eDict objectForKey:@"port"] intValue]] ;
@@ -244,7 +245,7 @@
                             {
                                 RelayVO* relay = [RelayVO new];
                                 [relay initVO];
-                                [relay setAType:@"电路类型"];
+                                [relay setAType:typeRelay];
                                 [relay setIp:[eDict objectForKey:@"ip"]];
                                 [relay setAName:[eDict objectForKey:@"name"]];
                                 [relay setPort:[[eDict objectForKey:@"port"] intValue]] ;

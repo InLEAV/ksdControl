@@ -54,4 +54,6 @@
 //添加对象到字典中并返回字典
 - (NSMutableDictionary*)addSubDic:(id)obj isImage:(BOOL)isImage;
 
+//选中分区选项
+-(void)SelectItem:(NSIndexPath *)didSelectRowAtIndexPath tableView:(UITableView*)tableView;
 @end

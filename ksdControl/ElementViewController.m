@@ -100,7 +100,7 @@ BOOL isViewOn;
             NSDictionary *eDect = [computerDict objectForKey:eName];
             ComputerVO* computer = [ComputerVO new];
             [computer initVO];
-            [computer setAType:@"电脑类型"];
+            [computer setAType:typeComputer];
             [computer setIp:[eDect objectForKey:@"ip"]];
             [computer setAName:[eDect objectForKey:@"name"]];
             [computer setPort:[[eDect objectForKey:@"port"] intValue]] ;
@@ -115,7 +115,7 @@ BOOL isViewOn;
             NSDictionary *pDect = [projectDict objectForKey:pName];
             ProjectVO* project = [ProjectVO new];
             [project initVO];
-            [project setAType:@"投影类型"];
+            [project setAType:typeProject];
             [project setIp:[pDect objectForKey:@"ip"]];
             [project setAName:[pDect objectForKey:@"name"]];
             [project setPort:[[pDect objectForKey:@"port"] intValue]] ;
@@ -129,7 +129,7 @@ BOOL isViewOn;
             NSDictionary *rDect = [relayDict objectForKey:rName];
             RelayVO* relay = [RelayVO new];
             [relay initVO];
-            [relay setAType:@"电路类型"];
+            [relay setAType:typeRelay];
             [relay setIp:[rDect objectForKey:@"ip"]];
             [relay setAName:[rDect objectForKey:@"name"]];
             [relay setPort:[[rDect objectForKey:@"port"] intValue]] ;
@@ -144,7 +144,7 @@ BOOL isViewOn;
             NSDictionary *pDect = [playerVideoDict objectForKey:pName];
             PlayerVO* player = [PlayerVO new];
             [player initVO];
-            [player setAType:@"视频播放器类型"];
+            [player setAType:typeVideoPlayer];
             [player setIp:[pDect objectForKey:@"ip"]];
             [player setAName:[pDect objectForKey:@"name"]];
             [player setPort:[[pDect objectForKey:@"port"] intValue]] ;
@@ -161,7 +161,7 @@ BOOL isViewOn;
             NSDictionary *pDect = [playerImageDict objectForKey:pName];
             PlayerVO* player = [PlayerVO new];
             [player initVO];
-            [player setAType:@"图片播放器类型"];
+            [player setAType:typeImagePlayer];
             [player setIp:[pDect objectForKey:@"ip"]];
             [player setAName:[pDect objectForKey:@"name"]];
             [player setPort:[[pDect objectForKey:@"port"] intValue]] ;
@@ -730,11 +730,6 @@ BOOL isViewOn;
             [countUITextField setHidden:FALSE];
             break;
     }
-//    nameTextField.text=@"";
-//    ipTextField.text=@"";
-//    portTextField.text=@"";
-//    macUITextField.text=@"";
-//    relayUITextField.text=@"";
     
     
 }
@@ -749,7 +744,6 @@ BOOL isViewOn;
         if(![SetViewController validateInput:ipTextField.text RegexString:@"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b"])
         {
             [SetViewController showUIAlertView:@"提示" content:@"请正确输入IP格式" buttonTitle:@"确定"];
-//            ipTextField.text=@"";
         }
         NSLog(@"Ip EditDidEnd");
     }
@@ -758,7 +752,6 @@ BOOL isViewOn;
         if(![SetViewController validateInput:macUITextField.text RegexString:@"^([0-9a-fA-F]{2})(([/\\s:][0-9a-fA-F]{2}){5})$"])
         {
             [SetViewController showUIAlertView:@"提示" content:@"请正确输入mac格式" buttonTitle:@"确定"];
-//            macUITextField.text=@"";
         }
         NSLog(@"MAC EditDidEnd");
     }
@@ -767,7 +760,6 @@ BOOL isViewOn;
         if(![SetViewController validateInput:portTextField.text RegexString:@"^[1-9]\\d*|0$"])
         {
             [SetViewController showUIAlertView:@"提示" content:@"请正确输入数字格式" buttonTitle:@"确定"];
-//            portTextField.text=@"";
         }
         NSLog(@"Port EditDidEnd");
     }
@@ -776,7 +768,6 @@ BOOL isViewOn;
 //        if(![SetViewController validateInput:relayUITextField.text  RegexString:@"^[1-9]\\d*|0$"])
 //        {
 //            [SetViewController showUIAlertView:@"提示" content:@"请正确输入数字格式" buttonTitle:@"确定"];
-////            relayUITextField.text=@"";
 //        }
         NSLog(@"Relay EditDidEnd");
     }
@@ -887,17 +878,19 @@ BOOL isViewOn;
     {
         //创建播放器对象
         //[obj setIsPic:pictureUISwitch.isOn];
-        [obj setAType:typePlayer];
+        
         [(PlayerVO*)obj setPort:[portTextField.text intValue]];
         [(PlayerVO*)obj setCount:[countUITextField.text intValue]];
         [(PlayerVO*)obj setPlayerID:[idUITextField.text intValue]];
         
         if(!isImage)
         {
+            [obj setAType:typeVideoPlayer];
             [(PlayerVO*)obj setIsPic:FALSE];
         }
         else
         {
+            [obj setAType:typeImagePlayer];
             [(PlayerVO*)obj setIsPic:TRUE];
         }
         
@@ -945,12 +938,6 @@ BOOL isViewOn;
         [elementTableView insertRowsAtIndexPaths:_tempIndexPathArr withRowAnimation:UITableViewRowAnimationFade];
         [elementTableView endUpdates];
     }
-    
-//    nameTextField.text=@"";
-//    ipTextField.text=@"";
-//    portTextField.text=@"";
-//    macUITextField.text=@"";
-//    relayUITextField.text=@"";
     
 }
 
@@ -1000,6 +987,5 @@ BOOL isViewOn;
         isViewOn = TRUE;
     }
 }
-
 
 @end

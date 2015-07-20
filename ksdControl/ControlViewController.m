@@ -105,7 +105,6 @@ AppDelegate *appDelegate;
     [super viewWillAppear:animated];
 }
 
-
 //当切换到当前视图是更新元素列表
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -127,14 +126,14 @@ AppDelegate *appDelegate;
     NSMutableArray *array = [[NSMutableArray alloc] initWithObjects:nil];
     for (int i =0; i < ((AreaVO*)appDelegate.areaArray[areaIndex]).groups.count; i++)
     {
-            if ([((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] isKindOfClass:[PlayerVO class]])
-            {
-                [array insertObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] atIndex:0];
-            }
-            else
-            {
-                [array addObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i]];
-            }
+        if ([((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] isKindOfClass:[PlayerVO class]])
+        {
+            [array insertObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i] atIndex:0];
+        }
+        else
+        {
+            [array addObject:((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i]];
+        }
     }
     
     return array;
@@ -331,10 +330,6 @@ AppDelegate *appDelegate;
                                        forIndexPath:indexPath];
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((GroupVO*)elementArray[rowNo]).aName;
-//              for (int j =0; j < ((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements.count; j++)
-//              {
-//                  [array addObject:((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements[j]];
-//              }
 
                 return cell;
                 
@@ -377,7 +372,6 @@ AppDelegate *appDelegate;
                 PlayerVO *player =((PlayerVO*)elementArray[indexPath.item]);
                 if(!player.isPic)
                 {
-                    
                     width = 488;
                 }
                 else
@@ -428,7 +422,6 @@ AppDelegate *appDelegate;
         UIImageView* iv1 = (UIImageView*)[cell1 viewWithTag:1];
         [iv1 setImage:[UIImage imageNamed:@"zq-highlight.png"]];
         
-        
         //更新展区网格单元格数据
         [self.grid reloadData];
         
@@ -436,7 +429,6 @@ AppDelegate *appDelegate;
         if(appDelegate.areaArray.count > 0)
         {
             NSString *name = ((AreaVO*)appDelegate.areaArray[indexPathArea.row]).aName;
-            //self.navigationItem.title = name;
             zqTitle.text = name;
         }
         

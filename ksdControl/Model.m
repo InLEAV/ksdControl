@@ -10,7 +10,8 @@
 
 NSString * const typeComputer = @"TYPE_COMPUTER";
 NSString * const typeProject = @"TYPE_PROJECT";
-NSString * const typePlayer = @"TYPE_PLAYER";
+NSString * const typeVideoPlayer = @"TYPE_VIDEOPLAYER";
+NSString * const typeImagePlayer = @"TYPE_IMAGEPLAYER";
 NSString * const typeRelay = @"TYPE_RELAY";
 
 

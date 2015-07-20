@@ -383,6 +383,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         
         switch (grouptDidSelectRowAtIndexPath.section) {
             case 0:
+            {
                 if([containerDataList count] == 0)
                 {
                     [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
@@ -405,8 +406,11 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [area.groups addObject:[groupViewController.groupDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
+                [self SelectItem:grouptDidSelectRowAtIndexPath tableView:self.groupTableView];
+            }
                 break;
             case 1:
+            {
                 if([containerDataList count] == 0)
                 {
                     [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
@@ -429,8 +433,11 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [area.groups addObject:[elementViewController.computerDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
+                [self SelectItem:grouptDidSelectRowAtIndexPath tableView:self.groupTableView];
+            }
                 break;
             case 2:
+            {
                 if([containerDataList count] == 0)
                 {
                     [area.groups addObject:[elementViewController.projectorDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
@@ -453,9 +460,11 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [area.groups addObject:[elementViewController.projectorDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
-
+                [self SelectItem:grouptDidSelectRowAtIndexPath tableView:self.groupTableView];
+            }
                 break;
             case 3:
+            {
                 if([containerDataList count] == 0)
                 {
                     [area.groups addObject:[elementViewController.relayDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
@@ -478,8 +487,11 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [area.groups addObject:[elementViewController.relayDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
+                [self SelectItem:grouptDidSelectRowAtIndexPath tableView:self.groupTableView];
+            }
                 break;
             case 4:
+            {
                 if([containerDataList count] == 0)
                 {
                     [area.groups addObject:[elementViewController.playerVideoDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
@@ -502,9 +514,11 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [area.groups addObject:[elementViewController.playerVideoDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
-
+                [self SelectItem:grouptDidSelectRowAtIndexPath tableView:self.groupTableView];
+            }
                 break;
             case 5:
+            {
                 if([containerDataList count] == 0)
                 {
                     [area.groups addObject:[elementViewController.playerImageDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
@@ -527,6 +541,8 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                     [area.groups addObject:[elementViewController.playerImageDataList objectAtIndex:grouptDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[area.groups objectAtIndex:area.groups.count-1]];
                 }
+                [self SelectItem:grouptDidSelectRowAtIndexPath tableView:self.groupTableView];
+            }
                 
                 break;
 
@@ -755,13 +771,13 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         //保存电脑类型设置
         ComputerVO *computer = (ComputerVO*)(obj);
         NSLog(@"type:%@ name:%@ ip:%@ port:%d address:%@",@"电脑类型",computer.aName,computer.ip,computer.port,computer.addressMac);
-        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"电脑类型",@"type",computer.aName,@"name",computer.ip ,@"ip",[NSNumber numberWithInteger:computer.port],@"port",computer.addressMac,@"mac",nil];
+        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:typeComputer,@"type",computer.aName,@"name",computer.ip ,@"ip",[NSNumber numberWithInteger:computer.port],@"port",computer.addressMac,@"mac",nil];
     }
     else if([obj isMemberOfClass:ProjectVO.class])
     {
         //保存投影类型设置
         ProjectVO *project = (ProjectVO*)(obj);
-        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"投影机类型",@"type",project.aName,@"name",project.ip ,@"ip",[NSNumber numberWithInteger:project.port],@"port",nil];
+        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:typeProject,@"type",project.aName,@"name",project.ip ,@"ip",[NSNumber numberWithInteger:project.port],@"port",nil];
     }
     else if([obj isMemberOfClass:PlayerVO.class])
     {
@@ -769,23 +785,34 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         {
            //保存播放类型设置
             PlayerVO *player = (PlayerVO*)(obj);
-            sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"视频播放类型",@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.playerID],@"ID",[NSNumber numberWithBool:player.count],@"数量",[NSNumber numberWithBool:player.isPic],@"是否图片",nil];
+            sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:typeVideoPlayer,@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.playerID],@"ID",[NSNumber numberWithBool:player.count],@"数量",[NSNumber numberWithBool:player.isPic],@"是否图片",nil];
         }
         else
         {
             //保存播放类型设置
             PlayerVO *player = (PlayerVO*)(obj);
-            sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"图片播放类型",@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.playerID],@"ID",[NSNumber numberWithBool:player.count],@"数量",[NSNumber numberWithBool:player.isPic],@"是否图片",nil];
+            sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:typeImagePlayer,@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.playerID],@"ID",[NSNumber numberWithBool:player.count],@"数量",[NSNumber numberWithBool:player.isPic],@"是否图片",nil];
         }
     }
     else if([obj isMemberOfClass:RelayVO.class])
     {
         //保存电路类型设置
         RelayVO *relay = (RelayVO*)(obj);
-        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"电路类型",@"type",relay.aName,@"name",relay.ip ,@"ip",[NSNumber numberWithInteger:relay.port],@"port",[NSNumber numberWithInteger:relay.circuit],@"电路数",nil];
+        sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:typeRelay,@"type",relay.aName,@"name",relay.ip ,@"ip",[NSNumber numberWithInteger:relay.port],@"port",[NSNumber numberWithInteger:relay.circuit],@"电路数",nil];
     }
     
     return sub;
 
+}
+
+-(void)SelectItem:(NSIndexPath *)didSelectRowAtIndexPath tableView:(UITableView*)curTableView
+{
+    if(didSelectRowAtIndexPath.row < [self tableView:curTableView numberOfRowsInSection:didSelectRowAtIndexPath.section] -1)
+    {
+        NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:didSelectRowAtIndexPath.row+1 inSection:didSelectRowAtIndexPath.section];
+        [curTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self tableView:curTableView didSelectRowAtIndexPath:_indexPath];
+        
+    }
 }
 @end
