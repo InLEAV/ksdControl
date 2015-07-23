@@ -18,6 +18,9 @@
 {
     self = [super initWithFrame:frame];
     
+    self.VO = [PlayerVO new];
+    imageNum = 1;
+    
     if (self) {
         
         self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 237, 156)];
@@ -87,25 +90,35 @@
 //播放图片
 -(void)playImage :(id)sender
 {
-    
+    NSString * msg = [NSString stringWithFormat:@"%d&image&0&%d.jpg",self.VO.playerID,imageNum];
+    [_delegate sendUDPPlayImageCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
 //停止播放图片
 -(void)stopImage :(id)sende
 {
-    
+    NSString * msg = [NSString stringWithFormat:@"%d&stop&0",self.VO.playerID];
+    [_delegate sendUDPPlayImageCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
 //播放上一张图片
 -(void)preImageBtn :(id)sende
 {
-    
+    if (imageNum < 1) {
+        imageNum = 1;
+    }
+    NSString * msg = [NSString stringWithFormat:@"%d&image&0&%d.jpg",self.VO.playerID,imageNum];
+    [_delegate sendUDPPlayImageCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
 //播放下一张图片
 -(void)nextImageBtn :(id)sende
 {
-    
+    if (imageNum > self.VO.count) {
+        imageNum = self.VO.count;
+    }
+    NSString * msg = [NSString stringWithFormat:@"%d&image&0&%d.jpg",self.VO.playerID,imageNum];
+    [_delegate sendUDPPlayImageCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
 

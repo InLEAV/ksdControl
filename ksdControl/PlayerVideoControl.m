@@ -18,6 +18,10 @@
     self = [super initWithFrame:frame];
     
     self.VO = [PlayerVO new];
+    
+    videoNum = 1;
+    volumeNum = 80;
+    
     if (self) {
         
         
@@ -107,7 +111,7 @@
 //播放视频
 -(void)playVideo :(id)sender
 {
-    NSString * msg = [NSString stringWithFormat:@"%d&play&0",self.VO.playerID];
+    NSString * msg = [NSString stringWithFormat:@"%d&play&%d",self.VO.playerID,videoNum];
     [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
@@ -129,24 +133,44 @@
 //播放上一个视频
 -(void)preMovieBtn :(id)sende
 {
-    
+    videoNum --;
+    if (videoNum < 1) {
+        videoNum = 1;
+    }
+    NSString * msg = [NSString stringWithFormat:@"%d&play&%d",self.VO.playerID,videoNum];
+    [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
 //播放下一个视频
 -(void)nextMovieBtn :(id)sende
 {
-    
+    videoNum ++;
+    if (videoNum > self.VO.count) {
+        videoNum = self.VO.count;
+    }
+    NSString * msg = [NSString stringWithFormat:@"%d&play&%d",self.VO.playerID,videoNum];
+    [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
 //声量放大
 -(void)addVolumeBtn :(id)sende
 {
-    
+    volumeNum = volumeNum + 10;
+    if (volumeNum > 100) {
+        volumeNum = 100;
+    }
+    NSString * msg = [NSString stringWithFormat:@"%d&volume&%d",self.VO.playerID,volumeNum];
+    [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 
 //声量减小
 - (void)minusVolumeBtn:(id)sender
 {
-    
+    volumeNum = volumeNum - 10;
+    if (volumeNum < 0) {
+        volumeNum = 0;
+    }
+    NSString * msg = [NSString stringWithFormat:@"%d&volume&%d",self.VO.playerID,volumeNum];
+    [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
 }
 @end

@@ -17,9 +17,7 @@
     
     _tag1 = 200;
     self.VO = [ProjectVO new];
-    
-//    isShow = YES;
-    
+
     powerOff = [NSString stringWithFormat:@"%1%POWR 0\r"];
     powerOn = [NSString stringWithFormat:@"%1%POWR 1\r"];
     powerQuery = [NSString stringWithFormat:@"%1%POWR ?\r"];

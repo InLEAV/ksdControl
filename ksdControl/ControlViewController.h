@@ -13,9 +13,10 @@
 #import "RelayControl.h"
 #import "PlayerImageControl.h"
 #import "PlayerVideoControl.h"
+#import "GroupControl.h"
 
 @interface ControlViewController : UIViewController<UICollectionViewDataSource,
-UICollectionViewDelegate,SLUICollectionViewDelegateLayout,computerDelegate,relayDelegate,playDelegate>
+UICollectionViewDelegate,SLUICollectionViewDelegateLayout,computerDelegate,relayDelegate,playDelegate,playimageDelegate,groupDelegate>
 {
     Sever * sever;
 }

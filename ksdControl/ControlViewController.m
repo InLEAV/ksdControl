@@ -317,7 +317,8 @@ AppDelegate *appDelegate;
                                                 forIndexPath:indexPath];
                     cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                     cell.label.text = player.aName;
-                   
+                    cell.VO = player;
+                    cell.delegate = self;
                     return cell;
 
                 }
@@ -325,17 +326,18 @@ AppDelegate *appDelegate;
             }
             else if([elementArray[rowNo] isKindOfClass:[GroupVO class]])
             {
+                GroupVO * group = ((GroupVO *) elementArray[rowNo]);
+                
                 //生产播放控制单元格
                 GroupControl *cell = [collectionView
                                        dequeueReusableCellWithReuseIdentifier:@"groupCellId"
                                        forIndexPath:indexPath];
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((GroupVO*)elementArray[rowNo]).aName;
-//              for (int j =0; j < ((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements.count; j++)
-//              {
-//                  [array addObject:((GroupVO*)(((AreaVO*)appDelegate.areaArray[areaIndex]).groups[i])).elements[j]];
-//              }
-
+                
+                cell.VO = group;
+                cell.delegate = self;
+                [cell setIsShow:YES];
                 return cell;
                 
             }
@@ -418,6 +420,10 @@ AppDelegate *appDelegate;
             {
                 [((ProjectControl *) newcell) setIsShow:NO];
             }
+            else if([newcell isKindOfClass:[GroupControl class]])
+            {
+                [((GroupControl *) newcell) setIsShow:NO];
+            }
         }
         
         //保存当前选中的展区IndexPath
@@ -465,7 +471,24 @@ AppDelegate *appDelegate;
 - (void)sendUDPPlayCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host
 {
     [sever sendCommand:command toPort:port toHost:host];
-    NSLog(@"发送字符串类型给继电器端");
+    NSLog(@"发送字符串类型给play");
+}
+
+- (void)sendUDPPlayImageCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host
+{
+    [sever sendCommand:command toPort:port toHost:host];
+    NSLog(@"发送字符串类型给play");
+}
+
+- (void)sendUDPGroupCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host
+{
+    [sever sendCommand:command toPort:port toHost:host];
+    NSLog(@"发送字符串类型给各种设备");
+}
+
+- (void)sendUDPDataGroupCommand:(NSData *)command toPort:(NSInteger)port toHost:(NSString *)host
+{
+    [sever sendDataCommand:command toPort:port toHost:host];
 }
 
 @end

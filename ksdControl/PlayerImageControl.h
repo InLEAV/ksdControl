@@ -9,8 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "PlayerVO.h"
 
+@protocol playimageDelegate <NSObject>
+- (void)sendUDPPlayImageCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host;
+@end
 @interface PlayerImageControl : UICollectionViewCell
+{
+    int imageNum;
+}
 
+//模型
+@property(nonatomic, retain) PlayerVO * VO;
+
+//代理
+@property (nonatomic, retain) id <playimageDelegate> delegate;
 
 //动态改变标题
 @property (strong, nonatomic) UILabel* label;

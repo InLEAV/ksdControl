@@ -15,6 +15,9 @@
 {
     self = [super initWithFrame:frame];
     
+    self.VO = [GroupVO new];
+
+    
     if (self)
     {
         self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 237, 156)];
@@ -58,20 +61,140 @@
         // 设置圆角
         self.layer.cornerRadius = 8.0;
         self.layer.masksToBounds = YES;
+        
+        
     }
     return self;
+}
+
+-(void)computerOn:(ComputerVO *)comVO
+{
+    NSArray * macChilds = [comVO.addressMac componentsSeparatedByString:@"-"];
+    
+    unsigned char mac[6];
+    unsigned char packet[102];
+    
+    for (int i = 0; i < macChilds.count; i++) {
+        
+        NSString * aa = macChilds[i];
+        unsigned char bb = strtoul([aa UTF8String], 0, 16);
+        mac[i] = bb;
+    }
+    for (int j = 0; j < 6; j++) {
+        packet[j] = 0xff;
+    }
+    for (int k = 1; k < 17; k++) {
+        for (int u = 0; u < 6; u++) {
+            packet[k*6 + u] = mac[u];
+        }
+    }
+    NSData *data = [NSData dataWithBytes:packet length:102];
+    [_delegate sendUDPDataGroupCommand:data toPort:comVO.port toHost:comVO.ip];
 }
 
 //打开组合
 -(void)openGroup:(id)sender
 {
-    NSLog(@"OpenRelay!");
+    NSLog(@"OpenALL!");
+    
+    for (int i = 0; i < self.VO.elements.count; i++)
+    {
+        if ([self.VO.elements[i] isKindOfClass:[ComputerVO class]]) {
+            [self computerOn:(ComputerVO *)self.VO.elements[i]];
+            NSLog(@"group for Computer");
+        }
+        else if ([self.VO.elements[i] isKindOfClass:[ProjectVO class]])
+        {
+            ProjectVO * proVO =(ProjectVO *)self.VO.elements[i];
+            [proVO PowerOn];
+           NSLog(@"group for project");
+        }
+        else if ([self.VO.elements[i] isKindOfClass:[RelayVO class]])
+        {
+            RelayVO * relVO =(RelayVO *)self.VO.elements[i];
+            [self setRelayStatus:relVO.circuit toStatus:1 toRelayVO:relVO];
+            NSLog(@"group for relay");
+        }
+    }
+    
 }
 
 //关闭组合
 -(void)closeGroup:(id)sender
 {
-    NSLog(@"CloseRelay!");
+    NSLog(@"CloseALL!");
+    for (int i = 0; i < self.VO.elements.count; i++)
+    {
+        if ([self.VO.elements[i] isKindOfClass:[ComputerVO class]]) {
+            ComputerVO * comVO =(ComputerVO *)self.VO.elements[i];
+            [_delegate sendUDPGroupCommand:@"computer&1&0" toPort:comVO.port toHost:comVO.ip];
+            NSLog(@"group for Computer");
+        }
+        else if ([self.VO.elements[i] isKindOfClass:[ProjectVO class]])
+        {
+            NSLog(@"group for project");
+            ProjectVO * proVO =(ProjectVO *)self.VO.elements[i];
+            [proVO PowerOff];
+        }
+        else if ([self.VO.elements[i] isKindOfClass:[RelayVO class]])
+        {
+            RelayVO * relVO =(RelayVO *)self.VO.elements[i];
+            [self setRelayStatus:relVO.circuit toStatus:0 toRelayVO:relVO];
+            NSLog(@"group for relay");
+        }
+    }
+    
+}
+
+-(void)setIsShow:(BOOL)isShow2
+{
+    isShow = isShow2;
+    
+    for (int i = 0; i < self.VO.elements.count; i++)
+    {
+        if ([self.VO.elements[i] isKindOfClass:[ProjectVO class]])
+        {
+            ProjectVO * proVO =(ProjectVO *)self.VO.elements[i];
+            if (isShow == YES) {
+                [proVO setIsShow:YES];
+            }
+            else
+            {
+                [proVO setIsShow:NO];
+            }
+            
+        }
+    }
+    
+}
+
+-(void)setRelayStatus:(int)index toStatus:(int)status toRelayVO:(RelayVO*) relayVO
+{
+    unsigned char packet[8];
+    unsigned char _status;
+    if (status == 0) {
+        _status = 0x11;
+    }
+    else
+    {
+        _status = 0x12;
+    }
+    packet[0] = 0x55;
+    packet[1] = 0x01;
+    packet[2] = _status;
+    packet[3] = 0;
+    packet[4] = 0;
+    packet[5] = index >> 8;
+    packet[6] = index;
+    
+    int sum = 0;
+    for (int i = 0; i <= 6; i++) {
+        sum = sum + packet[i];
+    }
+    packet[7] = (sum % 256);
+    
+    NSData *data = [NSData dataWithBytes:packet length:sizeof(packet)];
+    [_delegate sendUDPDataGroupCommand:data toPort:relayVO.port toHost:relayVO.ip];
 }
 
 

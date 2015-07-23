@@ -14,6 +14,9 @@
 @end
 
 @interface PlayerVideoControl  : UICollectionViewCell
+{
+    int videoNum,volumeNum;
+}
 
 //模型
 @property(nonatomic, retain) PlayerVO * VO;

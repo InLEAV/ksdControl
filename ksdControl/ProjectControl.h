@@ -34,6 +34,7 @@
 //关闭投影机
 @property (strong, nonatomic) UIButton* closeBtn;
 
+//是否显示了此组件
 -(void)setIsShow:(BOOL)isShow2;
 
 //打开投影机
