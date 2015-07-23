@@ -99,7 +99,7 @@
                     if([[gKey substringToIndex:2] isEqual: @"组元"])
                     {
                         NSString *type = [gDict objectForKey:@"type"];
-                        if([type isEqualToString:@"电脑类型"])
+                        if([type isEqualToString:typeComputer])
                         {
                             NSLog(@"电脑类型:%@",[gDict objectForKey:@"name"]);
                             ComputerVO* computer = [ComputerVO new];
@@ -113,7 +113,7 @@
                             [area.groups addObject:computer];
                             
                         }
-                        if([type isEqualToString:@"投影机类型"])
+                        if([type isEqualToString:typeProject])
                         {
                             NSLog(@"投影机类型:%@",[gDict objectForKey:@"name"]);
                             ProjectVO* project = [ProjectVO new];
@@ -127,7 +127,7 @@
                             [area.groups addObject:project];
                         }
                         
-                        if([type isEqualToString:@"视频播放类型"])
+                        if([type isEqualToString:typeVideoPlayer])
                         {
                             NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
                             PlayerVO* player = [PlayerVO new];
@@ -142,7 +142,7 @@
                             [area.groups addObject:player];
                         }
                         
-                        if([type isEqualToString:@"图片播放类型"])
+                        if([type isEqualToString:typeImagePlayer])
                         {
                             NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
                             PlayerVO* player = [PlayerVO new];
@@ -158,7 +158,7 @@
                         }
 
                         
-                        if([type isEqualToString:@"电路类型"])
+                        if([type isEqualToString:typeRelay])
                         {
                             NSLog(@"电路类型:%@",[gDict objectForKey:@"name"]);
                             RelayVO* relay = [RelayVO new];
@@ -192,7 +192,7 @@
                             NSDictionary *eDict = [gDict objectForKey:eKey];
                             
                             NSString *type = [eDict objectForKey:@"type"];
-                            if([type isEqualToString:@"电脑类型"])
+                            if([type isEqualToString:typeComputer])
                             {
                                 ComputerVO* computer = [ComputerVO new];
                                 [computer initVO];
@@ -203,7 +203,7 @@
                                 [computer setAddressMac:[eDict objectForKey:@"mac"]];
                                 [group.elements addObject:computer];
                             }
-                            if([type isEqualToString:@"投影机类型"])
+                            if([type isEqualToString:typeProject])
                             {
                                 ProjectVO* project = [ProjectVO new];
                                 [project initVO];
@@ -214,7 +214,7 @@
                                 [group.elements addObject:project];
                             }
                             
-                            if([type isEqualToString:@"视频播放类型"])
+                            if([type isEqualToString:typeVideoPlayer])
                             {
                                 PlayerVO* player = [PlayerVO new];
                                 [player initVO];
@@ -227,7 +227,7 @@
                                 [group.elements addObject:player];
                             }
                             
-                            if([type isEqualToString:@"图片播放类型"])
+                            if([type isEqualToString:typeImagePlayer])
                             {
                                 PlayerVO* player = [PlayerVO new];
                                 [player initVO];
@@ -241,7 +241,7 @@
                             }
 
                             
-                            if([type isEqualToString:@"电路类型"])
+                            if([type isEqualToString:typeRelay])
                             {
                                 RelayVO* relay = [RelayVO new];
                                 [relay initVO];

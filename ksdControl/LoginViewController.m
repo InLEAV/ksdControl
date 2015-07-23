@@ -17,6 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+     NSString* identifierNumber = [[UIDevice currentDevice].identifierForVendor UUIDString] ;
+    NSLog(@"%@",identifierNumber);
 }
 
 - (void)didReceiveMemoryWarning {
