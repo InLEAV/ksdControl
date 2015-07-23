@@ -394,7 +394,8 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                     
                 }
                 
-                [self tableView:elementTableView didSelectRowAtIndexPath:[NSIndexPath indexPathForRow:elementDidSelectRowAtIndexPath.row+1 inSection:elementDidSelectRowAtIndexPath.section]];
+                [self SelectItem:elementDidSelectRowAtIndexPath tableView:self.elementTableView];
+                
             }
                 break;
             case 1:
@@ -422,6 +423,8 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                     [group.elements addObject:[elementViewController.projectorDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
                 }
+                
+                [self SelectItem:elementDidSelectRowAtIndexPath tableView:self.elementTableView];
             }
                 break;
             case 2:
@@ -449,6 +452,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                     [group.elements addObject:[elementViewController.relayDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
                 }
+                [self SelectItem:elementDidSelectRowAtIndexPath tableView:self.elementTableView];
             }
                 break;
             case 3:
@@ -476,6 +480,8 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
                     [group.elements addObject:[elementViewController.playerVideoDataList objectAtIndex:elementDidSelectRowAtIndexPath.row]];
                     [containerDataList addObject:[group.elements objectAtIndex:group.elements.count-1]];
                 }
+                
+                [self SelectItem:elementDidSelectRowAtIndexPath tableView:self.elementTableView];
             }
                 break;
         }
@@ -569,5 +575,17 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
 {
     [self.groupNameFieldText resignFirstResponder];
     [sender resignFirstResponder];
+}
+
+
+-(void)SelectItem:(NSIndexPath *)didSelectRowAtIndexPath tableView:(UITableView*)curTableView
+{
+    if(didSelectRowAtIndexPath.row < [self tableView:curTableView numberOfRowsInSection:didSelectRowAtIndexPath.section] -1)
+    {
+        NSIndexPath *_indexPath = [NSIndexPath indexPathForRow:didSelectRowAtIndexPath.row+1 inSection:didSelectRowAtIndexPath.section];
+        [curTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self tableView:curTableView didSelectRowAtIndexPath:_indexPath];
+        
+    }
 }
 @end

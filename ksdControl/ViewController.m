@@ -26,7 +26,8 @@
    AppDelegate* appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     
     pavilionNameLabel.text = appDelegate.pavilionName;
-    
+//    NSString* identifierNumber = [[UIDevice currentDevice].identifierForVendor UUIDString] ;
+//    NSLog(@"%@",identifierNumber);
     
 }
 

@@ -44,4 +44,7 @@
 - (IBAction)finishEdit:(id)sender;
 
 - (IBAction)backTap:(id)sender;
+
+//选中分区选项
+-(void)SelectItem:(NSIndexPath *)didSelectRowAtIndexPath tableView:(UITableView*)tableView;
 @end

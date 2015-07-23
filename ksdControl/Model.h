@@ -10,7 +10,8 @@
 
 extern NSString * const typeComputer;
 extern NSString * const typeProject;
-extern NSString * const typePlayer;
+extern NSString * const typeVideoPlayer;
+extern NSString * const typeImagePlayer;
 extern NSString * const typeRelay;
 
 @interface Model : NSObject

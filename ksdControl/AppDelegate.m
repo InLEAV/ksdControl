@@ -14,6 +14,7 @@
 #import "GroupVO.h"
 #import "AreaVO.h"
 #import "JsonControl.h"
+#import "Model.h"
 
 @interface AppDelegate ()
 
@@ -98,12 +99,12 @@
                     if([[gKey substringToIndex:2] isEqual: @"组元"])
                     {
                         NSString *type = [gDict objectForKey:@"type"];
-                        if([type isEqualToString:@"电脑类型"])
+                        if([type isEqualToString:typeComputer])
                         {
                             NSLog(@"电脑类型:%@",[gDict objectForKey:@"name"]);
                             ComputerVO* computer = [ComputerVO new];
                             [computer initVO];
-                            [computer setAType:@"电脑类型"];
+                            [computer setAType:typeComputer];
                             [computer setIp:[gDict objectForKey:@"ip"]];
                             [computer setAName:[gDict objectForKey:@"name"]];
                             [computer setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -112,12 +113,12 @@
                             [area.groups addObject:computer];
                             
                         }
-                        if([type isEqualToString:@"投影机类型"])
+                        if([type isEqualToString:typeProject])
                         {
                             NSLog(@"投影机类型:%@",[gDict objectForKey:@"name"]);
                             ProjectVO* project = [ProjectVO new];
                             [project initVO];
-                            [project setAType:@"投影类型"];
+                            [project setAType:typeProject];
                             [project setIp:[gDict objectForKey:@"ip"]];
                             [project setAName:[gDict objectForKey:@"name"]];
                             [project setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -126,12 +127,12 @@
                             [area.groups addObject:project];
                         }
                         
-                        if([type isEqualToString:@"视频播放类型"])
+                        if([type isEqualToString:typeVideoPlayer])
                         {
                             NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
                             PlayerVO* player = [PlayerVO new];
                             [player initVO];
-                            [player setAType:@"视频播放器类型"];
+                            [player setAType:typeVideoPlayer];
                             [player setIp:[gDict objectForKey:@"ip"]];
                             [player setAName:[gDict objectForKey:@"name"]];
                             [player setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -141,12 +142,12 @@
                             [area.groups addObject:player];
                         }
                         
-                        if([type isEqualToString:@"图片播放类型"])
+                        if([type isEqualToString:typeImagePlayer])
                         {
                             NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
                             PlayerVO* player = [PlayerVO new];
                             [player initVO];
-                            [player setAType:@"图片播放器类型"];
+                            [player setAType:typeImagePlayer];
                             [player setIp:[gDict objectForKey:@"ip"]];
                             [player setAName:[gDict objectForKey:@"name"]];
                             [player setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -157,12 +158,12 @@
                         }
 
                         
-                        if([type isEqualToString:@"电路类型"])
+                        if([type isEqualToString:typeRelay])
                         {
                             NSLog(@"电路类型:%@",[gDict objectForKey:@"name"]);
                             RelayVO* relay = [RelayVO new];
                             [relay initVO];
-                            [relay setAType:@"电路类型"];
+                            [relay setAType:typeRelay];
                             [relay setIp:[gDict objectForKey:@"ip"]];
                             [relay setAName:[gDict objectForKey:@"name"]];
                             [relay setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -191,33 +192,33 @@
                             NSDictionary *eDict = [gDict objectForKey:eKey];
                             
                             NSString *type = [eDict objectForKey:@"type"];
-                            if([type isEqualToString:@"电脑类型"])
+                            if([type isEqualToString:typeComputer])
                             {
                                 ComputerVO* computer = [ComputerVO new];
                                 [computer initVO];
-                                [computer setAType:@"电脑类型"];
+                                [computer setAType:typeComputer];
                                 [computer setIp:[eDict objectForKey:@"ip"]];
                                 [computer setAName:[eDict objectForKey:@"name"]];
                                 [computer setPort:[[eDict objectForKey:@"port"] intValue]] ;
                                 [computer setAddressMac:[eDict objectForKey:@"mac"]];
                                 [group.elements addObject:computer];
                             }
-                            if([type isEqualToString:@"投影机类型"])
+                            if([type isEqualToString:typeProject])
                             {
                                 ProjectVO* project = [ProjectVO new];
                                 [project initVO];
-                                [project setAType:@"投影类型"];
+                                [project setAType:typeProject];
                                 [project setIp:[eDict objectForKey:@"ip"]];
                                 [project setAName:[eDict objectForKey:@"name"]];
                                 [project setPort:[[eDict objectForKey:@"port"] intValue]] ;
                                 [group.elements addObject:project];
                             }
                             
-                            if([type isEqualToString:@"视频播放类型"])
+                            if([type isEqualToString:typeVideoPlayer])
                             {
                                 PlayerVO* player = [PlayerVO new];
                                 [player initVO];
-                                [player setAType:@"视频播放器类型"];
+                                [player setAType:typeVideoPlayer];
                                 [player setIp:[eDict objectForKey:@"ip"]];
                                 [player setAName:[eDict objectForKey:@"name"]];
                                 [player setPort:[[eDict objectForKey:@"port"] intValue]] ;
@@ -226,11 +227,11 @@
                                 [group.elements addObject:player];
                             }
                             
-                            if([type isEqualToString:@"图片播放类型"])
+                            if([type isEqualToString:typeImagePlayer])
                             {
                                 PlayerVO* player = [PlayerVO new];
                                 [player initVO];
-                                [player setAType:@"图片播放器类型"];
+                                [player setAType:typeImagePlayer];
                                 [player setIp:[eDict objectForKey:@"ip"]];
                                 [player setAName:[eDict objectForKey:@"name"]];
                                 [player setPort:[[eDict objectForKey:@"port"] intValue]] ;
@@ -240,11 +241,11 @@
                             }
 
                             
-                            if([type isEqualToString:@"电路类型"])
+                            if([type isEqualToString:typeRelay])
                             {
                                 RelayVO* relay = [RelayVO new];
                                 [relay initVO];
-                                [relay setAType:@"电路类型"];
+                                [relay setAType:typeRelay];
                                 [relay setIp:[eDict objectForKey:@"ip"]];
                                 [relay setAName:[eDict objectForKey:@"name"]];
                                 [relay setPort:[[eDict objectForKey:@"port"] intValue]] ;
