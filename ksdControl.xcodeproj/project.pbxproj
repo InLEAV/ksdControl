@@ -90,6 +90,11 @@
 		F7334F7F1B393EC0003307BE /* zq-highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7334F7B1B393EC0003307BE /* zq-highlight@2x.png */; };
 		F7334F801B393EC0003307BE /* zq@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7334F7C1B393EC0003307BE /* zq@1x.png */; };
 		F7334F811B393EC0003307BE /* zq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7334F7D1B393EC0003307BE /* zq@2x.png */; };
+		F77ED08C1B69DDF900AFFA33 /* BmobSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F77ED08B1B69DDF900AFFA33 /* BmobSDK.framework */; };
+		F77ED0901B69E16A00AFFA33 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F77ED08F1B69E16A00AFFA33 /* libz.1.2.5.dylib */; };
+		F77ED0921B69E18000AFFA33 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F77ED0911B69E18000AFFA33 /* libicucore.dylib */; };
+		F77ED0941B69E18F00AFFA33 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F77ED0931B69E18F00AFFA33 /* libsqlite3.dylib */; };
+		F77ED09A1B6A34C900AFFA33 /* SLKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = F77ED0991B6A34C900AFFA33 /* SLKeychain.m */; };
 		F77F7B8F1B4B86EA00E585AD /* GroupControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F7B8E1B4B86EA00E585AD /* GroupControl.m */; };
 		F77FF3AC1B3BEB6C00309BB5 /* zqmenu-bg@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77FF3AA1B3BEB6C00309BB5 /* zqmenu-bg@1x.png */; };
 		F77FF3AD1B3BEB6C00309BB5 /* zqmenu-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F77FF3AB1B3BEB6C00309BB5 /* zqmenu-bg@2x.png */; };
@@ -243,6 +248,13 @@
 		F7334F7B1B393EC0003307BE /* zq-highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zq-highlight@2x.png"; sourceTree = "<group>"; };
 		F7334F7C1B393EC0003307BE /* zq@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zq@1x.png"; sourceTree = "<group>"; };
 		F7334F7D1B393EC0003307BE /* zq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zq@2x.png"; sourceTree = "<group>"; };
+		F77ED08B1B69DDF900AFFA33 /* BmobSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BmobSDK.framework; path = ksdControl/BmobSDK.framework; sourceTree = "<group>"; };
+		F77ED08D1B69E09700AFFA33 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F77ED08F1B69E16A00AFFA33 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		F77ED0911B69E18000AFFA33 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		F77ED0931B69E18F00AFFA33 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		F77ED0981B6A34C900AFFA33 /* SLKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLKeychain.h; sourceTree = "<group>"; };
+		F77ED0991B6A34C900AFFA33 /* SLKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLKeychain.m; sourceTree = "<group>"; };
 		F77F7B8D1B4B86EA00E585AD /* GroupControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupControl.h; sourceTree = "<group>"; };
 		F77F7B8E1B4B86EA00E585AD /* GroupControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupControl.m; sourceTree = "<group>"; };
 		F77FF3AA1B3BEB6C00309BB5 /* zqmenu-bg@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zqmenu-bg@1x.png"; sourceTree = "<group>"; };
@@ -280,6 +292,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F77ED0941B69E18F00AFFA33 /* libsqlite3.dylib in Frameworks */,
+				F77ED0921B69E18000AFFA33 /* libicucore.dylib in Frameworks */,
+				F77ED0901B69E16A00AFFA33 /* libz.1.2.5.dylib in Frameworks */,
+				F77ED08C1B69DDF900AFFA33 /* BmobSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +346,7 @@
 		9E92211F1ADBB91700B942CC = {
 			isa = PBXGroup;
 			children = (
+				F77ED0971B6A344B00AFFA33 /* Framework */,
 				9E92212A1ADBB91700B942CC /* ksdControl */,
 				9E9221471ADBB91700B942CC /* ksdControlTests */,
 				9E9221291ADBB91700B942CC /* Products */,
@@ -357,9 +374,9 @@
 				2DB1327F1ADCFE0500A199C9 /* LoginViewController.h */,
 				2DB132801ADCFE0500A199C9 /* LoginViewController.m */,
 				9E9221351ADBB91700B942CC /* ViewController.h */,
+				9E9221361ADBB91700B942CC /* ViewController.m */,
 				9E4682021B543597009FD6E6 /* Sever.h */,
 				9E4682031B543597009FD6E6 /* Sever.m */,
-				9E9221361ADBB91700B942CC /* ViewController.m */,
 				9E9221381ADBB91700B942CC /* Main.storyboard */,
 				9E92213B1ADBB91700B942CC /* Images.xcassets */,
 				9E92213D1ADBB91700B942CC /* LaunchScreen.xib */,
@@ -372,6 +389,8 @@
 				2D21E6891B0EEDE70023E489 /* JsonControl.m */,
 				F7A427F81B3AB0BB00391828 /* SLUICollectionViewLayout.h */,
 				F7A427F91B3AB0BB00391828 /* SLUICollectionViewLayout.m */,
+				F77ED0981B6A34C900AFFA33 /* SLKeychain.h */,
+				F77ED0991B6A34C900AFFA33 /* SLKeychain.m */,
 			);
 			path = ksdControl;
 			sourceTree = "<group>";
@@ -528,6 +547,18 @@
 				F7334F731B391871003307BE /* backgroup@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		F77ED0971B6A344B00AFFA33 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				F77ED0931B69E18F00AFFA33 /* libsqlite3.dylib */,
+				F77ED0911B69E18000AFFA33 /* libicucore.dylib */,
+				F77ED08F1B69E16A00AFFA33 /* libz.1.2.5.dylib */,
+				F77ED08D1B69E09700AFFA33 /* CoreLocation.framework */,
+				F77ED08B1B69DDF900AFFA33 /* BmobSDK.framework */,
+			);
+			name = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -718,6 +749,7 @@
 				9E9221311ADBB91700B942CC /* AppDelegate.m in Sources */,
 				9E92212E1ADBB91700B942CC /* main.m in Sources */,
 				9E9221651ADBBF2200B942CC /* ComputerVO.m in Sources */,
+				F77ED09A1B6A34C900AFFA33 /* SLKeychain.m in Sources */,
 				9E9221371ADBB91700B942CC /* ViewController.m in Sources */,
 				9E4682041B543597009FD6E6 /* Sever.m in Sources */,
 				9EDB018F1AEF2BA200FD74FE /* GroupVO.m in Sources */,
@@ -867,6 +899,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ksdControl",
+				);
 				INFOPLIST_FILE = ksdControl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -881,6 +917,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ksdControl",
+				);
 				INFOPLIST_FILE = ksdControl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
