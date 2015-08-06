@@ -19,8 +19,8 @@
     
     if (self)
     {
-        self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 237, 156)];
-        [self.backgroup setImage:[UIImage imageNamed:@"controlBg.png"]];
+        self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 226, 148)];
+        [self.backgroup setImage:[UIImage imageNamed:@"switchBg.png"]];
         [self.contentView addSubview:self.backgroup];
         
         // 创建一个UILabel控件
@@ -37,18 +37,18 @@
         
         //这里创建一个圆角矩形的按钮，开电路按钮
         self.openBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.openBtn.frame = CGRectMake(30, 77, 70, 60);
+        self.openBtn.frame = CGRectMake(30, 70, 65, 65);
         self.openBtn.backgroundColor = [UIColor clearColor];
-        [self.openBtn setImage:[UIImage imageNamed:@"on.png"] forState:UIControlStateNormal];
+        [self.openBtn setImage:[UIImage imageNamed:@"on-normal.png"] forState:UIControlStateNormal];
         [self.openBtn setImage:[UIImage imageNamed:@"on-highlight.png"] forState:UIControlStateHighlighted];
         [self.openBtn addTarget:self action:@selector(openRelay:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.openBtn];
         
         //这里创建一个圆角矩形的按钮，关电路按钮
         self.closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.closeBtn.frame = CGRectMake(137, 77, 70, 60);
+        self.closeBtn.frame = CGRectMake(130, 70, 65, 65);
         self.closeBtn.backgroundColor = [UIColor clearColor];
-        [self.closeBtn setImage:[UIImage imageNamed:@"off.png"] forState:UIControlStateNormal];
+        [self.closeBtn setImage:[UIImage imageNamed:@"off-normal.png"] forState:UIControlStateNormal];
         [self.closeBtn setImage:[UIImage imageNamed:@"off-highlight.png"] forState:UIControlStateHighlighted];
         [self.closeBtn addTarget:self action:@selector(closeRelay:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.closeBtn];

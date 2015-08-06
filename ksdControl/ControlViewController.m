@@ -21,7 +21,7 @@
 #import "ProjectVO.h"
 #import "GroupControl.h"
 
-#define CELL_Height 156
+#define CELL_Height 148
 
 @interface ControlViewController ()
 @end
@@ -51,7 +51,7 @@ AppDelegate *appDelegate;
     [sever initSever:8873];
     
     SLUICollectionViewLayout *layout = [[SLUICollectionViewLayout alloc] init];
-    layout.sectionInset = UIEdgeInsetsMake(40, 15, 40, 15);
+    layout.sectionInset = UIEdgeInsetsMake(55, 20, 30, 15);
     layout.delegate = self;
     self.grid.collectionViewLayout = layout;
     self.grid.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -217,8 +217,8 @@ AppDelegate *appDelegate;
         UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
         
         // 设置圆角
-        cell.layer.cornerRadius = 8;
-        cell.layer.masksToBounds = YES;
+//        cell.layer.cornerRadius = 8;
+//        cell.layer.masksToBounds = YES;
         // 获取正在处理的单元格所在分区号、行号
         NSInteger rowNo = indexPath.row;
         
@@ -228,12 +228,12 @@ AppDelegate *appDelegate;
         if( indexPathArea != indexPath)
         {
             UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
-            [iv setImage:[UIImage imageNamed:@"zq.png"]];
+            [iv setImage:[UIImage imageNamed:@""]];
         }
         else
         {
             UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
-            [iv setImage:[UIImage imageNamed:@"zq-highlight.png"]];
+            [iv setImage:[UIImage imageNamed:@"menuItem-highlight.png"]];
         }
         UILabel* label = (UILabel*)[cell viewWithTag:2];
         label.lineBreakMode = NSLineBreakByTruncatingMiddle;
@@ -347,7 +347,7 @@ AppDelegate *appDelegate;
     CGSize size;
     if(collectionView.tag == 0)
     {
-        size = CGSizeMake(256, 100);
+        size = CGSizeMake(169, 59);
     }
     
     return size;
@@ -372,16 +372,16 @@ AppDelegate *appDelegate;
                 PlayerVO *player =((PlayerVO*)elementArray[indexPath.item]);
                 if(!player.isPic)
                 {
-                    width = 488;
+                    width = 471;
                 }
                 else
                 {
-                    width = 237;
+                    width = 226;
                 }
             }
             else
             {
-                width = 237;
+                width = 226;
             }
         }
     }
@@ -399,7 +399,7 @@ AppDelegate *appDelegate;
        
         UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath:indexPathArea];
         UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
-        [iv setImage:[UIImage imageNamed:@"zq.png"]];
+        [iv setImage:[UIImage imageNamed:@""]];
         
         NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
         
@@ -420,7 +420,7 @@ AppDelegate *appDelegate;
         
         UICollectionViewCell * cell1 = [collectionView cellForItemAtIndexPath:indexPathArea];
         UIImageView* iv1 = (UIImageView*)[cell1 viewWithTag:1];
-        [iv1 setImage:[UIImage imageNamed:@"zq-highlight.png"]];
+        [iv1 setImage:[UIImage imageNamed:@"menuItem-highlight.png"]];
         
         //更新展区网格单元格数据
         [self.grid reloadData];

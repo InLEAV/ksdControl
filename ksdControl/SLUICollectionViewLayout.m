@@ -51,7 +51,7 @@
 - (void)commonInit
 {
     _rowCount = 2;
-    _itemHeight = 156.0f;
+    _itemHeight = 148.0f;
     _sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);//UIEdgeInsetsZero;
 }
 
