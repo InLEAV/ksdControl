@@ -15,6 +15,8 @@
 #import "AreaVO.h"
 #import "JsonControl.h"
 #import "Model.h"
+#import <BmobSDK/Bmob.h>
+#import <Security/Security.h>  
 
 @interface AppDelegate ()
 
@@ -28,6 +30,37 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [self getElements];
+    
+    //        //往GameScore表添加一条playerName为小明，分数为78的数据
+    //        BmobObject *gameScore = [BmobObject objectWithClassName:@"GameScore"];
+    //        [gameScore setObject:@"小明" forKey:@"playerName"];
+    //        [gameScore setObject:@78 forKey:@"score"];
+    //        [gameScore setObject:[NSNumber numberWithBool:YES] forKey:@"cheatMode"];
+    //        [gameScore saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+    //            //进行操作
+    //        }];
+    
+    //查找GameScore表
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
+    //查找GameScore表里面id为0c6db13c的数据
+    [bquery getObjectInBackgroundWithId:@"1VHBxxxy" block:^(BmobObject *object,NSError *error){
+        if (error){
+            //进行错误处理
+        }else{
+            //表里有id为0c6db13c的数据
+            if (object) {
+                //得到playerName和cheatMode
+                NSString *playerName = [object objectForKey:@"name"];
+                // BOOL cheatMode = [[object objectForKey:@"cheatMode"] boolValue];
+                
+                NSDate *date = [object objectForKey:@"expirationtime"];
+                
+                
+                NSLog(@"%@----%@",playerName,date);
+            }
+        }
+    }];
+    
     return YES;
 }
 

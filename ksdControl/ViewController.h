@@ -12,8 +12,15 @@
 {
     
 }
+@property (strong, nonatomic) IBOutlet UIView *activePlane;
 
 @property (strong, nonatomic) IBOutlet UILabel *pavilionNameLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *tipsLable;
+
+@property (strong, nonatomic) IBOutlet UITextField *numberInputText;
+
+- (IBAction)sureBt:(id)sender;
 
 
 @end
