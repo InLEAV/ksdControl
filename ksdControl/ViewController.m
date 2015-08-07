@@ -35,11 +35,12 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
     
     pavilionNameLabel.text = appDelegate.pavilionName;
 
-    
+    //加载密钥
     NSMutableDictionary *kvPairs = (NSMutableDictionary *)[SLKeychain load:KEY_VALIDDATE_VALIDSTATE];
     NSLog(@"Date:  %@",[kvPairs objectForKey:KEY_VALIDDATE]);
     NSLog(@"State:  %@",[kvPairs objectForKey:KEY_VALIDSTATE]);
     
+    //判断密钥key是否存在
     if([kvPairs objectForKey:KEY_VALIDSTATE] == NULL || [[kvPairs objectForKey:KEY_VALIDSTATE] boolValue] == FALSE)
     {
         [activePlane setHidden:FALSE];
@@ -47,6 +48,7 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
         tipsLable.text = @"请输入激活码激活该应用";
     }
     
+    //判断密钥是否已经激活
     if([[kvPairs objectForKey:KEY_VALIDSTATE] boolValue] == TRUE)
     {
         NSDate* date = [kvPairs objectForKey:KEY_VALIDDATE];
@@ -82,8 +84,10 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
     // Dispose of any resources that can be recreated.
 }
 
+//确认激活
 - (IBAction)sureBt:(id)sender
 {
+    //获取User表
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
     //查找User表的数据
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
@@ -92,12 +96,7 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
             if([numberInputText.text isEqualToString:[obj objectForKey:@"password"]])
             {
                 //打印Name
-                NSLog(@"obj.name = %@", [obj objectForKey:@"name"]);
-                //打印objectId,createdAt,updatedAt,expirationtime
-                NSLog(@"obj.password = %@", [obj objectForKey:@"password"]);
-                NSLog(@"obj.objectId = %@", [obj objectId]);
-                NSLog(@"obj.expirationtime = %@", [obj objectForKey:@"expirationtime"]);
-                NSLog(@"obj.updatedAt = %@", [obj updatedAt]);
+               
                 
                 NSMutableDictionary *KVPairs = [NSMutableDictionary dictionary];
                 [KVPairs setObject:[obj objectForKey:@"expirationtime"] forKey:KEY_VALIDDATE];
@@ -117,6 +116,7 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
                     tipsLable.text = @"该激活码已过期，请联系作者";
                 }
 
+                //保存密钥
                 [SLKeychain save:KEY_VALIDDATE_VALIDSTATE data:KVPairs];
             }
             else
