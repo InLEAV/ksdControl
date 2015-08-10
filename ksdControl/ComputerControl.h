@@ -11,6 +11,7 @@
 @protocol computerDelegate <NSObject>
 - (void)sendUDPDataComputerCommand:(NSData *)command toPort:(NSInteger)port toHost:(NSString *)host;
 - (void)sendUDPComputerCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host;
+- (void)disConnectUDPComputer;
 @end
 
 @interface ComputerControl : UICollectionViewCell
@@ -42,4 +43,7 @@
 -(void)closeComputer:(id)sende;
 
 -(void)updatePacket:(NSString *)mac;
+
+-(void)disConnect;
+
 @end

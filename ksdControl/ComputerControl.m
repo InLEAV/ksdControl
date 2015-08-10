@@ -86,7 +86,7 @@
     }
     NSLog(@"计算完成");
     NSData *data = [NSData dataWithBytes:packet length:102];
-    [_delegate sendUDPDataComputerCommand:data toPort:self.VO.port toHost:self.VO.ip];
+    [_delegate sendUDPDataComputerCommand:data toPort:self.VO.port toHost:@"255.255.255.255"];
     NSLog(@"ip:%@",self.VO.ip);
 }
 
@@ -103,5 +103,11 @@
 {
     NSLog(@"CloseComputer!");
     [_delegate sendUDPComputerCommand:@"computer&1&0" toPort:self.VO.port toHost:self.VO.ip];
+}
+
+-(void)disConnect
+{
+    [_delegate disConnectUDPComputer];
+    NSLog(@"resumeUDPComputer!");
 }
 @end

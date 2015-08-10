@@ -20,6 +20,10 @@
 
 - (void) initSever:(int) port;
 
+- (void) disConnect;
+
+- (void) resume;
+
 -(void)sendDataCommand:(NSData *)command toPort:(NSInteger)port toHost:(NSString *)host;
 
 - (void)sendCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host;

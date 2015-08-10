@@ -51,7 +51,7 @@ AppDelegate *appDelegate;
     [sever initSever:8873];
     
     SLUICollectionViewLayout *layout = [[SLUICollectionViewLayout alloc] init];
-    layout.sectionInset = UIEdgeInsetsMake(55, 20, 30, 15);
+    layout.sectionInset = UIEdgeInsetsMake(55, 37, 30, 30);
     layout.delegate = self;
     self.grid.collectionViewLayout = layout;
     self.grid.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -100,9 +100,13 @@ AppDelegate *appDelegate;
     [self updateLayout];
 }
 
+
+//当切换到当前视图是更新元素列表
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+  
 }
 
 //当切换到当前视图是更新元素列表
@@ -118,6 +122,24 @@ AppDelegate *appDelegate;
         
         //[self collectionView:self.horizontalList didSelectItemAtIndexPath:indexPathArea];
     }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    
+    NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
+    
+    for (int i = 0; i < arr.count; i++)
+    {
+        NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
+        
+        if([newcell isKindOfClass:[ComputerControl class]])
+        {
+            [((ComputerControl *) newcell) disConnect];
+        }
+    }
+
 }
 
 //获取每个展区元素
@@ -261,6 +283,7 @@ AppDelegate *appDelegate;
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((ComputerVO*)elementArray[rowNo]).aName;
                 cell.VO = ((ComputerVO*)elementArray[rowNo]);
+                [cell disConnect];
                 cell.delegate = self;
                 return cell;
             }
@@ -436,10 +459,18 @@ AppDelegate *appDelegate;
     
 }
 
+-(void)disConnectUDPComputer
+{
+    NSLog(@"电脑UDP重新连接");
+    [sever disConnect];
+}
+
 - (void)sendUDPDataComputerCommand:(NSData *)command toPort:(NSInteger)port toHost:(NSString *)host
 {
     NSLog(@"发送数据给电脑端");
     [sever sendDataCommand:command toPort:port toHost:host];
+    
+    
 }
 
 - (void)sendUDPComputerCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host

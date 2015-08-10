@@ -78,6 +78,11 @@
     }
 }
 
+- (void) disConnect
+{
+    [self pause];
+}
+
 - (void)resume
 {
     [self pause];
