@@ -25,7 +25,7 @@
     if (self) {
         
         
-        self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 488, 156)];
+        self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 471, 148)];
         [self.backgroup setImage:[UIImage imageNamed:@"playerBg.png"]];
         [self.contentView addSubview:self.backgroup];
         
@@ -42,57 +42,57 @@
         
         //这里创建一个圆角矩形的按钮，上一个视频
         self.preMovieBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.preMovieBtn.frame = CGRectMake(35, 77, 70, 60);
+        self.preMovieBtn.frame = CGRectMake(30, 70, 65, 65);
         self.preMovieBtn.backgroundColor = [UIColor clearColor];
-        [self.preMovieBtn setImage:[UIImage imageNamed:@"preMovie.png"] forState:UIControlStateNormal];
-        [self.preMovieBtn setImage:[UIImage imageNamed:@"preMovie-highlight.png"] forState:UIControlStateHighlighted];
+        [self.preMovieBtn setImage:[UIImage imageNamed:@"preBt-normal.png"] forState:UIControlStateNormal];
+        [self.preMovieBtn setImage:[UIImage imageNamed:@"preBt-highlight.png"] forState:UIControlStateHighlighted];
         [self.preMovieBtn addTarget:self action:@selector(preMovieBtn:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.preMovieBtn];
         
         //这里创建一个圆角矩形的按钮，播放视频
         self.playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.playBtn.frame = CGRectMake(105, 77, 70, 60);
+        self.playBtn.frame = CGRectMake(100, 70, 65, 65);
         self.playBtn.backgroundColor = [UIColor clearColor];
-        [self.playBtn setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
-        [self.playBtn setImage:[UIImage imageNamed:@"play-highlight.png"] forState:UIControlStateHighlighted];
+        [self.playBtn setImage:[UIImage imageNamed:@"playBt-normal.png"] forState:UIControlStateNormal];
+        [self.playBtn setImage:[UIImage imageNamed:@"playBt-highlight.png"] forState:UIControlStateHighlighted];
         [self.playBtn addTarget:self action:@selector(playVideo:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.playBtn];
         
         //这里创建一个圆角矩形的按钮，下一个视频
         self.nextMovieBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.nextMovieBtn.frame = CGRectMake(175, 77, 70, 60);
+        self.nextMovieBtn.frame = CGRectMake(170, 70, 65, 65);
         self.nextMovieBtn.backgroundColor = [UIColor clearColor];
-        [self.nextMovieBtn setImage:[UIImage imageNamed:@"nextMovie.png"] forState:UIControlStateNormal];
-        [self.nextMovieBtn setImage:[UIImage imageNamed:@"nextMovie-highlight.png"] forState:UIControlStateHighlighted];
+        [self.nextMovieBtn setImage:[UIImage imageNamed:@"nextBt-normal.png"] forState:UIControlStateNormal];
+        [self.nextMovieBtn setImage:[UIImage imageNamed:@"nextBt-highlight.png"] forState:UIControlStateHighlighted];
         [self.nextMovieBtn addTarget:self action:@selector(nextMovieBtn:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.nextMovieBtn];
         
         
         //这里创建一个圆角矩形的按钮，停止视频
         self.stopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.stopBtn.frame = CGRectMake(245, 77, 70, 60);
+        self.stopBtn.frame = CGRectMake(240, 70, 65, 65);
         self.stopBtn.backgroundColor = [UIColor clearColor];
-        [self.stopBtn setImage:[UIImage imageNamed:@"stop.png"] forState:UIControlStateNormal];
-        [self.stopBtn setImage:[UIImage imageNamed:@"stop-highlight.png"] forState:UIControlStateHighlighted];
+        [self.stopBtn setImage:[UIImage imageNamed:@"stopBt-normal.png"] forState:UIControlStateNormal];
+        [self.stopBtn setImage:[UIImage imageNamed:@"stopBt-highlight.png"] forState:UIControlStateHighlighted];
         [self.stopBtn addTarget:self action:@selector(stopVideo:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.stopBtn];
         
 
         //这里创建一个圆角矩形的按钮，减小声量
         self.minusVolumeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.minusVolumeBtn.frame = CGRectMake(315, 77, 70, 60);
+        self.minusVolumeBtn.frame = CGRectMake(310, 70, 65, 65);
         self.minusVolumeBtn.backgroundColor = [UIColor clearColor];
-        [self.minusVolumeBtn setImage:[UIImage imageNamed:@"volumeMinus.png"] forState:UIControlStateNormal];
-        [self.minusVolumeBtn setImage:[UIImage imageNamed:@"volumeMinus-highlight.png"] forState:UIControlStateHighlighted];
+        [self.minusVolumeBtn setImage:[UIImage imageNamed:@"volumeMinusBt-normal.png"] forState:UIControlStateNormal];
+        [self.minusVolumeBtn setImage:[UIImage imageNamed:@"volumeMinusBt-highlight.png"] forState:UIControlStateHighlighted];
         [self.minusVolumeBtn addTarget:self action:@selector(minusVolumeBtn:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.minusVolumeBtn];
         
         //这里创建一个圆角矩形的按钮，放大声量
         self.addVolumeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.addVolumeBtn.frame = CGRectMake(385, 77, 70, 60);
+        self.addVolumeBtn.frame = CGRectMake(380, 70, 65,65);
         self.addVolumeBtn.backgroundColor = [UIColor clearColor];
-        [self.addVolumeBtn setImage:[UIImage imageNamed:@"volumeAdd.png"] forState:UIControlStateNormal];
-        [self.addVolumeBtn setImage:[UIImage imageNamed:@"volumeAdd-highlight.png"] forState:UIControlStateHighlighted];
+        [self.addVolumeBtn setImage:[UIImage imageNamed:@"volumeAddBt-normal.png"] forState:UIControlStateNormal];
+        [self.addVolumeBtn setImage:[UIImage imageNamed:@"volumeAddBt-highlight.png"] forState:UIControlStateHighlighted];
         [self.addVolumeBtn addTarget:self action:@selector(addVolumeBtn:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.addVolumeBtn];
 

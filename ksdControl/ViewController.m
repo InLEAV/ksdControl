@@ -41,41 +41,41 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
     NSLog(@"State:  %@",[kvPairs objectForKey:KEY_VALIDSTATE]);
     
     //判断密钥key是否存在
-    if([kvPairs objectForKey:KEY_VALIDSTATE] == NULL || [[kvPairs objectForKey:KEY_VALIDSTATE] boolValue] == FALSE)
-    {
-        [activePlane setHidden:FALSE];
-        
-        tipsLable.text = @"请输入激活码激活该应用";
-    }
-    
-    //判断密钥是否已经激活
-    if([[kvPairs objectForKey:KEY_VALIDSTATE] boolValue] == TRUE)
-    {
-        NSDate* date = [kvPairs objectForKey:KEY_VALIDDATE];
-        NSDate *currentDate = [NSDate date];
-        
-        if ([currentDate compare:date] == NSOrderedDescending)
-        {
-            NSMutableDictionary *KVPairs = [NSMutableDictionary dictionary];
-            [KVPairs setObject:@"FALSE" forKey:KEY_VALIDSTATE];
-            
-            [SLKeychain save:KEY_VALIDDATE_VALIDSTATE data:KVPairs];
-            
-            [activePlane setHidden:FALSE];
-            
-            tipsLable.text = @"请输入激活码激活该应用";
-        }
-    }
-    
-    
-    NSMutableDictionary *kvPairs2 = (NSMutableDictionary *)[SLKeychain load:KEY_VALIDDATE_VALIDSTATE];
-    
-    if([[kvPairs2 objectForKey:KEY_VALIDSTATE] boolValue] == TRUE)
-    {
-        NSLog(@"StateN:  %@",[kvPairs2 objectForKey:KEY_VALIDSTATE]);
-
-        [activePlane setHidden:TRUE];
-    }
+//    if([kvPairs objectForKey:KEY_VALIDSTATE] == NULL || [[kvPairs objectForKey:KEY_VALIDSTATE] boolValue] == FALSE)
+//    {
+//        [activePlane setHidden:FALSE];
+//        
+//        tipsLable.text = @"请输入激活码激活该应用";
+//    }
+//    
+//    //判断密钥是否已经激活
+//    if([[kvPairs objectForKey:KEY_VALIDSTATE] boolValue] == TRUE)
+//    {
+//        NSDate* date = [kvPairs objectForKey:KEY_VALIDDATE];
+//        NSDate *currentDate = [NSDate date];
+//        
+//        if ([currentDate compare:date] == NSOrderedDescending)
+//        {
+//            NSMutableDictionary *KVPairs = [NSMutableDictionary dictionary];
+//            [KVPairs setObject:@"FALSE" forKey:KEY_VALIDSTATE];
+//            
+//            [SLKeychain save:KEY_VALIDDATE_VALIDSTATE data:KVPairs];
+//            
+//            [activePlane setHidden:FALSE];
+//            
+//            tipsLable.text = @"请输入激活码激活该应用";
+//        }
+//    }
+//    
+//    
+//    NSMutableDictionary *kvPairs2 = (NSMutableDictionary *)[SLKeychain load:KEY_VALIDDATE_VALIDSTATE];
+//    
+//    if([[kvPairs2 objectForKey:KEY_VALIDSTATE] boolValue] == TRUE)
+//    {
+//        NSLog(@"StateN:  %@",[kvPairs2 objectForKey:KEY_VALIDSTATE]);
+//
+//        [activePlane setHidden:TRUE];
+//    }
     
 }
 
@@ -95,38 +95,70 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
         {
             if([numberInputText.text isEqualToString:[obj objectForKey:@"password"]])
             {
-                //打印Name
-               
-                
-                NSMutableDictionary *KVPairs = [NSMutableDictionary dictionary];
-                [KVPairs setObject:[obj objectForKey:@"expirationtime"] forKey:KEY_VALIDDATE];
-                NSDate* validDate = [obj objectForKey:@"expirationtime"];
-                NSDate *currentDate = [NSDate date];
-                
-                NSLog(@"NOW:  %@",currentDate);
-                NSLog(@"ValidDate:  %@",validDate);
-                
-                if ([currentDate compare:validDate]== NSOrderedAscending)
+             
+                for (BmobObject *obj1 in array)
                 {
-                    [KVPairs setObject:@"TRUE" forKey:KEY_VALIDSTATE];
-                    [activePlane setHidden:TRUE];
-                }
-                
-                if ([currentDate compare:validDate]== NSOrderedDescending)
-                {
-                    [KVPairs setObject:@"FALSE" forKey:KEY_VALIDSTATE];
-                    [activePlane setHidden:FALSE];
+                    if([[obj1 objectForKey:@"usedTime"] intValue] == 0)
+                    {
+                        
+                        [obj1 setObject:[NSNumber numberWithInt:1]  forKey:@"usedTime"];
+                        [obj1 updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                            if (isSuccessful) {
+                                //修改成功后的动作
+                                NSLog(@"修改成功!");
+                            } else if (error){
+                                NSLog(@"%@",error);
+                            } else {
+                                NSLog(@"UnKnow error");
+                            }
+                        }];
+                        
+                        
+                        NSMutableDictionary *KVPairs = [NSMutableDictionary dictionary];
+                        [KVPairs setObject:[obj objectForKey:@"expirationtime"] forKey:KEY_VALIDDATE];
+                        NSDate* validDate = [obj objectForKey:@"expirationtime"];
+                        NSDate *currentDate = [NSDate date];
+                        
+                        NSLog(@"NOW:  %@",currentDate);
+                        NSLog(@"ValidDate:  %@",validDate);
+                        
+                        if ([currentDate compare:validDate]== NSOrderedAscending)
+                        {
+                            [KVPairs setObject:@"TRUE" forKey:KEY_VALIDSTATE];
+                            [activePlane setHidden:TRUE];
+                        }
+                        
+                        if ([currentDate compare:validDate]== NSOrderedDescending)
+                        {
+                            [KVPairs setObject:@"FALSE" forKey:KEY_VALIDSTATE];
+                            [activePlane setHidden:FALSE];
+                            
+                            tipsLable.text = @"该激活码已过期，请联系作者";
+                        }
+                        
+                        
+                        //保存密钥
+                        [SLKeychain save:KEY_VALIDDATE_VALIDSTATE data:KVPairs];
+
+                    }
+                    else if([[obj1 objectForKey:@"usedTime"] intValue] != 0)
+                    {
+                        
+                        
+                        tipsLable.text = @"该激活码已激活使用，请联系作者";
+                    }
                     
-                    tipsLable.text = @"该激活码已过期，请联系作者";
                 }
 
-                //保存密钥
-                [SLKeychain save:KEY_VALIDDATE_VALIDSTATE data:KVPairs];
+                
             }
             else
             {
                 tipsLable.text = @"请输入正确的激活码";
+                
             }
+            
+            
         }
     }];
 }

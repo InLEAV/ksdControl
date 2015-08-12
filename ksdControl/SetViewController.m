@@ -32,7 +32,11 @@ AreaViewController* areaViewController;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-  
+
+    
+//self.tabBar.selectionIndicatorImage = [UIImage imageNamed:@"elementItem-highlight.png"];
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,7 +50,15 @@ AreaViewController* areaViewController;
 //TabBar协议，选中TabBarItem
 - (void)tabBar:(UITabBar *)tabbar didSelectItem:(UITabBarItem *)item
 {
-  
+    if(item.tag==0){
+        self.tabBar.selectionIndicatorImage = [UIImage imageNamed:@"elementItem-highlight.png"];
+    }
+    if(item.tag==1){
+        self.tabBar.selectionIndicatorImage = [UIImage imageNamed:@"groupItem-highlight.png"];
+    }
+    if(item.tag==2){
+        self.tabBar.selectionIndicatorImage = [UIImage imageNamed:@"areaItem-highlight.png"];
+    }
 }
 
 //判断字符输入是否正确

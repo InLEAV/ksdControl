@@ -23,8 +23,8 @@
     
     if (self) {
         
-        self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 237, 156)];
-        [self.backgroup setImage:[UIImage imageNamed:@"imagePlayerBg.png"]];
+        self.backgroup =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 226, 148)];
+        [self.backgroup setImage:[UIImage imageNamed:@"switchBg.png"]];
         [self.contentView addSubview:self.backgroup];
         
         // 创建一个UILabel控件
@@ -40,38 +40,38 @@
         
         //这里创建一个圆角矩形的按钮，上一张图片
         self.preImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.preImageBtn.frame = CGRectMake(20, 90, 50, 43);
+        self.preImageBtn.frame = CGRectMake(13, 80, 49, 49);
         self.preImageBtn.backgroundColor = [UIColor clearColor];
-        [self.preImageBtn setImage:[UIImage imageNamed:@"preImage.png"] forState:UIControlStateNormal];
-        [self.preImageBtn setImage:[UIImage imageNamed:@"preImage-highlight.png"] forState:UIControlStateHighlighted];
+        [self.preImageBtn setImage:[UIImage imageNamed:@"preBt2-normal.png"] forState:UIControlStateNormal];
+        [self.preImageBtn setImage:[UIImage imageNamed:@"preBt2-highlight.png"] forState:UIControlStateHighlighted];
         [self.preImageBtn addTarget:self action:@selector(preImageBtn:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.preImageBtn];
         
         //这里创建一个圆角矩形的按钮，播放图片
         self.playBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.playBtn.frame = CGRectMake(70, 90, 50, 43);
+        self.playBtn.frame = CGRectMake(63, 80, 49, 49);
         self.playBtn.backgroundColor = [UIColor clearColor];
-        [self.playBtn setImage:[UIImage imageNamed:@"imagePlay.png"] forState:UIControlStateNormal];
-        [self.playBtn setImage:[UIImage imageNamed:@"imagePlay-highlight.png"] forState:UIControlStateHighlighted];
+        [self.playBtn setImage:[UIImage imageNamed:@"playBt2-normal.png"] forState:UIControlStateNormal];
+        [self.playBtn setImage:[UIImage imageNamed:@"playBt2-highlight.png"] forState:UIControlStateHighlighted];
         [self.playBtn addTarget:self action:@selector(playImage:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.playBtn];
         
         //这里创建一个圆角矩形的按钮，下一张图片
         self.nextImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.nextImageBtn.frame = CGRectMake(120, 90, 50, 43);
+        self.nextImageBtn.frame = CGRectMake(113, 80, 49, 49);
         self.nextImageBtn.backgroundColor = [UIColor clearColor];
-        [self.nextImageBtn setImage:[UIImage imageNamed:@"nextImage.png"] forState:UIControlStateNormal];
-        [self.nextImageBtn setImage:[UIImage imageNamed:@"nextImage-highlight.png"] forState:UIControlStateHighlighted];
+        [self.nextImageBtn setImage:[UIImage imageNamed:@"nextBt2-normal.png"] forState:UIControlStateNormal];
+        [self.nextImageBtn setImage:[UIImage imageNamed:@"nextBt2-highlight.png"] forState:UIControlStateHighlighted];
         [self.nextImageBtn addTarget:self action:@selector(nextImageBtn:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.nextImageBtn];
         
         
         //这里创建一个圆角矩形的按钮，停止播放图片
         self.stopBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        self.stopBtn.frame = CGRectMake(170, 90, 50, 43);
+        self.stopBtn.frame = CGRectMake(163, 80, 49, 49);
         self.stopBtn.backgroundColor = [UIColor clearColor];
-        [self.stopBtn setImage:[UIImage imageNamed:@"imageStop.png"] forState:UIControlStateNormal];
-        [self.stopBtn setImage:[UIImage imageNamed:@"imageStop-highlight.png.png"] forState:UIControlStateHighlighted];
+        [self.stopBtn setImage:[UIImage imageNamed:@"stopBt2-normal.png"] forState:UIControlStateNormal];
+        [self.stopBtn setImage:[UIImage imageNamed:@"stopBt2-highlight.png"] forState:UIControlStateHighlighted];
         [self.stopBtn addTarget:self action:@selector(stopImage:)forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:self.stopBtn];
         

@@ -21,7 +21,7 @@
 #import "ProjectVO.h"
 #import "GroupControl.h"
 
-#define CELL_Height 156
+#define CELL_Height 148
 
 @interface ControlViewController ()
 @end
@@ -51,7 +51,7 @@ AppDelegate *appDelegate;
     [sever initSever:8873];
     
     SLUICollectionViewLayout *layout = [[SLUICollectionViewLayout alloc] init];
-    layout.sectionInset = UIEdgeInsetsMake(40, 15, 40, 15);
+    layout.sectionInset = UIEdgeInsetsMake(55, 37, 30, 30);
     layout.delegate = self;
     self.grid.collectionViewLayout = layout;
     self.grid.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
@@ -100,9 +100,13 @@ AppDelegate *appDelegate;
     [self updateLayout];
 }
 
+
+//当切换到当前视图是更新元素列表
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+  
 }
 
 //当切换到当前视图是更新元素列表
@@ -118,6 +122,24 @@ AppDelegate *appDelegate;
         
         //[self collectionView:self.horizontalList didSelectItemAtIndexPath:indexPathArea];
     }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    
+    NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
+    
+    for (int i = 0; i < arr.count; i++)
+    {
+        NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
+        
+        if([newcell isKindOfClass:[ComputerControl class]])
+        {
+            [((ComputerControl *) newcell) disConnect];
+        }
+    }
+
 }
 
 //获取每个展区元素
@@ -217,8 +239,8 @@ AppDelegate *appDelegate;
         UICollectionViewCell* cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
         
         // 设置圆角
-        cell.layer.cornerRadius = 8;
-        cell.layer.masksToBounds = YES;
+//        cell.layer.cornerRadius = 8;
+//        cell.layer.masksToBounds = YES;
         // 获取正在处理的单元格所在分区号、行号
         NSInteger rowNo = indexPath.row;
         
@@ -228,12 +250,12 @@ AppDelegate *appDelegate;
         if( indexPathArea != indexPath)
         {
             UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
-            [iv setImage:[UIImage imageNamed:@"zq.png"]];
+            [iv setImage:[UIImage imageNamed:@""]];
         }
         else
         {
             UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
-            [iv setImage:[UIImage imageNamed:@"zq-highlight.png"]];
+            [iv setImage:[UIImage imageNamed:@"menuItem-highlight.png"]];
         }
         UILabel* label = (UILabel*)[cell viewWithTag:2];
         label.lineBreakMode = NSLineBreakByTruncatingMiddle;
@@ -261,6 +283,7 @@ AppDelegate *appDelegate;
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((ComputerVO*)elementArray[rowNo]).aName;
                 cell.VO = ((ComputerVO*)elementArray[rowNo]);
+                [cell disConnect];
                 cell.delegate = self;
                 return cell;
             }
@@ -353,7 +376,7 @@ AppDelegate *appDelegate;
     CGSize size;
     if(collectionView.tag == 0)
     {
-        size = CGSizeMake(256, 100);
+        size = CGSizeMake(169, 59);
     }
     
     return size;
@@ -378,16 +401,16 @@ AppDelegate *appDelegate;
                 PlayerVO *player =((PlayerVO*)elementArray[indexPath.item]);
                 if(!player.isPic)
                 {
-                    width = 488;
+                    width = 471;
                 }
                 else
                 {
-                    width = 237;
+                    width = 226;
                 }
             }
             else
             {
-                width = 237;
+                width = 226;
             }
         }
     }
@@ -405,7 +428,7 @@ AppDelegate *appDelegate;
        
         UICollectionViewCell * cell = [collectionView cellForItemAtIndexPath:indexPathArea];
         UIImageView* iv = (UIImageView*)[cell viewWithTag:1];
-        [iv setImage:[UIImage imageNamed:@"zq.png"]];
+        [iv setImage:[UIImage imageNamed:@""]];
         
         NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
         
@@ -430,7 +453,7 @@ AppDelegate *appDelegate;
         
         UICollectionViewCell * cell1 = [collectionView cellForItemAtIndexPath:indexPathArea];
         UIImageView* iv1 = (UIImageView*)[cell1 viewWithTag:1];
-        [iv1 setImage:[UIImage imageNamed:@"zq-highlight.png"]];
+        [iv1 setImage:[UIImage imageNamed:@"menuItem-highlight.png"]];
         
         //更新展区网格单元格数据
         [self.grid reloadData];
@@ -446,10 +469,18 @@ AppDelegate *appDelegate;
     
 }
 
+-(void)disConnectUDPComputer
+{
+    NSLog(@"电脑UDP重新连接");
+    [sever disConnect];
+}
+
 - (void)sendUDPDataComputerCommand:(NSData *)command toPort:(NSInteger)port toHost:(NSString *)host
 {
     NSLog(@"发送数据给电脑端");
     [sever sendDataCommand:command toPort:port toHost:host];
+    
+    
 }
 
 - (void)sendUDPComputerCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host
