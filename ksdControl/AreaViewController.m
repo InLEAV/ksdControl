@@ -78,9 +78,17 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
 //当切换到当前视图是更新组合列表
 - (void)viewDidAppear:(BOOL)animated
 {
+    //初始化当前选中选项
+    grouptDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:4];
+    areaDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:0];
+    
+  
     if(groupTableView!=nil)
     {
         [groupTableView reloadData];
+        [containerDataList removeAllObjects];
+        [containerTableView reloadData];
+        [AreaTableView reloadData];
     }
 }
 
@@ -343,6 +351,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
                          withRowAnimation:UITableViewRowAnimationFade];
     }
 }
+
 
 //UITableViewDataSource协议中定义的方法，选择列表选项
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:

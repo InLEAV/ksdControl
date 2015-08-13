@@ -9,6 +9,7 @@
 #import "GroupViewController.h"
 #import "SetViewController.h"
 #import "ElementViewController.h"
+#import "AreaViewController.h"
 #import "ComputerVO.h"
 #import "RelayVO.h"
 #import "PlayerVO.h"
@@ -32,6 +33,9 @@
 //TabBarController子视图元素视图
 ElementViewController *elementViewController;
 
+//TabBarController子视图元素视图
+AreaViewController *areaViewController;
+
 //当前选中的组合选项
 NSIndexPath *groupDidSelectRowAtIndexPath;
 
@@ -45,6 +49,7 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     
     //获取元素的视图控制器
     elementViewController = [self.tabBarController.viewControllers objectAtIndex:0];
+    areaViewController = [self.tabBarController.viewControllers objectAtIndex:2];
     
     //初始化数组
     containerDataList = [[NSMutableArray alloc] initWithObjects:nil];
@@ -104,9 +109,16 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
 //当切换到当前视图是更新元素列表
 - (void)viewDidAppear:(BOOL)animated
 {
+    //初始化当前选中的IndexPath
+    groupDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:4];
+    elementDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:0];
     if (elementTableView!=nil)
     {
         [elementTableView reloadData];
+        
+        [containerDataList removeAllObjects];
+        [containerTablleView reloadData];
+        [groupTableView reloadData];
     }
     NSLog(@"GroupViewDidAppear");
 }
@@ -292,9 +304,12 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
         }
         else
         {
+            
+            [self removeAreaElement:groupDataList[rowNo]];
             [groupDataList removeObjectAtIndex: rowNo];
             [containerDataList removeAllObjects];            
             [containerTablleView reloadData];
+            
         }
         
         // 从UITable程序界面上删除指定表格行。
@@ -325,6 +340,27 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
         [tableView insertRowsAtIndexPaths:[NSArray
                                            arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+//当元素列表已移除其中元素，则移除展区中包含的元素
+- (void)removeAreaElement:(id)obj
+{
+    for(int i=0;i < areaViewController.areaDataList.count;i++)
+    {
+        
+        AreaVO* area = (AreaVO*)[areaViewController.areaDataList objectAtIndex:i];
+        for (int j = 0; j < area.groups.count; j++)
+        {
+            //computerDataList[rowNo]).aName
+            if(((VO*) obj).aName ==  ((VO*)(area.groups[j])).aName)
+            {
+                NSLog(@"%@   %@",((VO*) obj),((VO*)(area.groups[j])).aName);
+                
+                [area.groups removeObjectAtIndex: j];
+                
+            }
+        }
     }
 }
 

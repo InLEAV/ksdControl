@@ -105,9 +105,4 @@
     [_delegate sendUDPComputerCommand:@"computer&1&0" toPort:self.VO.port toHost:self.VO.ip];
 }
 
--(void)disConnect
-{
-    [_delegate disConnectUDPComputer];
-    NSLog(@"resumeUDPComputer!");
-}
 @end

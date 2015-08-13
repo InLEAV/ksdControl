@@ -25,7 +25,7 @@
 
 @synthesize elementTableView,computerDataList,projectorDataList,playerVideoDataList,playerImageDataList,relayDataList;
 
-@synthesize setTypeLabel,nameTextField,ipTextField,macUITextField,idUITextField,relayUITextField,macLabel,idLabel,relayLabel,typeSegmented,portTextField,countLable,countUITextField;
+@synthesize setTypeLabel,nameTextField,ipTextField,macUITextField,idUITextField,relayUITextField,macLabel,idLabel,relayLabel,typeSegmented,portTextField,countLable,countUITextField,setWindow;
 
 @synthesize elementSections,curSelecetIndexPath;
 
@@ -35,8 +35,14 @@ GroupViewController * groupViewController;
 //保存左边列表原始位置
 CGPoint elementViewOrignalPoint;
 
+//保存设置窗口的原始位置
+CGPoint setWindowOrignalPoint;
+
 //是否修改元素
 BOOL isModify;
+
+//是否向上移动
+BOOL isMoveUp;
 
 //是否已经显示左边列表
 BOOL isViewOn;
@@ -81,9 +87,49 @@ BOOL isViewOn;
     
     isModify = FALSE;
     isViewOn = FALSE;
+    isMoveUp = FALSE;
     
     elementViewOrignalPoint = elementTableView.center;
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+
+}
+
+-(void)keyboardWillHide:(NSNotification *)notification
+{
+    NSLog(@"*-----HideKeyBoard");
+    if(isMoveUp)
+    {
+        CGPoint center=self.setWindow.center;
+        center.y+=140;
+        //首尾式设置动画效果
+        [UIView beginAnimations:nil context:nil];
+        self.setWindow.center=center;
+        //设置时间
+        [UIView setAnimationDuration:2.0];
+        [UIView commitAnimations];
+        isMoveUp = FALSE;
+    }
+}
+
+-(void)keyboardWillShow:(NSNotification *)notification
+{
+    NSLog(@"*-----ShowKeyBoard");
+    if(!isMoveUp)
+    {
+        CGPoint center=self.setWindow.center;
+        center.y-=140;
+        //首尾式设置动画效果
+        [UIView beginAnimations:nil context:nil];
+        self.setWindow.center=center;
+        //设置时间
+        [UIView setAnimationDuration:2.0];
+        [UIView commitAnimations];
+        isMoveUp = TRUE;
+    }
 }
 
 - (void)LoadElementJson
@@ -314,23 +360,29 @@ BOOL isViewOn;
         switch (indexPath.section)
         {
             case 0:
+                [self removeGroupElement:computerDataList[rowNo]];
                 [computerDataList removeObjectAtIndex: rowNo];
                 break;
             case 1:
+                [self removeGroupElement:projectorDataList[rowNo]];
                 [projectorDataList removeObjectAtIndex: rowNo];
                 break;
             case 2:
+                [self removeGroupElement:relayDataList[rowNo]];
                 [relayDataList removeObjectAtIndex: rowNo];
                 break;
             case 3:
+                [self removeGroupElement:playerVideoDataList[rowNo]];
                 [playerVideoDataList removeObjectAtIndex: rowNo];
                 break;
             case 4:
+                [self removeGroupElement:playerImageDataList[rowNo]];
                 [playerImageDataList removeObjectAtIndex: rowNo];
                 break;
             default:
                 break;
         }
+        
         
         // 从UITable程序界面上删除指定表格行。
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -373,6 +425,28 @@ BOOL isViewOn;
         
         //[groupViewController.elementTableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }
+}
+
+//当元素列表已移除其中元素，则移除组合中包含的元素
+- (void)removeGroupElement:(id)obj
+{
+    for(int i=0;i < groupViewController.groupDataList.count;i++)
+    {
+        
+        GroupVO* group = (GroupVO*)[groupViewController.groupDataList objectAtIndex:i];
+        for (int j = 0; j < group.elements.count; j++)
+        {
+            //computerDataList[rowNo]).aName
+            if(((VO*) obj).aName ==  ((VO*)(group.elements[j])).aName)
+            {
+                NSLog(@"%@   %@",((VO*) obj),((VO*)(group.elements[j])).aName);
+                
+                [group.elements removeObjectAtIndex: j];
+                
+            }
+        }
+    }
+
 }
 
 // UITableViewDataSource协议中定义的方法,选中返回列表行
@@ -737,6 +811,14 @@ BOOL isViewOn;
 
 
 
+//开始编辑
+- (IBAction)EditDidBegin:(id)sender
+{
+
+    
+}
+
+
 //完成编辑判断输入字符是否正确
 - (IBAction)EditDidEnd:(id)sender
 {
@@ -750,10 +832,10 @@ BOOL isViewOn;
     }
     else if([sender isEqual:macUITextField])
     {
-        if(![SetViewController validateInput:macUITextField.text RegexString:@"^([0-9a-fA-F]{2})(([/\\s:][0-9a-fA-F]{2}){5})$"])
-        {
-            [SetViewController showUIAlertView:@"提示" content:@"请正确输入mac格式" buttonTitle:@"确定"];
-        }
+//        if(![SetViewController validateInput:macUITextField.text RegexString:@"^([0-9a-fA-F]{2})(([/\\s:][0-9a-fA-F]{2}){5})$"])
+//        {
+//            [SetViewController showUIAlertView:@"提示" content:@"请正确输入mac格式" buttonTitle:@"确定"];
+//        }
         NSLog(@"MAC EditDidEnd");
     }
     else if([sender isEqual:portTextField])
@@ -772,12 +854,15 @@ BOOL isViewOn;
 //        }
         NSLog(@"Relay EditDidEnd");
     }
+    
+  
 }
 
 //sender放弃作为第一响应者
 - (IBAction)finishEdit:(id)sender
 {
     [sender resignFirstResponder];
+   
 }
 
 
@@ -792,6 +877,19 @@ BOOL isViewOn;
     [self.idUITextField resignFirstResponder];
     [self.countUITextField resignFirstResponder];
     [sender resignFirstResponder];
+    
+    if(isMoveUp)
+    {
+        CGPoint center=self.setWindow.center;
+        center.y+=150;
+        //首尾式设置动画效果
+        [UIView beginAnimations:nil context:nil];
+        self.setWindow.center=center;
+        //设置时间
+        [UIView setAnimationDuration:2.0];
+        [UIView commitAnimations];
+        isMoveUp = FALSE;
+    }
 }
 
 

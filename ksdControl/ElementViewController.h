@@ -69,6 +69,9 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *countUITextField;
 
+@property (strong, nonatomic) IBOutlet UIView *setWindow;
+
+
 //初始化列表
 - (void)initTable;
 
@@ -81,6 +84,9 @@
 //切换左侧列表按钮
 //开关左边已有元素列表
 - (IBAction)SwitchMoveView:(id)sender;
+
+//开始编辑
+- (IBAction)EditDidBegin:(id)sender;
 
 //保存按钮
 - (IBAction)EditDidEnd:(id)sender;
@@ -98,5 +104,8 @@
 
 //移动窗口
 - (void)moveWindow:(UIView*)uiView desPoint:(CGPoint)point isCloseWin:(BOOL)isClose;
+
+//当元素列表已移除其中元素，则移除组合中包含的元素
+- (void)removeGroupElement:(id)obj;
 
 @end
