@@ -100,15 +100,19 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
                 
                 NSMutableDictionary *KVPairs = [NSMutableDictionary dictionary];
                 [KVPairs setObject:[obj objectForKey:@"expirationtime"] forKey:KEY_VALIDDATE];
-                NSDate* date = [KVPairs objectForKey:KEY_VALIDDATE];
+                NSDate* validDate = [obj objectForKey:@"expirationtime"];
                 NSDate *currentDate = [NSDate date];
-                if ([currentDate compare:date]== NSOrderedAscending)
+                
+                NSLog(@"NOW:  %@",currentDate);
+                NSLog(@"ValidDate:  %@",validDate);
+                
+                if ([currentDate compare:validDate]== NSOrderedAscending)
                 {
                     [KVPairs setObject:@"TRUE" forKey:KEY_VALIDSTATE];
                     [activePlane setHidden:TRUE];
                 }
                 
-                if ([currentDate compare:date]== NSOrderedDescending)
+                if ([currentDate compare:validDate]== NSOrderedDescending)
                 {
                     [KVPairs setObject:@"FALSE" forKey:KEY_VALIDSTATE];
                     [activePlane setHidden:FALSE];
