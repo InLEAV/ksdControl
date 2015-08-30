@@ -72,6 +72,13 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     {
         [areaDataList addObject:((AreaVO*)appDelegate.areaArray[i])];
     }
+    
+    groupTableView.backgroundColor = [UIColor colorWithRed:0.05 green:0.1 blue:0.2 alpha:0.6];
+    groupTableView.opaque = NO;
+    containerTableView.backgroundColor = [UIColor colorWithRed:0.05 green:0.1 blue:0.2 alpha:0.6];
+    containerTableView.opaque = NO;
+    AreaTableView.backgroundColor = [UIColor colorWithRed:0.05 green:0.1 blue:0.2 alpha:0.6];
+    AreaTableView.opaque = NO;
 
 }
 
@@ -113,16 +120,23 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     return sectionCount;
 }
 
-// UITableViewDataSource协议中的方法，该方法的返回值决定表格分区页尾高
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+// UITableViewDataSource协议中的方法，返回列表页尾高度
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return 35;
 }
 
-// UITableViewDataSource协议中的方法，该方法的返回值决定表格行高
+
+// UITableViewDataSource协议中的方法，返回列表页尾高度
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 10;
+}
+
+// UITableViewDataSource协议中的方法，返回列表行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 30;
 }
 
 // UITableViewDataSource协议中的方法，该方法的返回值决定表格每个分区的行数
@@ -189,10 +203,13 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     
     
     // 将单元格的边框设置为圆角
-    cell.layer.cornerRadius = 12;
-    cell.layer.masksToBounds = YES;
+    cell.backgroundColor = [UIColor colorWithRed:0.05 green:0.1 blue:0.3 alpha:0.6];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    [cell.textLabel setFont:[UIFont boldSystemFontOfSize:18]];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
+    cell.selectedBackgroundView =  [[UIView alloc] initWithFrame:cell.frame];
+    cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.05 green:0.15 blue:0.4 alpha:0.7];
     
     // 设置textLabel显示的文本
     if(tableView == groupTableView)
@@ -234,10 +251,16 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     return cell;
 }
 
-// UITableViewDataSource协议中的方法，该方法的返回值决定指定分区的页眉
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection
-                      :(NSInteger)section
-{
+//设定开头的分类样式
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 35)];
+    //    [sectionView setBackgroundColor:[UIColor clearColor]];
+    
+    //增加UILabel
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 35)];
+    [text setTextColor:[UIColor whiteColor]];
+    //[text setBackgroundColor:[UIColor grayColor]];
+   
     NSString *sectionName;
     if(tableView == groupTableView)
     {
@@ -260,7 +283,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
             case 5:
                 sectionName = @"图片播放器";
                 break;
-
+                
             default:
                 break;
         }
@@ -273,9 +296,25 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     {
         sectionName = @"展区";
     }
+
     
-    return sectionName;
+    [text setText:sectionName];
+    [text setAlpha:1.0f];
+    [text setFont:[UIFont boldSystemFontOfSize:20]];
+    
+    [sectionView addSubview:text];
+    return sectionView;
 }
+
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 35)];
+    
+    [sectionView setBackgroundColor:[UIColor colorWithRed:0.05 green:0.1 blue:0.2 alpha:0.6]];
+    
+    return sectionView;
+}
+
 
 // UITableViewDelegate协议中定义的方法，该方法的返回值作为删除指定表格行时确定按钮的文本
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:

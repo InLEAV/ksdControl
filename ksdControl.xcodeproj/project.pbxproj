@@ -117,6 +117,13 @@
 		F77ED09A1B6A34C900AFFA33 /* SLKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = F77ED0991B6A34C900AFFA33 /* SLKeychain.m */; };
 		F77F7B8F1B4B86EA00E585AD /* GroupControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F77F7B8E1B4B86EA00E585AD /* GroupControl.m */; };
 		F7A427FA1B3AB0BB00391828 /* SLUICollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = F7A427F91B3AB0BB00391828 /* SLUICollectionViewLayout.m */; };
+		F7D719C11B8EBE5400332B34 /* arrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D719BF1B8EBE5400332B34 /* arrow@1x.png */; };
+		F7D719C21B8EBE5400332B34 /* arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D719C01B8EBE5400332B34 /* arrow@2x.png */; };
+		F7D719C71B8EC2DB00332B34 /* icon-small-40.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D719C41B8EC2DB00332B34 /* icon-small-40.png */; };
+		F7D719C81B8EC2DB00332B34 /* icon-small.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D719C51B8EC2DB00332B34 /* icon-small.png */; };
+		F7D719C91B8EC2DB00332B34 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D719C61B8EC2DB00332B34 /* icon.png */; };
+		F7D719CD1B8EC67E00332B34 /* launchImage@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D719CB1B8EC67E00332B34 /* launchImage@1x.png */; };
+		F7D719CE1B8EC67E00332B34 /* launchImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D719CC1B8EC67E00332B34 /* launchImage@2x.png */; };
 		F7DB68271B56A25E001491FF /* PlayerImageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB68261B56A25E001491FF /* PlayerImageControl.m */; };
 		F7DBA1761B72EF230033AEFA /* backgroup@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7DBA16E1B72EF230033AEFA /* backgroup@1x.png */; };
 		F7DBA1771B72EF230033AEFA /* backgroup@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7DBA16F1B72EF230033AEFA /* backgroup@2x.png */; };
@@ -170,7 +177,7 @@
 		9E33E1831AF0D258002B90FB /* Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model.m; sourceTree = "<group>"; };
 		9E4682021B543597009FD6E6 /* Sever.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sever.h; sourceTree = "<group>"; };
 		9E4682031B543597009FD6E6 /* Sever.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sever.m; sourceTree = "<group>"; };
-		9E9221281ADBB91700B942CC /* ksdControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ksdControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E9221281ADBB91700B942CC /*   新奇思中控.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "  新奇思中控.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E92212C1ADBB91700B942CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E92212D1ADBB91700B942CC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9E92212F1ADBB91700B942CC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -296,6 +303,13 @@
 		F77F7B8E1B4B86EA00E585AD /* GroupControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupControl.m; sourceTree = "<group>"; };
 		F7A427F81B3AB0BB00391828 /* SLUICollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SLUICollectionViewLayout.h; sourceTree = "<group>"; };
 		F7A427F91B3AB0BB00391828 /* SLUICollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SLUICollectionViewLayout.m; sourceTree = "<group>"; };
+		F7D719BF1B8EBE5400332B34 /* arrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow@1x.png"; path = "setting/arrow@1x.png"; sourceTree = "<group>"; };
+		F7D719C01B8EBE5400332B34 /* arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "arrow@2x.png"; path = "setting/arrow@2x.png"; sourceTree = "<group>"; };
+		F7D719C41B8EC2DB00332B34 /* icon-small-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-small-40.png"; path = "ksdControl/icon/icon-small-40.png"; sourceTree = SOURCE_ROOT; };
+		F7D719C51B8EC2DB00332B34 /* icon-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-small.png"; path = "ksdControl/icon/icon-small.png"; sourceTree = SOURCE_ROOT; };
+		F7D719C61B8EC2DB00332B34 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = ksdControl/icon/icon.png; sourceTree = SOURCE_ROOT; };
+		F7D719CB1B8EC67E00332B34 /* launchImage@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchImage@1x.png"; path = "launchImage/launchImage@1x.png"; sourceTree = "<group>"; };
+		F7D719CC1B8EC67E00332B34 /* launchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "launchImage@2x.png"; path = "launchImage/launchImage@2x.png"; sourceTree = "<group>"; };
 		F7DB68251B56A25E001491FF /* PlayerImageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerImageControl.h; sourceTree = "<group>"; };
 		F7DB68261B56A25E001491FF /* PlayerImageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerImageControl.m; sourceTree = "<group>"; };
 		F7DBA16E1B72EF230033AEFA /* backgroup@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "backgroup@1x.png"; path = "Images/main/backgroup@1x.png"; sourceTree = "<group>"; };
@@ -390,7 +404,7 @@
 		9E9221291ADBB91700B942CC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9E9221281ADBB91700B942CC /* ksdControl.app */,
+				9E9221281ADBB91700B942CC /*   新奇思中控.app */,
 				9E9221441ADBB91700B942CC /* ksdControlTests.xctest */,
 			);
 			name = Products;
@@ -503,6 +517,8 @@
 		F7334F151B39037B003307BE /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F7D719CA1B8EC66E00332B34 /* launchImage */,
+				F7D719C31B8EC2C400332B34 /* icon */,
 				F76DD9341B734BAB00190191 /* control */,
 				F76DD9201B73206300190191 /* controlAndSettingBg@1x.png */,
 				F76DD9211B73206300190191 /* controlAndSettingBg@2x.png */,
@@ -617,6 +633,25 @@
 			name = Framework;
 			sourceTree = "<group>";
 		};
+		F7D719C31B8EC2C400332B34 /* icon */ = {
+			isa = PBXGroup;
+			children = (
+				F7D719C41B8EC2DB00332B34 /* icon-small-40.png */,
+				F7D719C51B8EC2DB00332B34 /* icon-small.png */,
+				F7D719C61B8EC2DB00332B34 /* icon.png */,
+			);
+			name = icon;
+			sourceTree = "<group>";
+		};
+		F7D719CA1B8EC66E00332B34 /* launchImage */ = {
+			isa = PBXGroup;
+			children = (
+				F7D719CB1B8EC67E00332B34 /* launchImage@1x.png */,
+				F7D719CC1B8EC67E00332B34 /* launchImage@2x.png */,
+			);
+			name = launchImage;
+			sourceTree = "<group>";
+		};
 		F7DBA16D1B72EED40033AEFA /* main */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +675,8 @@
 		F7DBA17E1B72FA1E0033AEFA /* setting */ = {
 			isa = PBXGroup;
 			children = (
+				F7D719BF1B8EBE5400332B34 /* arrow@1x.png */,
+				F7D719C01B8EBE5400332B34 /* arrow@2x.png */,
 				F76DD92C1B7348AB00190191 /* areaItem-highlight@1x.png */,
 				F76DD92D1B7348AB00190191 /* areaItem-highlight@2x.png */,
 				F76DD92E1B7348AB00190191 /* groupItem-highlight@1x.png */,
@@ -681,7 +718,7 @@
 			);
 			name = ksdControl;
 			productName = ksdControl;
-			productReference = 9E9221281ADBB91700B942CC /* ksdControl.app */;
+			productReference = 9E9221281ADBB91700B942CC /*   新奇思中控.app */;
 			productType = "com.apple.product-type.application";
 		};
 		9E9221431ADBB91700B942CC /* ksdControlTests */ = {
@@ -758,9 +795,11 @@
 				F7DBA1771B72EF230033AEFA /* backgroup@2x.png in Resources */,
 				F76DD9951B734BD200190191 /* preBt2-normal@2x.png in Resources */,
 				F76DD9731B734BD200190191 /* nextBt-normal@2x.png in Resources */,
+				F7D719C81B8EC2DB00332B34 /* icon-small.png in Resources */,
 				F76DD97F1B734BD200190191 /* stopBt-highlight@2x.png in Resources */,
 				F76DD9331B7348AB00190191 /* groupItem-highlight@2x.png in Resources */,
 				F76DD9891B734BD200190191 /* volumeMinusBt-normal@2x.png in Resources */,
+				F7D719CD1B8EC67E00332B34 /* launchImage@1x.png in Resources */,
 				F7DBA19A1B72FA570033AEFA /* addGroup@2x.png in Resources */,
 				F76DD9971B734BD200190191 /* stopBt2-highlight@2x.png in Resources */,
 				F76DD9A01B734BD200190191 /* on-normal@1x.png in Resources */,
@@ -768,12 +807,14 @@
 				F76DD9871B734BD200190191 /* volumeMinusBt-highlight@2x.png in Resources */,
 				F7DBA1B01B72FCA20033AEFA /* back@1x.png in Resources */,
 				F76DD9261B732A3600190191 /* elementItem-highlight@1x.png in Resources */,
+				F7D719CE1B8EC67E00332B34 /* launchImage@2x.png in Resources */,
 				F76DD9811B734BD200190191 /* stopBt-normal@2x.png in Resources */,
 				9E92213A1ADBB91700B942CC /* Main.storyboard in Resources */,
 				F76DD9981B734BD200190191 /* stopBt2-normal@1x.png in Resources */,
 				F76DD97B1B734BD200190191 /* preBt-highlight@2x.png in Resources */,
 				F7DBA1991B72FA570033AEFA /* addGroup@1x.png in Resources */,
 				F76DD9781B734BD200190191 /* playerBg@1x.png in Resources */,
+				F7D719C21B8EBE5400332B34 /* arrow@2x.png in Resources */,
 				F76DD9A11B734BD200190191 /* on-normal@2x.png in Resources */,
 				F76DD9881B734BD200190191 /* volumeMinusBt-normal@1x.png in Resources */,
 				F76DD92A1B73337C00190191 /* tabBarBg@1x.png in Resources */,
@@ -786,9 +827,11 @@
 				F7DBA1791B72EF230033AEFA /* enter@2x.png in Resources */,
 				F76DD9AD1B7356DA00190191 /* menuBg@2x.png in Resources */,
 				F76DD9851B734BD200190191 /* volumeAddBt-normal@2x.png in Resources */,
+				F7D719C91B8EC2DB00332B34 /* icon.png in Resources */,
 				F76DD9701B734BD200190191 /* nextBt-highlight@1x.png in Resources */,
 				F76DD9301B7348AB00190191 /* areaItem-highlight@1x.png in Resources */,
 				F7DBA17B1B72EF230033AEFA /* info@2x.png in Resources */,
+				F7D719C11B8EBE5400332B34 /* arrow@1x.png in Resources */,
 				F76DD9911B734BD200190191 /* playBt2-normal@2x.png in Resources */,
 				F76DD9AE1B7356DA00190191 /* menuItem-highlight@1x.png in Resources */,
 				F7DBA1B61B7306530033AEFA /* alpha.png in Resources */,
@@ -815,6 +858,7 @@
 				F76DD9771B734BD200190191 /* playBt-normal@2x.png in Resources */,
 				F76DD9861B734BD200190191 /* volumeMinusBt-highlight@1x.png in Resources */,
 				F76DD9221B73206300190191 /* controlAndSettingBg@1x.png in Resources */,
+				F7D719C71B8EC2DB00332B34 /* icon-small-40.png in Resources */,
 				F76DD9821B734BD200190191 /* volumeAddBt-highlight@1x.png in Resources */,
 				F7DBA1981B72FA570033AEFA /* addArea@2x.png in Resources */,
 				F76DD9791B734BD200190191 /* playerBG@2x.png in Resources */,
@@ -1017,6 +1061,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1025,7 +1070,7 @@
 				);
 				INFOPLIST_FILE = ksdControl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "  新奇思中控";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1035,6 +1080,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1043,7 +1089,7 @@
 				);
 				INFOPLIST_FILE = ksdControl/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "  新奇思中控";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

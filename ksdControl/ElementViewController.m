@@ -95,7 +95,11 @@ BOOL isViewOn;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
-
+    elementTableView.backgroundView = nil;
+    elementTableView.backgroundColor = [UIColor colorWithRed:0.05 green:0.1 blue:0.2 alpha:0.6];
+    elementTableView.opaque = NO;
+    
+    
 }
 
 -(void)keyboardWillHide:(NSNotification *)notification
@@ -235,15 +239,22 @@ BOOL isViewOn;
 }
 
 // UITableViewDataSource协议中的方法，返回列表页尾高度
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 35;
+}
+
+
+// UITableViewDataSource协议中的方法，返回列表页尾高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 20;
+    return 10;
 }
 
 // UITableViewDataSource协议中的方法，返回列表行高
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 30;
 }
 
 // UITableViewDataSource协议中的方法，返回列表每个分区的行数
@@ -298,9 +309,14 @@ BOOL isViewOn;
     
     
     // 将单元格的边框设置为圆角
-    cell.layer.cornerRadius = 12;
-    cell.layer.masksToBounds = YES;
+//    cell.layer.cornerRadius = 12;
+//    cell.layer.masksToBounds = YES;
+    cell.backgroundColor = [UIColor colorWithRed:0.05 green:0.1 blue:0.3 alpha:0.6];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    [cell.textLabel setFont:[UIFont boldSystemFontOfSize:18]];
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.selectedBackgroundView =  [[UIView alloc] initWithFrame:cell.frame];
+    cell.selectedBackgroundView.backgroundColor = [UIColor colorWithRed:0.05 green:0.15 blue:0.4 alpha:0.7];
     
     // 设置textLabel显示的文本
     switch (sectionNo) {
@@ -325,12 +341,31 @@ BOOL isViewOn;
     return cell;
 }
 
-// UITableViewDataSource协议中的方法，该方法的返回值决定指定分区的页眉
-- (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection
-                      :(NSInteger)section
-{
-    return [elementSections objectAtIndex:section];
+//设定开头的分类样式
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 35)];
+//    [sectionView setBackgroundColor:[UIColor colorWithRed:0.05 green:0.1 blue:0.3 alpha:0.7]];
+    
+    //增加UILabel
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 35)];
+    [text setTextColor:[UIColor whiteColor]];
+    //[text setBackgroundColor:[UIColor grayColor]];
+    [text setText:[elementSections objectAtIndex:section]];
+    [text setAlpha:1.0f];
+    [text setFont:[UIFont boldSystemFontOfSize:20]];
+    
+    [sectionView addSubview:text];
+    return sectionView;  
 }
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    UIView *sectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 35)];
+    
+    [sectionView setBackgroundColor:[UIColor colorWithRed:0.05 green:0.1 blue:0.2 alpha:0.6]];
+    
+    return sectionView;
+}
+
 
 
 // UITableViewDelegate协议中定义的方法，该方法的返回值作为删除指定表格行时确定按钮的文本
@@ -456,6 +491,7 @@ BOOL isViewOn;
     curSelecetIndexPath = indexPath;
     NSLog(@"curSelecetIndexPath.section:%ld  curSelecetIndexPath.row%ld",(long)curSelecetIndexPath.section,(long)curSelecetIndexPath.row);
     
+    
     isModify = TRUE;
     
     switch (indexPath.section) {
@@ -542,7 +578,7 @@ BOOL isViewOn;
             break;
         case 4:
         {
-            [typeSegmented setSelectedSegmentIndex:3];
+            [typeSegmented setSelectedSegmentIndex:4];
             PlayerVO *player =  [playerVideoDataList objectAtIndex:indexPath.row];
             nameTextField.text = player.aName;
             ipTextField.text = player.ip;
@@ -1062,7 +1098,7 @@ BOOL isViewOn;
     
     if(isViewOn)
     {
-        [(UIButton*)sender setImage:[UIImage imageNamed:@"arrowRight.png"] forState:UIControlStateNormal];
+//        [(UIButton*)sender setImage:[UIImage imageNamed:@"arrowRight.png"] forState:UIControlStateNormal];
         
         //关闭左侧列表
         CGPoint point = CGPointMake(elementViewOrignalPoint.x, elementTableView.center.y);
@@ -1075,7 +1111,7 @@ BOOL isViewOn;
     else
     {
         
-        [(UIButton*)sender setImage:[UIImage imageNamed:@"arrowLeft.png"] forState:UIControlStateNormal];
+//        [(UIButton*)sender setImage:[UIImage imageNamed:@"arrowLeft.png"] forState:UIControlStateNormal];
 
         //打开左侧列表
         CGPoint point = CGPointMake(elementViewOrignalPoint.x+elementTableView.frame.size.width, elementTableView.center.y);

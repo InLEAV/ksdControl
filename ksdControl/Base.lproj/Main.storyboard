@@ -797,11 +797,16 @@
                                             <constraint firstItem="rX5-Az-JAR" firstAttribute="top" secondItem="pbo-hZ-XpI" secondAttribute="top" constant="175" id="zLw-mm-Npe"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1IE-We-Dwg">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="white" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1IE-We-Dwg">
                                         <rect key="frame" x="-200" y="0.0" width="200" height="481"/>
+                                        <color key="backgroundColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="200" id="29T-it-7Hn"/>
                                         </constraints>
+                                        <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <variation key="heightClass=compact" ambiguous="YES" misplaced="YES">
                                             <rect key="frame" x="-200" y="0.0" width="200" height="286"/>
                                         </variation>
@@ -813,13 +818,13 @@
                                         </variation>
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xpm-UR-54A" userLabel="arrow">
-                                        <rect key="frame" x="0.0" y="305" width="20" height="31"/>
+                                        <rect key="frame" x="0.0" y="305" width="34" height="112"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="31" id="Ekt-lj-uig"/>
-                                            <constraint firstAttribute="width" constant="20" id="d6x-zc-EEK"/>
+                                            <constraint firstAttribute="height" constant="112" id="Ekt-lj-uig"/>
+                                            <constraint firstAttribute="width" constant="34" id="d6x-zc-EEK"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" image="arrowRight.png">
+                                        <state key="normal" image="arrow.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -1206,7 +1211,7 @@
         <image name="add.png" width="89" height="29"/>
         <image name="addArea.png" width="89" height="29"/>
         <image name="addGroup.png" width="89" height="29"/>
-        <image name="arrowRight.png" width="20" height="31"/>
+        <image name="arrow.png" width="34" height="112"/>
         <image name="back.png" width="70" height="24"/>
         <image name="backgroup.png" width="1024" height="768"/>
         <image name="controlAndSettingBg.png" width="1024" height="768"/>
@@ -1222,6 +1227,6 @@
         <image name="tabBarItemBg.png" width="343" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="q3c-cT-97u"/>
+        <segue reference="iy2-gj-wtY"/>
     </inferredMetricsTieBreakers>
 </document>
