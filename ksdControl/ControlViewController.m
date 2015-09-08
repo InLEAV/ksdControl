@@ -128,6 +128,22 @@ AppDelegate *appDelegate;
 {
     
     [sever disConnect];
+    NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
+    
+    for (int i = 0; i < arr.count; i++)
+    {
+        NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+        UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
+        
+        if([newcell isKindOfClass:[ProjectControl class]])
+        {
+            [((ProjectControl *) newcell) setIsShow:NO];
+        }
+        else if([newcell isKindOfClass:[GroupControl class]])
+        {
+            [((GroupControl *) newcell) setIsShow:NO];
+        }
+    }
 
 }
 

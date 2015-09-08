@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9E9221271ADBB91700B942CC"
-               BuildableName = "ksdControl.app"
+               BuildableName = "  &#x65b0;&#x5947;&#x601d;&#x4e2d;&#x63a7;.app"
                BlueprintName = "ksdControl"
                ReferencedContainer = "container:ksdControl.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E9221271ADBB91700B942CC"
-            BuildableName = "ksdControl.app"
+            BuildableName = "  &#x65b0;&#x5947;&#x601d;&#x4e2d;&#x63a7;.app"
             BlueprintName = "ksdControl"
             ReferencedContainer = "container:ksdControl.xcodeproj">
          </BuildableReference>
@@ -72,11 +72,12 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E9221271ADBB91700B942CC"
-            BuildableName = "ksdControl.app"
+            BuildableName = "  &#x65b0;&#x5947;&#x601d;&#x4e2d;&#x63a7;.app"
             BlueprintName = "ksdControl"
             ReferencedContainer = "container:ksdControl.xcodeproj">
          </BuildableReference>
@@ -90,11 +91,12 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9E9221271ADBB91700B942CC"
-            BuildableName = "ksdControl.app"
+            BuildableName = "  &#x65b0;&#x5947;&#x601d;&#x4e2d;&#x63a7;.app"
             BlueprintName = "ksdControl"
             ReferencedContainer = "container:ksdControl.xcodeproj">
          </BuildableReference>
