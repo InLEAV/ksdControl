@@ -127,18 +127,7 @@ AppDelegate *appDelegate;
 -(void)viewWillDisappear:(BOOL)animated
 {
     
-    NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
-    
-    for (int i = 0; i < arr.count; i++)
-    {
-        NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
-        
-        if([newcell isKindOfClass:[ComputerControl class]])
-        {
-            [((ComputerControl *) newcell) disConnect];
-        }
-    }
+    [sever disConnect];
 
 }
 
@@ -283,7 +272,6 @@ AppDelegate *appDelegate;
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((ComputerVO*)elementArray[rowNo]).aName;
                 cell.VO = ((ComputerVO*)elementArray[rowNo]);
-                [cell disConnect];
                 cell.delegate = self;
                 return cell;
             }
@@ -469,7 +457,7 @@ AppDelegate *appDelegate;
     
 }
 
--(void)disConnectUDPComputer
+-(void)disConnectUDP
 {
     NSLog(@"电脑UDP重新连接");
     [sever disConnect];

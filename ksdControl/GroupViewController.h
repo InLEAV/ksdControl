@@ -47,4 +47,7 @@
 
 //选中分区选项
 -(void)SelectItem:(NSIndexPath *)didSelectRowAtIndexPath tableView:(UITableView*)tableView;
+
+//当组合列表已移除其中组合，则移除展区中包含的元素
+- (void)removeAreaElement:(id)obj;
 @end

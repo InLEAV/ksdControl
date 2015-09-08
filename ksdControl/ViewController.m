@@ -41,41 +41,41 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
     NSLog(@"State:  %@",[kvPairs objectForKey:KEY_VALIDSTATE]);
     
     //判断密钥key是否存在
-//    if([kvPairs objectForKey:KEY_VALIDSTATE] == NULL || [[kvPairs objectForKey:KEY_VALIDSTATE] boolValue] == FALSE)
-//    {
-//        [activePlane setHidden:FALSE];
-//        
-//        tipsLable.text = @"请输入激活码激活该应用";
-//    }
-//    
-//    //判断密钥是否已经激活
-//    if([[kvPairs objectForKey:KEY_VALIDSTATE] boolValue] == TRUE)
-//    {
-//        NSDate* date = [kvPairs objectForKey:KEY_VALIDDATE];
-//        NSDate *currentDate = [NSDate date];
-//        
-//        if ([currentDate compare:date] == NSOrderedDescending)
-//        {
-//            NSMutableDictionary *KVPairs = [NSMutableDictionary dictionary];
-//            [KVPairs setObject:@"FALSE" forKey:KEY_VALIDSTATE];
-//            
-//            [SLKeychain save:KEY_VALIDDATE_VALIDSTATE data:KVPairs];
-//            
-//            [activePlane setHidden:FALSE];
-//            
-//            tipsLable.text = @"请输入激活码激活该应用";
-//        }
-//    }
-//    
-//    
-//    NSMutableDictionary *kvPairs2 = (NSMutableDictionary *)[SLKeychain load:KEY_VALIDDATE_VALIDSTATE];
-//    
-//    if([[kvPairs2 objectForKey:KEY_VALIDSTATE] boolValue] == TRUE)
-//    {
-//        NSLog(@"StateN:  %@",[kvPairs2 objectForKey:KEY_VALIDSTATE]);
-//
-//        [activePlane setHidden:TRUE];
-//    }
+    if([kvPairs objectForKey:KEY_VALIDSTATE] == NULL || [[kvPairs objectForKey:KEY_VALIDSTATE] boolValue] == FALSE)
+    {
+        [activePlane setHidden:FALSE];
+        
+        tipsLable.text = @"请输入激活码激活该应用";
+    }
+    
+    //判断密钥是否已经激活
+    if([[kvPairs objectForKey:KEY_VALIDSTATE] boolValue] == TRUE)
+    {
+        NSDate* date = [kvPairs objectForKey:KEY_VALIDDATE];
+        NSDate *currentDate = [NSDate date];
+        
+        if ([currentDate compare:date] == NSOrderedDescending)
+        {
+            NSMutableDictionary *KVPairs = [NSMutableDictionary dictionary];
+            [KVPairs setObject:@"FALSE" forKey:KEY_VALIDSTATE];
+            
+            [SLKeychain save:KEY_VALIDDATE_VALIDSTATE data:KVPairs];
+            
+            [activePlane setHidden:FALSE];
+            
+            tipsLable.text = @"请输入激活码激活该应用";
+        }
+    }
+    
+    
+    NSMutableDictionary *kvPairs2 = (NSMutableDictionary *)[SLKeychain load:KEY_VALIDDATE_VALIDSTATE];
+    
+    if([[kvPairs2 objectForKey:KEY_VALIDSTATE] boolValue] == TRUE)
+    {
+        NSLog(@"StateN:  %@",[kvPairs2 objectForKey:KEY_VALIDSTATE]);
+
+        [activePlane setHidden:TRUE];
+    }
     
 }
 
@@ -149,7 +149,6 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
                     }
                     
                 }
-
                 
             }
             else
