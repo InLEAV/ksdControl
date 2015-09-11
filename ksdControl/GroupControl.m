@@ -89,7 +89,7 @@
         }
     }
     NSData *data = [NSData dataWithBytes:packet length:102];
-    [_delegate sendUDPDataGroupCommand:data toPort:comVO.port toHost:comVO.ip];
+    [_delegate sendUDPDataGroupCommand:data toPort:comVO.port toHost:@"255.255.255.255"];
 }
 
 //打开组合
@@ -103,18 +103,19 @@
             [self computerOn:(ComputerVO *)self.VO.elements[i]];
             NSLog(@"group for Computer");
         }
-        else if ([self.VO.elements[i] isKindOfClass:[ProjectVO class]])
+        if ([self.VO.elements[i] isKindOfClass:[ProjectVO class]])
         {
             ProjectVO * proVO =(ProjectVO *)self.VO.elements[i];
             [proVO PowerOn];
            NSLog(@"group for project");
         }
-        else if ([self.VO.elements[i] isKindOfClass:[RelayVO class]])
+        if ([self.VO.elements[i] isKindOfClass:[RelayVO class]])
         {
             RelayVO * relVO =(RelayVO *)self.VO.elements[i];
             [self setRelayStatus:relVO.circuit toStatus:1 toRelayVO:relVO];
             NSLog(@"group for relay");
         }
+        [NSThread sleepForTimeInterval:0.1];
     }
     
 }
@@ -130,18 +131,19 @@
             [_delegate sendUDPGroupCommand:@"computer&1&0" toPort:comVO.port toHost:comVO.ip];
             NSLog(@"group for Computer");
         }
-        else if ([self.VO.elements[i] isKindOfClass:[ProjectVO class]])
+        if ([self.VO.elements[i] isKindOfClass:[ProjectVO class]])
         {
             NSLog(@"group for project");
             ProjectVO * proVO =(ProjectVO *)self.VO.elements[i];
             [proVO PowerOff];
         }
-        else if ([self.VO.elements[i] isKindOfClass:[RelayVO class]])
+        if ([self.VO.elements[i] isKindOfClass:[RelayVO class]])
         {
             RelayVO * relVO =(RelayVO *)self.VO.elements[i];
             [self setRelayStatus:relVO.circuit toStatus:0 toRelayVO:relVO];
             NSLog(@"group for relay");
         }
+        [NSThread sleepForTimeInterval:0.1];
     }
     
 }
