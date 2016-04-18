@@ -20,7 +20,7 @@
     for (int i = 0; i < elements.count; i++) {
         VO * aa;
         aa=(VO *) elements[i];
-        NSLog(@"groupSon:%d",i);
+       // NSLog(@"groupSon:%d",i);
         [aa initVO];
     }
    

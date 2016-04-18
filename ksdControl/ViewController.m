@@ -143,8 +143,6 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
                     }
                     else if([[obj1 objectForKey:@"usedTime"] intValue] != 0)
                     {
-                        
-                        
                         tipsLable.text = @"该激活码已激活使用，请联系作者";
                     }
                     
@@ -156,7 +154,6 @@ NSString * const KEY_VALIDSTATE = @"com.sl.app.validstate";
                 tipsLable.text = @"请输入正确的激活码";
                 
             }
-            
             
         }
     }];

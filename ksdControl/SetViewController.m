@@ -22,6 +22,8 @@
 
 @end
 
+static BOOL isCanBack = FALSE;
+
 @implementation SetViewController
 
 
@@ -29,11 +31,11 @@ ElementViewController* elementViewController;
 GroupViewController* groupViewController;
 AreaViewController* areaViewController;
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    
 //self.tabBar.selectionIndicatorImage = [UIImage imageNamed:@"elementItem-highlight.png"];
 
     
@@ -45,7 +47,10 @@ AreaViewController* areaViewController;
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    isCanBack = FALSE;
+}
 
 //TabBar协议，选中TabBarItem
 - (void)tabBar:(UITabBar *)tabbar didSelectItem:(UITabBarItem *)item
@@ -96,6 +101,14 @@ AreaViewController* areaViewController;
     [alert show];
 }
 
++ (void)setCanBack:(BOOL)back
+{
+    isCanBack = back;
+}
 
++ (BOOL)getCanBack
+{
+    return isCanBack;
+}
 
 @end

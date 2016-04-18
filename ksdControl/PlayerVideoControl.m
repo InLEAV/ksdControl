@@ -111,66 +111,106 @@
 //播放视频
 -(void)playVideo :(id)sender
 {
-    NSString * msg = [NSString stringWithFormat:@"%d&play&%d",self.VO.playerID,videoNum];
-    [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
-}
+    if (!self.VO.isDefault) {
+        NSString * msg = [NSString stringWithFormat:@"%d&play&%d",self.VO.playerID,videoNum];
+        
+        [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
+
+    }
+    else
+    {
+        [_delegate sendPlayCommand:@"EP%NPlayDirect%1%" toPort:self.VO.port toHost:self.VO.ip];
+    }
+   }
 
 //暂停视频
 -(void)pauseVideo :(id)sende
 {
-    NSString * msg = [NSString stringWithFormat:@"%d&pause&0",self.VO.playerID];
-    [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
+    if (!self.VO.isDefault) {
+    
+        NSString * msg = [NSString stringWithFormat:@"%d&pause&0",self.VO.playerID];
+        [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
+    }
+    else
+    {
+        [_delegate sendPlayCommand:@"EP%Pause%" toPort:self.VO.port toHost:self.VO.ip];
+    }
+
 }
 
 //停止视频
 -(void)stopVideo :(id)sende
 {
-    NSString * msg = [NSString stringWithFormat:@"%d&stop&0",self.VO.playerID];
-    [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
+    if (!self.VO.isDefault) {
+        NSString * msg = [NSString stringWithFormat:@"%d&stop&0",self.VO.playerID];
+        [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
+    }
+    else
+    {
+        [_delegate sendPlayCommand:@"EP%Stop%" toPort:self.VO.port toHost:self.VO.ip];
+    }
 }
 
 
 //播放上一个视频
 -(void)preMovieBtn :(id)sende
 {
+    if (!self.VO.isDefault) {
     videoNum --;
     if (videoNum < 1) {
         videoNum = 1;
     }
     NSString * msg = [NSString stringWithFormat:@"%d&play&%d",self.VO.playerID,videoNum];
     [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
+    }
 }
 
 //播放下一个视频
 -(void)nextMovieBtn :(id)sende
 {
+     if (!self.VO.isDefault) {
     videoNum ++;
     if (videoNum > self.VO.count) {
         videoNum = self.VO.count;
     }
     NSString * msg = [NSString stringWithFormat:@"%d&play&%d",self.VO.playerID,videoNum];
     [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
+     }
 }
 
 //声量放大
 -(void)addVolumeBtn :(id)sende
 {
+     if (!self.VO.isDefault) {
     volumeNum = volumeNum + 10;
     if (volumeNum > 100) {
         volumeNum = 100;
     }
     NSString * msg = [NSString stringWithFormat:@"%d&volume&%d",self.VO.playerID,volumeNum];
     [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
+     }
+    else
+    {
+        [_delegate sendPlayCommand:@"EP%VolumeUp%" toPort:self.VO.port toHost:self.VO.ip];
+
+    }
 }
 
 //声量减小
 - (void)minusVolumeBtn:(id)sender
 {
+     if (!self.VO.isDefault) {
     volumeNum = volumeNum - 10;
     if (volumeNum < 0) {
         volumeNum = 0;
     }
     NSString * msg = [NSString stringWithFormat:@"%d&volume&%d",self.VO.playerID,volumeNum];
     [_delegate sendUDPPlayCommand:msg toPort:self.VO.port toHost:self.VO.ip];
+     }
+    else
+    {
+        [_delegate sendPlayCommand:@"EP%VolumeDown%" toPort:self.VO.port toHost:self.VO.ip];
+
+    }
 }
 @end

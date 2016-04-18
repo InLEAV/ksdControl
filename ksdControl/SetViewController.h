@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface SetViewController : UITabBarController<UITabBarDelegate,UITabBarControllerDelegate>
 
 
@@ -20,5 +19,9 @@
 
 //提示窗口
 +(void)showUIAlertView:(NSString*)title content:(NSString*)msg buttonTitle:(NSString*)btTitle;
+
+
++ (void)setCanBack:(BOOL)back;
++ (BOOL)getCanBack;
 
 @end

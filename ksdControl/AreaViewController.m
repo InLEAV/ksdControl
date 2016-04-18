@@ -68,11 +68,13 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     areaDidSelectRowAtIndexPath= [NSIndexPath indexPathForRow:-1 inSection:0];
     
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-    for (int i=0; i < appDelegate.areaArray.count; i++)
+    if(appDelegate.areaArray.count!=0)
     {
-        [areaDataList addObject:((AreaVO*)appDelegate.areaArray[i])];
+        for (int i=0; i < appDelegate.areaArray.count; i++)
+        {
+            [areaDataList addObject:((AreaVO*)appDelegate.areaArray[i])];
+        }
     }
-    
     groupTableView.backgroundColor = [UIColor colorWithRed:0.05 green:0.1 blue:0.2 alpha:0.6];
     groupTableView.opaque = NO;
     containerTableView.backgroundColor = [UIColor colorWithRed:0.05 green:0.1 blue:0.2 alpha:0.6];
@@ -688,6 +690,9 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
 //保存设置，创建json保存到本地
 - (IBAction)save:(id)sender
 {
+    
+    [SetViewController setCanBack:TRUE];
+    
     //json多级字典，展厅全部数据（组合，元素）
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionary];
     
@@ -807,6 +812,11 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
     [mutableElementDict setValue:@"V1.0.0" forKey:@"程序版本"];
 
     [JsonControl jsonWrite:mutableElementDict FileName:@"ElementData"];
+    
+    
+    NSString *name = [[NSString alloc] initWithString:[NSString stringWithFormat:@"已保存所有设置"]];
+    [SetViewController showUIAlertView:@"提示" content:name buttonTitle:@"确定"];
+    
 }
 
 //添加对象到字典中并返回字典
@@ -833,7 +843,7 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         {
            //保存播放类型设置
             PlayerVO *player = (PlayerVO*)(obj);
-            sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:typeVideoPlayer,@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.playerID],@"ID",[NSNumber numberWithBool:player.count],@"数量",[NSNumber numberWithBool:player.isPic],@"是否图片",nil];
+            sub = [NSMutableDictionary dictionaryWithObjectsAndKeys:typeVideoPlayer,@"type",player.aName,@"name",player.ip ,@"ip",[NSNumber numberWithInteger:player.port],@"port",[NSNumber numberWithBool:player.playerID],@"ID",[NSNumber numberWithBool:player.count],@"数量",[NSNumber numberWithBool:player.isPic],@"是否图片",[NSNumber numberWithBool:player.isDefault],@"是否默认",nil];
         }
         else
         {
@@ -861,6 +871,18 @@ NSIndexPath* areaDidSelectRowAtIndexPath;
         [curTableView selectRowAtIndexPath:_indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         [self tableView:curTableView didSelectRowAtIndexPath:_indexPath];
         
+    }
+}
+
+- (IBAction)backBt:(id)sender
+{
+    if([SetViewController getCanBack]==TRUE)
+    {
+        [self performSegueWithIdentifier:@"areatomain" sender:self];
+    }else
+    {
+        [SetViewController showUIAlertView:@"提示"content:@"退出请确认页面保存操作！" buttonTitle:@"确定"];
+        [SetViewController setCanBack:TRUE];
     }
 }
 @end

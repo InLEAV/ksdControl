@@ -101,7 +101,7 @@
 
 -(void)closeComputer:(id)sender
 {
-    NSLog(@"CloseComputer!");
+    NSLog(@"CloseComputer! %d %@",self.VO.port,self.VO.ip);
     [_delegate sendUDPComputerCommand:@"computer&1&0" toPort:self.VO.port toHost:self.VO.ip];
 }
 

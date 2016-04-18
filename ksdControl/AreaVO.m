@@ -19,7 +19,7 @@
     for (int i = 0; i < groups.count; i++) {
         VO * aa;
         aa=(VO *) groups[i];
-        NSLog(@"groupSon:%d",i);
+        //NSLog(@"groupSon:%d",i);
         [aa initVO];
     }
     

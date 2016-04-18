@@ -56,4 +56,7 @@
 
 //选中分区选项
 -(void)SelectItem:(NSIndexPath *)didSelectRowAtIndexPath tableView:(UITableView*)tableView;
+
+//返回进入页面
+- (IBAction)backBt:(id)sender;
 @end

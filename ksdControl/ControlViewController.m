@@ -21,9 +21,14 @@
 #import "ProjectVO.h"
 #import "GroupControl.h"
 
-#define CELL_Height 148
+#define CELL_Height 150
 
 @interface ControlViewController ()
+{
+    
+    //全局代理
+    AppDelegate *appDelegate;
+}
 @end
 
 @implementation ControlViewController
@@ -39,8 +44,6 @@ NSArray* areaKeys;
 
 NSIndexPath *indexPathArea;
 
-//全局代理
-AppDelegate *appDelegate;
 
 - (void)viewDidLoad
 {
@@ -120,7 +123,7 @@ AppDelegate *appDelegate;
         elementArray = [self getElements:(int)indexPathArea.row];
         [self updateLayout];
         
-        //[self collectionView:self.horizontalList didSelectItemAtIndexPath:indexPathArea];
+        
     }
 }
 
@@ -128,20 +131,23 @@ AppDelegate *appDelegate;
 {
     
     [sever disConnect];
-    NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
-    
-    for (int i = 0; i < arr.count; i++)
+    if(appDelegate.areaArray.count > 0)
     {
-        NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
-        
-        if([newcell isKindOfClass:[ProjectControl class]])
+        NSMutableArray * arr = [self getElements:(int)indexPathArea.row];
+   
+        for (int i = 0; i < arr.count; i++)
         {
-            [((ProjectControl *) newcell) setIsShow:NO];
-        }
-        else if([newcell isKindOfClass:[GroupControl class]])
-        {
-            [((GroupControl *) newcell) setIsShow:NO];
+            NSIndexPath *new_indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            UICollectionViewCell * newcell = [self.grid cellForItemAtIndexPath:new_indexPath];
+            
+            if([newcell isKindOfClass:[ProjectControl class]])
+            {
+                [((ProjectControl *) newcell) setIsShow:NO];
+            }
+            else if([newcell isKindOfClass:[GroupControl class]])
+            {
+                [((GroupControl *) newcell) setIsShow:NO];
+            }
         }
     }
 
@@ -192,16 +198,16 @@ AppDelegate *appDelegate;
 - (void)updateLayout
 {
     SLUICollectionViewLayout *layout = (SLUICollectionViewLayout *)self.grid.collectionViewLayout;
-    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-    if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight)
-    {
+    //UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+    //if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight)
+    //{
         
         layout.rowCount =  3;
-    }
-    else
-    {
-        layout.rowCount = self.grid.bounds.size.height / CELL_Height;
-    }
+    //}
+    //else
+    //{
+    //    layout.rowCount = self.grid.bounds.size.height / CELL_Height;
+    //}
     
     layout.itemHeight = CELL_Height;
     
@@ -288,6 +294,7 @@ AppDelegate *appDelegate;
                 cell.label.lineBreakMode = NSLineBreakByTruncatingMiddle;
                 cell.label.text = ((ComputerVO*)elementArray[rowNo]).aName;
                 cell.VO = ((ComputerVO*)elementArray[rowNo]);
+                
                 cell.delegate = self;
                 return cell;
             }
@@ -479,6 +486,15 @@ AppDelegate *appDelegate;
     [sever disConnect];
 }
 
+//弈博博放器
+- (void)sendPlayCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host
+{
+    NSLog(@"发送字符串类型给电脑端");
+    
+    [sever sendplayCommand:command toPort:port toHost:host];
+}
+
+
 - (void)sendUDPDataComputerCommand:(NSData *)command toPort:(NSInteger)port toHost:(NSString *)host
 {
     NSLog(@"发送数据给电脑端");
@@ -486,6 +502,7 @@ AppDelegate *appDelegate;
     
     
 }
+
 
 - (void)sendUDPComputerCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host
 {

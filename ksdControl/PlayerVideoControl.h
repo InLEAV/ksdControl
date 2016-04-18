@@ -11,6 +11,8 @@
 
 @protocol playDelegate <NSObject>
 - (void)sendUDPPlayCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host;
+
+- (void)sendPlayCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host;
 @end
 
 @interface PlayerVideoControl  : UICollectionViewCell

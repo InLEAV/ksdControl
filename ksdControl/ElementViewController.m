@@ -25,7 +25,7 @@
 
 @synthesize elementTableView,computerDataList,projectorDataList,playerVideoDataList,playerImageDataList,relayDataList;
 
-@synthesize setTypeLabel,nameTextField,ipTextField,macUITextField,idUITextField,relayUITextField,macLabel,idLabel,relayLabel,typeSegmented,portTextField,countLable,countUITextField,setWindow;
+@synthesize setTypeLabel,nameTextField,ipTextField,macUITextField,idUITextField,relayUITextField,macLabel,idLabel,relayLabel,typeSegmented,portTextField,countLable,countUITextField,setWindow,isDefaultSwitch,defaultLabel;
 
 @synthesize elementSections,curSelecetIndexPath;
 
@@ -52,11 +52,23 @@ BOOL isViewOn;
     // Do any additional setup after loading the view.
     [self initTable];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    curSelecetIndexPath= [NSIndexPath indexPathForRow:-1 inSection:-1];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+
 }
 
 //初始化列表
@@ -92,8 +104,6 @@ BOOL isViewOn;
     elementViewOrignalPoint = elementTableView.center;
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     elementTableView.backgroundView = nil;
     elementTableView.backgroundColor = [UIColor colorWithRed:0.05 green:0.1 blue:0.2 alpha:0.6];
@@ -201,6 +211,7 @@ BOOL isViewOn;
             [player setPlayerID:[[pDect objectForKey:@"ID"] intValue]];
             [player setCount:[[pDect objectForKey:@"数量"] intValue]];
             [player setIsPic:[[pDect objectForKey:@"是否图片"] boolValue]];
+            [player setIsDefault:[[pDect objectForKey:@"是否默认"] boolValue]];
             [playerVideoDataList addObject:player];
         }
 
@@ -484,6 +495,19 @@ BOOL isViewOn;
 
 }
 
+- (IBAction)BackBt:(id)sender
+{
+
+    if([SetViewController getCanBack]==TRUE)
+    {
+        [self performSegueWithIdentifier:@"eletomain" sender:self];
+    }else
+    {
+        [SetViewController showUIAlertView:@"提示"content:@"请到展区页面保存操作！" buttonTitle:@"确定"];
+        [SetViewController setCanBack:TRUE];
+    }
+}
+
 // UITableViewDataSource协议中定义的方法,选中返回列表行
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:
 (NSIndexPath *)indexPath
@@ -513,6 +537,8 @@ BOOL isViewOn;
             [relayLabel setHidden:TRUE];
             [countLable setHidden:TRUE];
             [countUITextField setHidden:TRUE];
+            [isDefaultSwitch setHidden:TRUE];
+            [defaultLabel setHidden:TRUE];
         }
             break;
         case 1:
@@ -531,6 +557,8 @@ BOOL isViewOn;
             [relayLabel setHidden:TRUE];
             [countLable setHidden:TRUE];
             [countUITextField setHidden:TRUE];
+            [isDefaultSwitch setHidden:TRUE];
+              [defaultLabel setHidden:TRUE];
             
         }
             break;
@@ -552,6 +580,8 @@ BOOL isViewOn;
             [relayLabel setHidden:FALSE];
             [countLable setHidden:TRUE];
             [countUITextField setHidden:TRUE];
+              [defaultLabel setHidden:TRUE];
+            [isDefaultSwitch setHidden:TRUE];
         }
             break;
         case 3:
@@ -563,8 +593,10 @@ BOOL isViewOn;
             idUITextField.text = [NSString stringWithFormat:@"%d",player.playerID];
             
             //[idUITextField setOn:player.isPic animated:TRUE];
+            
             portTextField.text = [NSString stringWithFormat:@"%d",player.port];
-
+            isDefaultSwitch.on = player.isDefault;
+            
             [macUITextField setHidden:true];
             [idUITextField setHidden:false];
             [relayUITextField setHidden:true];
@@ -573,6 +605,8 @@ BOOL isViewOn;
             [relayLabel setHidden:TRUE];
             [countLable setHidden:FALSE];
             [countUITextField setHidden:FALSE];
+              [defaultLabel setHidden:FALSE];
+            [isDefaultSwitch setHidden:FALSE];
             
         }
             break;
@@ -595,6 +629,8 @@ BOOL isViewOn;
             [relayLabel setHidden:TRUE];
             [countLable setHidden:FALSE];
             [countUITextField setHidden:FALSE];
+              [defaultLabel setHidden:TRUE];
+            [isDefaultSwitch setHidden:TRUE];
             
         }
 
@@ -672,9 +708,7 @@ BOOL isViewOn;
                     [self createElement:@"ProjectVO" insert:TRUE replaceIndex:0  isImage:FALSE];
                     
                 }
-
             }
-            
         }
             break;
         case 2:
@@ -795,6 +829,9 @@ BOOL isViewOn;
             [relayLabel setHidden:TRUE];
             [countLable setHidden:TRUE];
             [countUITextField setHidden:TRUE];
+            [isDefaultSwitch setHidden:TRUE];
+              [defaultLabel setHidden:TRUE];
+            portTextField.text = @"8870";
             break;
         case 1:
             [setTypeLabel setText:@"投影类型"];
@@ -806,6 +843,9 @@ BOOL isViewOn;
             [relayLabel setHidden:TRUE];
             [countLable setHidden:TRUE];
             [countUITextField setHidden:TRUE];
+            [isDefaultSwitch setHidden:TRUE];
+              [defaultLabel setHidden:TRUE];
+            portTextField.text = @"4352";
             break;
         case 2:
             [setTypeLabel setText:@"电路类型"];
@@ -817,6 +857,8 @@ BOOL isViewOn;
             [relayLabel setHidden:FALSE];
             [countLable setHidden:TRUE];
             [countUITextField setHidden:TRUE];
+            [isDefaultSwitch setHidden:TRUE];
+              [defaultLabel setHidden:TRUE];
             break;
         case 3:
             [setTypeLabel setText:@"视频播放"];
@@ -828,6 +870,10 @@ BOOL isViewOn;
             [relayLabel setHidden:TRUE];
             [countLable setHidden:FALSE];
             [countUITextField setHidden:FALSE];
+            [isDefaultSwitch setHidden:FALSE];
+              [defaultLabel setHidden:FALSE];
+            
+            portTextField.text = @"21392";
             break;
         case 4:
             [setTypeLabel setText:@"图片播放"];
@@ -839,6 +885,10 @@ BOOL isViewOn;
             [relayLabel setHidden:TRUE];
             [countLable setHidden:FALSE];
             [countUITextField setHidden:FALSE];
+            [isDefaultSwitch setHidden:TRUE];
+              [defaultLabel setHidden:TRUE];
+            
+            portTextField.text = @"21392";
             break;
     }
     
@@ -854,12 +904,89 @@ BOOL isViewOn;
     
 }
 
+- (IBAction)Modify:(id)sender {
+    if (curSelecetIndexPath.section!=-1)
+    {
+        switch (curSelecetIndexPath.section) {
+            case 0:
+            {
+                if(computerDataList.count!=0)
+                {
+                    ComputerVO *computer =  [computerDataList objectAtIndex:curSelecetIndexPath.row];
+                    computer.aName = nameTextField.text;
+                    computer.ip = ipTextField.text;
+                    computer.port= [portTextField.text intValue];
+                    computer.addressMac = macUITextField.text;
+                }
+                
+            }
+                break;
+            case 1:
+            {
+                if(projectorDataList.count!=0)
+                {
+                    ProjectVO *project =  [projectorDataList objectAtIndex:curSelecetIndexPath.row];
+                    project.aName = nameTextField.text;
+                    project.ip = ipTextField.text;
+                    project.port= [portTextField.text intValue];
+                }
+            }
+                break;
+            case 2:
+            {
+                if(relayDataList.count!=0)
+                {
+                    RelayVO *relay =  [relayDataList objectAtIndex:curSelecetIndexPath.row];
+                    relay.aName = nameTextField.text;
+                    relay.ip = ipTextField.text;
+                    relay.port= [portTextField.text intValue];
+                    relay.circuit = [relayUITextField.text intValue];
+                }
+            }
+                break;
+            case 3:
+            {
+                if(playerVideoDataList.count!=0)
+                {
+                    
+                    PlayerVO *player =  [playerVideoDataList objectAtIndex:curSelecetIndexPath.row];
+                    player.aName = nameTextField.text;
+                    player.ip = ipTextField.text;
+                    player.port= [portTextField.text intValue];
+                    player.playerID = [idUITextField.text intValue];
+                    player.count = [countUITextField.text intValue];
+                    player.isDefault = isDefaultSwitch.isOn;
+                }
+            }
+                break;
+            case 4:
+            {
+                if(playerImageDataList.count!=0)
+                {
+                    PlayerVO *player =  [playerImageDataList objectAtIndex:curSelecetIndexPath.row];
+                    player.aName = nameTextField.text;
+                    player.ip = ipTextField.text;
+                    player.port= [portTextField.text intValue];
+                    player.playerID = [idUITextField.text intValue];
+                    player.count = [countUITextField.text intValue];
+                }
+            }
+                break;
+            default:
+                break;
+        }
+    }
+    
+    [elementTableView reloadData];
+}
 
 //完成编辑判断输入字符是否正确
 - (IBAction)EditDidEnd:(id)sender
 {
-    if([sender isEqual:ipTextField])
+    
+     if([sender isEqual:ipTextField])
     {
+        
         if(![SetViewController validateInput:ipTextField.text RegexString:@"\\b(?:\\d{1,3}\\.){3}\\d{1,3}\\b"])
         {
             [SetViewController showUIAlertView:@"提示" content:@"请正确输入IP格式" buttonTitle:@"确定"];
@@ -868,10 +995,7 @@ BOOL isViewOn;
     }
     else if([sender isEqual:macUITextField])
     {
-//        if(![SetViewController validateInput:macUITextField.text RegexString:@"^([0-9a-fA-F]{2})(([/\\s:][0-9a-fA-F]{2}){5})$"])
-//        {
-//            [SetViewController showUIAlertView:@"提示" content:@"请正确输入mac格式" buttonTitle:@"确定"];
-//        }
+        
         NSLog(@"MAC EditDidEnd");
     }
     else if([sender isEqual:portTextField])
@@ -882,15 +1006,7 @@ BOOL isViewOn;
         }
         NSLog(@"Port EditDidEnd");
     }
-    else if ([sender isEqual:relayUITextField])
-    {
-//        if(![SetViewController validateInput:relayUITextField.text  RegexString:@"^[1-9]\\d*|0$"])
-//        {
-//            [SetViewController showUIAlertView:@"提示" content:@"请正确输入数字格式" buttonTitle:@"确定"];
-//        }
-        NSLog(@"Relay EditDidEnd");
-    }
-    
+
   
 }
 
@@ -1022,6 +1138,9 @@ BOOL isViewOn;
         {
             [obj setAType:typeVideoPlayer];
             [(PlayerVO*)obj setIsPic:FALSE];
+            [(PlayerVO*)obj setIsDefault:isDefaultSwitch.isOn];
+            
+
         }
         else
         {
@@ -1122,5 +1241,6 @@ BOOL isViewOn;
         isViewOn = TRUE;
     }
 }
+
 
 @end

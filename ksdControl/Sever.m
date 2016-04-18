@@ -42,6 +42,15 @@
     [_socket enableBroadcast:YES error:nil];
 }
 
+- (void)sendplayCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host
+{
+    NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF16LE);
+    NSData *data = [command dataUsingEncoding:enc];
+    
+    [_socket sendData:data toHost:host port:port withTimeout:-1 tag:_tag];
+    _tag++;
+}
+
 - (void)sendCommand:(NSString *)command toPort:(NSInteger)port toHost:(NSString *)host
 {
     

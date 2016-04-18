@@ -56,6 +56,9 @@
 
 //视频或图片总数标签
 @property (weak, nonatomic) IBOutlet UILabel *countLable;
+@property (weak, nonatomic) IBOutlet UILabel *defaultLabel;
+//是否默认播放器或一搏
+@property (weak, nonatomic) IBOutlet UISwitch *isDefaultSwitch;
 
 //mac地址输入框
 @property (strong, nonatomic) IBOutlet UITextField *macUITextField;
@@ -70,7 +73,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *countUITextField;
 
 @property (strong, nonatomic) IBOutlet UIView *setWindow;
-
 
 //初始化列表
 - (void)initTable;
@@ -107,5 +109,8 @@
 
 //当元素列表已移除其中元素，则移除组合中包含的元素
 - (void)removeGroupElement:(id)obj;
+
+- (IBAction)BackBt:(id)sender;
+
 
 @end

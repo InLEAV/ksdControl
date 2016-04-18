@@ -78,7 +78,7 @@
     isShow = isShow2;
     if (isShow == YES)
     {
-        NSLog(@"show:YES:ip:%@.port:%d",self.VO.ip,self.VO.port);
+       // NSLog(@"show:YES:ip:%@.port:%d",self.VO.ip,self.VO.port);
         NSError *error = nil;
         if (![tcpSocket connectToHost:self.VO.ip
                                onPort:self.VO.port

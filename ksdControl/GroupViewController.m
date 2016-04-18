@@ -58,32 +58,35 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     //加载组合设置列表
     AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
     NSMutableArray * array =  [[NSMutableArray alloc] initWithObjects:nil];
-    for (int i=0; i < appDelegate.areaArray.count; i++)
+    if(appDelegate.areaArray.count!=0)
     {
-        for (int j =0; j < ((AreaVO*)appDelegate.areaArray[i]).groups.count; j++)
+        for (int i=0; i < appDelegate.areaArray.count; i++)
         {
-          
-            if ([((AreaVO*)appDelegate.areaArray[i]).groups[j] isKindOfClass:[GroupVO class]])
+            for (int j =0; j < ((AreaVO*)appDelegate.areaArray[i]).groups.count; j++)
             {
-                GroupVO *appGroup =((GroupVO*)(((AreaVO*)appDelegate.areaArray[i]).groups[j]));
                 
-                if(groupDataList.count!=0)
+                if ([((AreaVO*)appDelegate.areaArray[i]).groups[j] isKindOfClass:[GroupVO class]])
                 {
-                    for(int i =0;i < array.count;i++)
+                    GroupVO *appGroup =((GroupVO*)(((AreaVO*)appDelegate.areaArray[i]).groups[j]));
+                    
+                    if(groupDataList.count!=0)
                     {
-                        if(![array containsObject:appGroup.aName])
+                        for(int i =0;i < array.count;i++)
                         {
-                            [array addObject:appGroup.aName];
-                            [groupDataList addObject:appGroup];
+                            if(![array containsObject:appGroup.aName])
+                            {
+                                [array addObject:appGroup.aName];
+                                [groupDataList addObject:appGroup];
+                            }
                         }
                     }
+                    else
+                    {
+                        [array addObject:appGroup.aName];
+                        [groupDataList addObject:appGroup];
+                    }
+                    
                 }
-                else
-                {
-                    [array addObject:appGroup.aName];
-                    [groupDataList addObject:appGroup];
-                }
-    
             }
         }
     }
@@ -404,6 +407,19 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
     }
 }
 
+- (IBAction)BackBt:(id)sender
+{
+    
+    if([SetViewController getCanBack]==TRUE)
+    {
+        [self performSegueWithIdentifier:@"grouptomain" sender:self];
+    }else
+    {
+        [SetViewController showUIAlertView:@"提示"content:@"请到展区页面保存操作！" buttonTitle:@"确定"];
+        [SetViewController setCanBack:TRUE];
+    }
+}
+
 //选择列表选项,返回当前所选择的列表行信息
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:
 (NSIndexPath *)indexPath
@@ -664,4 +680,6 @@ NSIndexPath *elementDidSelectRowAtIndexPath;
         
     }
 }
+
+
 @end

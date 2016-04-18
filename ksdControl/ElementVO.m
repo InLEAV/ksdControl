@@ -15,9 +15,9 @@
 -(void) initVO
 {
     [super initVO];
-    NSLog(@"type:%@",aType);
-    NSLog(@"ip:%@",ip);
-    NSLog(@"port:%d",port);
+    //NSLog(@"type:%@",aType);
+    //NSLog(@"ip:%@",ip);
+    //NSLog(@"port:%d",port);
 }
 
 @end

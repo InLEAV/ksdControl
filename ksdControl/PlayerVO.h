@@ -19,4 +19,5 @@
 
 @property BOOL isPic;
 
+@property BOOL isDefault;
 @end

@@ -43,7 +43,7 @@
     //查找GameScore表
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
     //查找GameScore表里面id为0c6db13c的数据
-    [bquery getObjectInBackgroundWithId:@"1VHBxxxy" block:^(BmobObject *object,NSError *error){
+    [bquery getObjectInBackgroundWithId:@"FC0E888C" block:^(BmobObject *object,NSError *error){
         if (error){
             //进行错误处理
         }else{
@@ -134,10 +134,11 @@
                         NSString *type = [gDict objectForKey:@"type"];
                         if([type isEqualToString:typeComputer])
                         {
-                            NSLog(@"电脑类型:%@",[gDict objectForKey:@"name"]);
+                            NSLog(@"电脑类型:%@  %@",[gDict objectForKey:@"name"],[gDict objectForKey:@"ip"]);
                             ComputerVO* computer = [ComputerVO new];
                             [computer initVO];
                             [computer setAType:typeComputer];
+                            
                             [computer setIp:[gDict objectForKey:@"ip"]];
                             [computer setAName:[gDict objectForKey:@"name"]];
                             [computer setPort:[[gDict objectForKey:@"port"] intValue]] ;
@@ -148,7 +149,7 @@
                         }
                         if([type isEqualToString:typeProject])
                         {
-                            NSLog(@"投影机类型:%@",[gDict objectForKey:@"name"]);
+                            //NSLog(@"投影机类型:%@",[gDict objectForKey:@"name"]);
                             ProjectVO* project = [ProjectVO new];
                             [project initVO];
                             [project setAType:typeProject];
@@ -162,7 +163,7 @@
                         
                         if([type isEqualToString:typeVideoPlayer])
                         {
-                            NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
+                            //NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
                             PlayerVO* player = [PlayerVO new];
                             [player initVO];
                             [player setAType:typeVideoPlayer];
@@ -172,12 +173,13 @@
                             [player setPlayerID:[[gDict objectForKey:@"ID"] intValue]];
                             [player setCount:[[gDict objectForKey:@"数量"] intValue]];
                             [player setIsPic:[[gDict objectForKey:@"是否图片"] boolValue]];
+                            [player setIsDefault:[[gDict objectForKey:@"是否默认"] boolValue]];
                             [area.groups addObject:player];
                         }
                         
                         if([type isEqualToString:typeImagePlayer])
                         {
-                            NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
+                           // NSLog(@"播放类型:%@",[gDict objectForKey:@"name"]);
                             PlayerVO* player = [PlayerVO new];
                             [player initVO];
                             [player setAType:typeImagePlayer];
@@ -193,7 +195,7 @@
                         
                         if([type isEqualToString:typeRelay])
                         {
-                            NSLog(@"电路类型:%@",[gDict objectForKey:@"name"]);
+                            //NSLog(@"电路类型:%@",[gDict objectForKey:@"name"]);
                             RelayVO* relay = [RelayVO new];
                             [relay initVO];
                             [relay setAType:typeRelay];
@@ -208,7 +210,7 @@
                     
                     if([[gKey substringToIndex:2] isEqual: @"组合"])
                     {
-                        NSLog(@"组合");
+                        //NSLog(@"组合");
                         //获取元素的所有键值
                         NSArray* elementKeys = [[gDict allKeys]sortedArrayUsingSelector:@selector(compare:)];
                         

@@ -28,6 +28,7 @@
 //包含数组，添加的每个组合的所包含的元素的数组，用于切换不用的组合显示元素在中间的列表
 @property (nonatomic, retain) NSMutableArray *containerDataList;
 
+
 //添加元素到包含数组
 - (IBAction)AddElementToContatiner:(id)sender;
 
@@ -50,4 +51,8 @@
 
 //当组合列表已移除其中组合，则移除展区中包含的元素
 - (void)removeAreaElement:(id)obj;
+
+//返回
+- (IBAction)BackBt:(id)sender;
+
 @end

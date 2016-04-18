@@ -14,8 +14,8 @@
 
 -(void) initVO
 {
-    NSLog(@"VOname = %@",aName);
-    NSLog(@"VOid = %d",aID);
+   // NSLog(@"VOname = %@",aName);
+    //NSLog(@"VOid = %d",aID);
 }
 
 @end
